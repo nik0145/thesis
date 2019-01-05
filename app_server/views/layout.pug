@@ -1,7 +1,31 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+	body
+		nav(class='navbar navbar-expand-lg navbar-dark bg-dark')
+			a.navbar-brand(href='/') шаблон
+			button(class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbar-collapse' aria-controls='navbarText' aria-expanded='false' aria-label='Toggle navigation')
+				span.navbar-toggler-icon
+			.collapse.navbar-collapse(id='navbar-collapse')
+				ul.navbar-nav
+					li.nav-item
+						a.nav-link(href='/news/') news
+					li.nav-item
+						a.nav-link(href='/news/') news
+
+
+
+		.container
+			block content
+			div(class='alert alert-danger') проверка bootstrap
+			footer
+				.row
+					.col-sx-12
+						small &copy; kek production
+
+	script(src='/js/jquery.min.js')
+	script(src='/js/bootstrap.min.js')
