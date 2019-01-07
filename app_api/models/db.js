@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var readLine = require('readline');
 
-
-
 if(process.platform === "win32"){
 	var rl = readLine.createInterface({
 		input: process.stdin,
@@ -13,7 +11,7 @@ if(process.platform === "win32"){
 	});
 }
 
-var dbURI = 'mongodb://localhost/users';
+var dbURI = 'mongodb://localhost/news';
 mongoose.connect(dbURI);
 var gracefulShutdown = function(msg,callback){
 	mongoose.connection.close(function(){
@@ -37,24 +35,6 @@ mongoose.connection.on('connected',function(){
 	console.log('good');
 });
 
-var userSchema = mongoose.Schema({
-	firstName:String,
-	lastName:String
-});
-
-var User = mongoose.model('User',userSchema);
-
-var exampleUser = new User ({
-	_id: new mongoose.Types.ObjectId(),
-	name:{
-		firstName:'Nik',
-		lastName:'Tyurin'
-	}
-});
-exampleUser.save(function(err){
-	if(err) throw err;
-	console.log('successfully saved good boy))');
-});
 mongoose.connection.on('error',function(err){
 	console.log(err);
 });
