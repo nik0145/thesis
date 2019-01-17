@@ -4,9 +4,10 @@ var router = express.Router();
 var ctrlAdmin = require('../controllers/admin');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Index' });
-});
+//router.get('/', function(req, res, next) {
+	router.get('/',ctrlAdmin.app);
+  //res.render('index', { title: 'Index' });
+//});
 
 router.get('/about', function(req, res, next) {
     res.render('about', { title: 'About' });

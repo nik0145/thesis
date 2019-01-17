@@ -19,8 +19,6 @@ module.exports.createNews = function (req, res) {
     res.send('qwerty');
 };
 
-module.exports.spa = function (req, res) {
-
-
-   res.render('admin-spa', { title: 'Angular'});
+module.exports.app = function (req, res) {
+   res.render('layout-spa', { title: 'Angular'});
 };
