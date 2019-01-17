@@ -1,10 +1,9 @@
-h1 Проект по книжке
+Проект по книжке
 ==============
-2 ветки master и book
 ---
 чтобы установить выполните
 ---
-git clone https://gitlab.nntc.nnov.ru/kolya_tyurin/kursovik.git -b book
+git clone https://gitlab.nntc.nnov.ru/kolya_tyurin/kursovik.git
 ---
 git install
 ---
