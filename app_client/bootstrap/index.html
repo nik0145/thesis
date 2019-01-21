@@ -1,0 +1,40 @@
+<ng-include src="'templates/menu.html'"></ng-include>
+<input class="form-control" type="text" ng-model="vm.kek">
+<div class="alert-info">{{vm.kek}}</div>
+<table id ="rasp" class="table table-hover">
+  <thead>
+    <tr>
+      <th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+      <th class=" text-center" scope="col">Дисциплина, МДК</th>
+      <th class=" text-center" scope="col">Пара</th>
+      <th class=" text-center" scope="col">Комментарий</th>
+      <th class=" text-center" scope="col">Аудитория</th>
+    </tr>
+    <tr>
+    	<th  colspan = "5" class="table-info text-center">1РА-18-1уп</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Жиленкова И.Б./Виноградова И.Г.</td>
+      <td>физическая культура</td>
+      <th scope="row">1</th>
+      <td></td>
+      <td>с/з</td>
+    </tr>
+    <tr>
+      <td>Лобанова Л.Ю.</td>
+      <td>обществознание 	</td>
+      <th scope="row">2</th>
+      <td></td>
+      <td>207</td>
+    </tr>
+    <tr>
+      <td >Смолина Е.Ю.</td>
+      <td >Литература</td>
+      <th scope="row">3</th>
+      <td></td>
+      <td>208</td>
+    </tr>
+  </tbody>
+</table>

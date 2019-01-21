@@ -1,7 +1,12 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+.name-group{
+	text-align: center;
+}
+#rasp td{
+	text-align: center;
+}
 a {
   color: #00B7FF;
 }
