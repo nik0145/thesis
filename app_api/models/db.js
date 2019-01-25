@@ -12,7 +12,7 @@ if(process.platform === "win32"){
 }
 
 var dbURI = 'mongodb://localhost/news';
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, { useNewUrlParser: true });
 var gracefulShutdown = function(msg,callback){
 	mongoose.connection.close(function(){
 		console.log('mongoose disconnected through ' + msg);

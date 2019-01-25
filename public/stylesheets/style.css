@@ -1,6 +1,11 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+.inputCont{
+	margin: 0;
+	padding: 0;
+}
+.md-errors-spacer { display: none; }
 .name-group{
 	text-align: center;
 }

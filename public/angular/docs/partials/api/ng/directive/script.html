@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/script.js?message=docs(script)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.7.x/src/ng/directive/script.js?message=docs(script)%3A%20describe%20your%20change...#L3' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.32/src/ng/directive/script.js#L3' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.7.6/src/ng/directive/script.js#L3' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -19,7 +19,10 @@
 
 
 
+
+
 <div class="api-profile-description">
+  <h2 id="overview">Overview</h2>
   <p>Load the content of a <code>&lt;script&gt;</code> element into <a href="api/ng/service/$templateCache"><code>$templateCache</code></a>, so that the
 template can be used by <a href="api/ng/directive/ngInclude"><code>ngInclude</code></a>,
 <a href="api/ngRoute/directive/ngView"><code>ngView</code></a>, or <a href="guide/directive">directives</a>. The type of the
@@ -35,10 +38,11 @@ assigned through the element&#39;s <code>id</code>, which can then be used as a 
   
 
   
-  <h2>Directive Info</h2>
+  <h2 id="script-info">Directive Info</h2>
   <ul>
     
     <li>This directive executes at priority level 0.</li>
+    
   </ul>
 
   
@@ -48,14 +52,17 @@ assigned through the element&#39;s <code>id</code>, which can then be used as a 
     <ul>
     
       <li>as element:
-      
-      <pre><code>&lt;script&#10;  type=&quot;&quot;&#10;  id=&quot;&quot;&gt;&#10;...&#10;&lt;/script&gt;</code></pre>
+      <pre><code>&lt;script&#10;  type=&quot;string&quot;&#10;  id=&quot;string&quot;&gt;&#10;...&#10;&lt;/script&gt;</code></pre>
       </li>
+    
+
+    
+    
     
   </div>
   
 <section class="api-section">
-  <h3>Arguments</h3>
+  <h3 id="script-arguments">Arguments</h3>
 
 <table class="variables-matrix input-arguments">
   <thead>
@@ -105,17 +112,15 @@ assigned through the element&#39;s <code>id</code>, which can then be used as a 
 </section>
   
 
-
   
-  <h2 id="example">Example</h2><p>
+  <h2 id="examples">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-example85')" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
+  <plnkr-opener example-path="examples/example-script-tag"></plnkr-opener>
 
   <div class="runnable-example"
-      path="examples/example-example85">
+      path="examples/example-script-tag"
+      name="script-tag">
 
   
     <div class="runnable-example-file" 
@@ -133,7 +138,7 @@ assigned through the element&#39;s <code>id</code>, which can then be used as a 
     </div>
   
 
-    <iframe class="runnable-example-frame" src="examples/example-example85/index.html" name="example-example85"></iframe>
+    <iframe class="runnable-example-frame" src="examples/example-script-tag/index.html" name="example-script-tag"></iframe>
   </div>
 </div>
 

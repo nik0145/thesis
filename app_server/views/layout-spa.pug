@@ -1,18 +1,25 @@
 doctype html
-html(ng-app="myApp")
+html(ng-app="myApp" ng-cloak)
   head
     title= title
     meta(name='viewport', content='with=device-with, initial-scale=1.0')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/angular-material.css')
+    link(rel='stylesheet', href='/angular-material/angular-material.css')
   body
     block content
         div(ng-view)
-    script(src='/angular/angular.min.js')
-    script(src='/angular/angular-route.min.js')
+
+    script(src='/angular/angular.js')
+    script(src='/angular/angular-route.js')
+    script(src='/angular/angular-animate.js')
+    script(src='/angular/angular-aria.js')
+    script(src='/angular/angular-messages.js')
+    script(src='/angular-material/angular-material.js')
+    script(src='/js/jquery.js')
     script(src='/app.js')
     script(src='/index/indexController.js')
     script(src='/page1/page1Controller.js')
     script(src='/bootstrap/BstrpController.js')
-    script(src='/js/jquery.min.js')
-    script(src='/js/bootstrap.min.js')
+    script(src='/js/bootstrap.js')

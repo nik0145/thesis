@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/Angular.js?message=docs(angular.identity)%3A%20describe%20your%20change...#L391' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.7.x/src/Angular.js?message=docs(angular.identity)%3A%20describe%20your%20change...#L453' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.32/src/Angular.js#L391' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.7.6/src/Angular.js#L453' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -19,12 +19,24 @@
 
 
 
+
+
 <div class="api-profile-description">
+  <h2 id="overview">Overview</h2>
   <p>A function that returns its first argument. This function is useful when writing code in the
 functional style.</p>
 <pre><code class="lang-js">function transformer(transformationFn, value) {
   return (transformationFn || angular.identity)(value);
 };
+
+// E.g.
+function getResult(fn, input) {
+  return (fn || angular.identity)(input);
+};
+
+getResult(function(n) { return n * 2; }, 21);   // returns 42
+getResult(null, 21);                            // returns 21
+getResult(undefined, 21);                       // returns 21
 </code></pre>
 
 </div>
@@ -35,7 +47,7 @@ functional style.</p>
 <div>
   
 
-    
+  
 
   <h2 id="usage">Usage</h2>
     
@@ -46,7 +58,7 @@ functional style.</p>
 
     
 <section class="api-section">
-  <h3>Arguments</h3>
+  <h3 id="angular.identity-arguments">Arguments</h3>
 
 <table class="variables-matrix input-arguments">
   <thead>
@@ -79,7 +91,8 @@ functional style.</p>
 
 </section>
     
-    <h3>Returns</h3>
+
+    <h3 id="angular.identity-returns">Returns</h3>
 <table class="variables-matrix return-arguments">
   <tr>
     <td><a href="" class="label type-hint type-hint-object">*</a></td>

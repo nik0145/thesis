@@ -1,6 +1,8 @@
 (function() {
-	angular.module('myApp', ['ngRoute']);
-
+	angular.module('myApp', ['ngRoute','ngMaterial']).
+	run(function(){
+		console.log('is ready');
+	});
 	function config($routeProvider) {
 
 		$routeProvider
@@ -22,8 +24,10 @@
 			).otherwise({redirectTo: '/'});
 
 	}
-
 	angular.module('myApp')
-		.config(['$routeProvider', config]);
+		.config(['$routeProvider', config],
+			['$locationProvider', function($locationProvider) {
+			        $locationProvider.hashPrefix('');
+			    }]);
 })();
 

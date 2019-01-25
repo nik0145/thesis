@@ -1,8 +1,8 @@
-<a href='https://github.com/angular/angular.js/edit/v1.2.x/src/ng/directive/input.js?message=docs(input[radio])%3A%20describe%20your%20change...#L329' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com/angular/angular.js/edit/v1.7.x/src/ng/directive/input.js?message=docs(input[radio])%3A%20describe%20your%20change...#L1000' class='improve-docs btn btn-primary'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 
 
 
-<a href='https://github.com/angular/angular.js/tree/v1.2.32/src/ng/directive/input.js#L329' class='view-source pull-right btn btn-primary'>
+<a href='https://github.com/angular/angular.js/tree/v1.7.6/src/ng/directive/input.js#L1000' class='view-source pull-right btn btn-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -19,9 +19,36 @@
 
 
 
-<div class="api-profile-description">
-  <p>HTML radio button.</p>
 
+
+<div class="api-profile-description">
+  <h2 id="overview">Overview</h2>
+  <p>HTML radio button.</p>
+<p><strong>Note:</strong><br>
+All inputs controlled by <a href="api/ng/directive/ngModel">ngModel</a> (including those of type <code>radio</code>) will use the
+value of their <code>name</code> attribute to determine the property under which their
+<a href="api/ng/type/ngModel.NgModelController">NgModelController</a> will be published on the parent
+<a href="api/ng/type/form.FormController">FormController</a>. Thus, if you use the same <code>name</code> for multiple
+inputs of a form (e.g. a group of radio inputs), only <em>one</em> <code>NgModelController</code> will be
+published on the parent <code>FormController</code> under that name. The rest of the controllers will
+continue to work as expected, but you won&#39;t be able to access them as properties on the parent
+<code>FormController</code>.</p>
+<div class="alert alert-info">
+  <p>
+    In plain HTML forms, the <code>name</code> attribute is used to identify groups of radio inputs, so
+    that the browser can manage their state (checked/unchecked) based on the state of other
+    inputs in the same group.
+  </p>
+  <p>
+    In AngularJS forms, this is not necessary. The input&#39;s state will be updated based on the
+    value of the underlying model data.
+  </p>
+</div>
+
+<div class="alert alert-success">
+  If you omit the <code>name</code> attribute on a radio input, <code>ngModel</code> will automatically assign it a
+  unique name.
+</div>
 </div>
 
 
@@ -31,18 +58,19 @@
   
 
   
-  <h2>Directive Info</h2>
+  <h2 id="input[radio]-info">Directive Info</h2>
   <ul>
     
     <li>This directive executes at priority level 0.</li>
+    
   </ul>
 
   
   <h2>Usage</h2>
-  <pre><code>&lt;input type=&quot;radio&quot;&#10;       ng-model=&quot;&quot;&#10;       value=&quot;&quot;&#10;       [name=&quot;&quot;]&#10;       [ng-change=&quot;&quot;]&#10;       ng-value=&quot;&quot;&gt;</code></pre>
+  <pre><code>&lt;input type=&quot;radio&quot;&#10;       ng-model=&quot;string&quot;&#10;       value=&quot;string&quot;&#10;       [name=&quot;string&quot;]&#10;       [ng-change=&quot;string&quot;]&#10;       ng-value=&quot;string&quot;&gt;</code></pre>
 
 <section class="api-section">
-  <h3>Arguments</h3>
+  <h3 id="input[radio]-arguments">Arguments</h3>
 
 <table class="variables-matrix input-arguments">
   <thead>
@@ -64,7 +92,7 @@
         <a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>Assignable angular expression to data-bind to.</p>
+        <p>Assignable AngularJS expression to data-bind to.</p>
 
         
       </td>
@@ -80,7 +108,9 @@
         <a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>The value to which the expression should be set when selected.</p>
+        <p>The value to which the <code>ngModel</code> expression should be set when selected.
+   Note that <code>value</code> only supports <code>string</code> values, i.e. the scope model needs to be a string,
+   too. Use <code>ngValue</code> if you need complex models (<code>number</code>, <code>object</code>, ...).</p>
 
         
       </td>
@@ -112,7 +142,7 @@
         <a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>Angular expression to be executed when input changes due to user
+        <p>AngularJS expression to be executed when input changes due to user
    interaction with the input element.</p>
 
         
@@ -129,8 +159,9 @@
         <a href="" class="label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>Angular expression which sets the value to which the expression should
-   be set when selected.</p>
+        <p>AngularJS expression to which <code>ngModel</code> will be be set when the radio
+   is selected. Should be used instead of the <code>value</code> attribute if you need
+   a non-string <code>ngModel</code> (<code>boolean</code>, <code>array</code>, ...).</p>
 
         
       </td>
@@ -142,14 +173,11 @@
 </section>
   
 
-
   
-  <h2 id="example">Example</h2><p>
+  <h2 id="examples">Example</h2><p>
 
 <div>
-  <a ng-click="openPlunkr('examples/example-radio-input-directive')" class="btn pull-right">
-    <i class="glyphicon glyphicon-edit">&nbsp;</i>
-    Edit in Plunker</a>
+  <plnkr-opener example-path="examples/example-radio-input-directive"></plnkr-opener>
 
   <div class="runnable-example"
       path="examples/example-radio-input-directive"
@@ -161,14 +189,14 @@
       name="index.html"
       language="html"
       type="html">
-      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;radioExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.color = &#39;blue&#39;;&#10;      $scope.specialValue = {&#10;        &quot;id&quot;: &quot;12345&quot;,&#10;        &quot;value&quot;: &quot;green&quot;&#10;      };&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;input type=&quot;radio&quot; ng-model=&quot;color&quot; value=&quot;red&quot;&gt;  Red &lt;br/&gt;&#10;  &lt;input type=&quot;radio&quot; ng-model=&quot;color&quot; ng-value=&quot;specialValue&quot;&gt; Green &lt;br/&gt;&#10;  &lt;input type=&quot;radio&quot; ng-model=&quot;color&quot; value=&quot;blue&quot;&gt; Blue &lt;br/&gt;&#10;  &lt;tt&gt;color = {{color | json}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;&#10; Note that `ng-value=&quot;specialValue&quot;` sets radio item&#39;s value to be the value of `$scope.specialValue`.</code></pre>
+      <pre><code>&lt;script&gt;&#10;  angular.module(&#39;radioExample&#39;, [])&#10;    .controller(&#39;ExampleController&#39;, [&#39;$scope&#39;, function($scope) {&#10;      $scope.color = {&#10;        name: &#39;blue&#39;&#10;      };&#10;      $scope.specialValue = {&#10;        &quot;id&quot;: &quot;12345&quot;,&#10;        &quot;value&quot;: &quot;green&quot;&#10;      };&#10;    }]);&#10;&lt;/script&gt;&#10;&lt;form name=&quot;myForm&quot; ng-controller=&quot;ExampleController&quot;&gt;&#10;  &lt;label&gt;&#10;    &lt;input type=&quot;radio&quot; ng-model=&quot;color.name&quot; value=&quot;red&quot;&gt;&#10;    Red&#10;  &lt;/label&gt;&lt;br/&gt;&#10;  &lt;label&gt;&#10;    &lt;input type=&quot;radio&quot; ng-model=&quot;color.name&quot; ng-value=&quot;specialValue&quot;&gt;&#10;    Green&#10;  &lt;/label&gt;&lt;br/&gt;&#10;  &lt;label&gt;&#10;    &lt;input type=&quot;radio&quot; ng-model=&quot;color.name&quot; value=&quot;blue&quot;&gt;&#10;    Blue&#10;  &lt;/label&gt;&lt;br/&gt;&#10;  &lt;tt&gt;color = {{color.name | json}}&lt;/tt&gt;&lt;br/&gt;&#10; &lt;/form&gt;&#10; Note that `ng-value=&quot;specialValue&quot;` sets radio item&#39;s value to be the value of `$scope.specialValue`.</code></pre>
     </div>
   
     <div class="runnable-example-file" 
       name="protractor.js"
       type="protractor"
       language="js">
-      <pre><code>it(&#39;should change state&#39;, function() {&#10;  var color = element(by.binding(&#39;color&#39;));&#10;&#10;  expect(color.getText()).toContain(&#39;blue&#39;);&#10;&#10;  element.all(by.model(&#39;color&#39;)).get(0).click();&#10;&#10;  expect(color.getText()).toContain(&#39;red&#39;);&#10;});</code></pre>
+      <pre><code>it(&#39;should change state&#39;, function() {&#10;  var inputs = element.all(by.model(&#39;color.name&#39;));&#10;  var color = element(by.binding(&#39;color.name&#39;));&#10;&#10;  expect(color.getText()).toContain(&#39;blue&#39;);&#10;&#10;  inputs.get(0).click();&#10;  expect(color.getText()).toContain(&#39;red&#39;);&#10;&#10;  inputs.get(1).click();&#10;  expect(color.getText()).toContain(&#39;green&#39;);&#10;});</code></pre>
     </div>
   
 
