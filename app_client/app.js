@@ -21,7 +21,12 @@
 				controller: 'BstrpController',
 				controllerAs: 'vm'
 				}
-			).otherwise({redirectTo: '/'});
+			).when('/schedule', {
+				templateUrl:'bootstrap/schedule.html',
+				controller:'BstrpController',
+				controllerAs: 'vm'
+			})
+			.otherwise({redirectTo: '/'});
 
 	}
 	angular.module('myApp')

@@ -1,0 +1,31 @@
+<ng-include src="'templates/menu.html'"></ng-include>
+<p>{{vm.kek}}</p>
+<input type="text" ng-model="vm.kek">
+<table id ="raspa" class="table table-hover">
+  <thead>
+	<tr>
+	  <th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+	  <th class=" text-center" scope="col">Дисциплина, МДК</th>
+	  <th class=" text-center" scope="col">Пара</th>
+	  <th class=" text-center" scope="col">Комментарий</th>
+	  <th class=" text-center" scope="col">Аудитория</th>
+	</tr>
+
+  </thead>
+  <tbody ng-repeat="item in vm.schedule">
+  		<tr>
+  			<th  colspan = "5" class="table-info text-center">{{item.group}}</th>
+  		</tr>
+  		<tr ng-repeat="row in item.lessons">
+  			<td ng-model="row.teacher">{{row.teacher}}</td>
+  			<td ng-model="row.discipline">{{row.discipline}}</td>
+  			<td ng-model="row.number">{{row.number}}</td>
+  			<td ng-model="row.comment">{{row.comment}}</td>
+  			<td ng-model="row.auditorium">{{row.auditorium}}</td>
+  		</tr>
+  </tbody>
+</table>
+<!-- <div ng-repeat="item in vm.content | filter:{name: 'лел'}">
+	<p>value {{item}}</p>
+	<div ng-repeat="kek in item.subject">{{kek}}</div>
+</div> -->
