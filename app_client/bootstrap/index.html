@@ -1,171 +1,82 @@
 <ng-include src="'templates/menu.html'"></ng-include>
-<table id ="raspa" class="table table-hover">
-  <thead>
-	<tr>
-	  <th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-	  <th class=" text-center" scope="col">Дисциплина, МДК</th>
-	  <th class=" text-center" scope="col">Пара</th>
-	  <th class=" text-center" scope="col">Комментарий</th>
-	  <th class=" text-center" scope="col">Аудитория</th>
-	</tr>
 
-  </thead>
-  <tbody ng-repeat="item in vm.schedule">
-  		<tr>
-  			<th  colspan = "5" class="table-info text-center">{{item.group}}</th>
-  		</tr>
-  		<tr ng-repeat="row in item.lessons">
-  			<td>{{row.teacher}}</td>
-  			<td>{{row.discipline}}</td>
-  			<td>{{row.number}}</td>
-  			<td>{{row.comment}}</td>
-  			<td><md-input-container class="inputCont ">
-        <input ng-model="row.auditorium">
-      </md-input-container></td>
-  		</tr>
-  			<tr>
-  			  <td>
-  			  	<md-autocomplete
-  			  	md-selected-item="vm.selectedItem"
-  			  	md-search-text-change="vm.searchTextChange(vm.searchText)"
-  			  	md-search-text="vm.searchText"
-  			  	md-selected-item-change="vm.selectedItemChange(itemTeacher)"
-  			  	md-items="itemTeacher in vm.content | filter:vm.searchText"
-  			  	md-item-text="itemTeacher.name"
-  			  	md-min-length="0"
-  			  	placeholder="Фамилия Преподавателя"
-  		        <md-item-template>
-  		          <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{itemTeacher.name}}</span>
-  		        </md-item-template>
-  		        <md-not-found>
-  		          Преподаватель не найден
-  		        </md-not-found>
-  		      </md-autocomplete>
-  			  </td>
-  			  <td>
-  			  	<any ng-repeat="itemSubject in vm.content | filter:{name: vm.searchText} | limitTo:1">
-  			  	<md-autocomplete
+<table id ="raspas" class="table table-hover">
+	<thead>
+		<tr>
+			<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+			<th class=" text-center" scope="col">Дисциплина, МДК</th>
+			<th class=" text-center" scope="col">Пара</th>
+			<th class=" text-center" scope="col">Комментарий</th>
+			<th class=" text-center" scope="col">Аудитория</th>
+		</tr>
 
-  			  	md-selected-item="vm.selectedSub"
-  			  	md-search-text-change="vm.searchSubChange(vm.searchSub)"
-  			  	md-search-text="vm.searchSub"
-  			  	md-selected-item-change="vm.selectedSubChange(subject)"
-  			  	md-items="subject in itemSubject.subject"
-  			  	md-item-text="subject"
-  			  	md-min-length="0"
-  			  	placeholder="Предмет"
-  		        <md-item-template>
-  		          <span md-highlight-text="vm.searchSub" md-highlight-flags="^i">{{subject}}</span>
-  		        </md-item-template>
-  		        <md-not-found>
-  		          Предмет не найден
-  		        </md-not-found>
-  		      </md-autocomplete>
-  			  	</any>
-  			  	 
+	</thead>
+	<tbody ng-repeat="(keyItem, item) in vm.schedule">
+		<tr>
+			<th  colspan = "5" class="table-info text-center">{{item.group}}</th>
+		</tr>
+		<tr ng-repeat="(keyRow, row) in item.lessons">
+			<td>{{row.teacher}}</td>
+			<td>{{row.discipline}}</td>
+			<td>{{row.number}}</td>
+			<td>{{row.comment}}</td>
+			<td>{{row.auditorium}}</td>
 
-  		  </td>
-  			  <th scope="row">1</th>
-  			  <td>
-  			  	<md-input-container class="inputCont">
-  		        <input ng-model="comment">
-  		      </md-input-container></td>
-  			  <td>
-  			  	<md-input-container class="inputCont ">
-  		        <input ng-model="auditorium">
-  		      </md-input-container></td>
-  			</tr>
-  		
-  </tbody>
-</table>
-
-<table id ="rasp" class="table table-hover">
-  <thead>
-	<tr>
-	  <th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-	  <th class=" text-center" scope="col">Дисциплина, МДК</th>
-	  <th class=" text-center" scope="col">Пара</th>
-	  <th class=" text-center" scope="col">Комментарий</th>
-	  <th class=" text-center" scope="col">Аудитория</th>
-	</tr>
-	<tr>
-		<th  colspan = "5" class="table-info text-center">1РА-18-1уп</th>
-	</tr>
-  </thead>
-
-  <tbody>
-	<tr>
-	
-	  <td>
-	  	<md-autocomplete
-	  	ng-model="vm.acTeacher"
-	  	form ="postNewClass"
-	  	md-selected-item="vm.selectedItem"
-	  	md-search-text-change="vm.searchTextChange(vm.searchText)"
-	  	md-search-text="vm.searchText"
-	  	md-selected-item-change="vm.selectedItemChange(item)"
-	  	md-items="item in vm.content | filter:vm.searchText"
-	  	md-item-text="item.name"
-	  	md-min-length="0"
-	  	placeholder="Фамилия Преподавателя"
-        <md-item-template>
-          <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
-        </md-item-template>
-        <md-not-found>
-          Преподаватель не найден
-        </md-not-found>
-      </md-autocomplete>
-	  </td>
-	  <td>
-	  	<any ng-repeat="item in vm.content | filter:{name: vm.searchText} | limitTo:1">
-	  	<md-autocomplete
-		ng-model="vm.acSubject"
-		form ="postNewClass"
-	  	md-selected-item="vm.selectedSub"
-	  	md-search-text-change="vm.searchSubChange(vm.searchSub)"
-	  	md-search-text="vm.searchSub"
-	  	md-selected-item-change="vm.selectedSubChange(subject)"
-	  	md-items="subject in item.subject"
-	  	md-item-text="subject"
-	  	md-min-length="0"
-	  	placeholder="Предмет"
-        <md-item-template>
-          <span md-highlight-text="vm.searchSub" md-highlight-flags="^i">{{subject}}</span>
-        </md-item-template>
-        <md-not-found>
-          Предмет не найден
-        </md-not-found>
-      </md-autocomplete>
-	  	</any>
-	  	 
-
-  </td>
-	  <th scope="row">1</th>
-	  <td>
-	  	<md-input-container class="inputCont">
-        <input form ="postNewClass" ng-model="vm.comment">
-      </md-input-container></td>
-	  <td>
-	  	<md-input-container class="inputCont ">
-        <input  ng-model="vm.auditorium">
-      </md-input-container>
-        <form ng-submit="vm.addClassForG()" id="postNewClass"></form>
-      <input form ="postNewClass" type="submit" class="btn-primary">
-
+		</tr>
+		<tr>
+			<td>
+				<md-autocomplete
+				form="myFrr{{keyItem}}"
+				md-selected-item="vm['selectedItem' + keyItem]"
+				md-search-text-change="vm.searchTextChange(vm['searchText' + keyItem])"
+				md-search-text="vm['searchText' + keyItem]"
+				md-selected-item-change="vm.selectedItemChange(itemTeacher)"
+				md-items="itemTeacher in vm.content | filter:vm['searchText' + keyItem]"
+				md-item-text="itemTeacher.name"
+				md-min-length="0"
+				placeholder="Фамилия Преподавателя"
+				<md-item-template>
+					<span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{itemTeacher.name}}</span>
+				</md-item-template>
+				<md-not-found>
+					Преподаватель не найден
+				</md-not-found>
+			</md-autocomplete>
+		</td>
+		<td>
+			<any ng-repeat="item in vm.content | filter:{name: vm['searchText' + keyItem]} | limitTo:1">
+				<md-autocomplete
+				form="myFrr{{keyItem}}"
+				md-selected-item="vm['selectedSub' + keyItem]"
+				md-search-text-change="vm.searchSubChange(vm['searchSub' + keyItem])"
+				md-search-text="vm['searchSub' + keyItem]"
+				md-selected-item-change="vm.selectedSubChange(subject)"
+				md-items="subject in item.subject"
+				md-item-text="subject"
+				md-min-length="0"
+				placeholder="Предмет"
+				<md-item-template>
+					<span md-highlight-text="vm.searchSub" md-highlight-flags="^i">{{subject}}</span>
+				</md-item-template>
+				<md-not-found>
+					Предмет не найден
+				</md-not-found>
+			</md-autocomplete>
+		</any>
 	</td>
+	<th scope="row"></th>
+	<td>
+		<md-input-container class="inputCont">
+			<input ng-model="vm.comment[keyItem]"  form="myFrr{{keyItem}}" ng-model-options="{ allowInvalid: true }" >
+		</md-input-container></td>
+		<td>
+			<form ng-submit="vm.addForm(keyItem)" id="myFrr{{keyItem}}">
+				<md-input-container class="inputCont ">
+					<input ng-model="vm.auditorium[keyItem]"  form="myFrr{{keyItem}}" >
+				</md-input-container>
+				<input type="submit" class="btn btn-primary" value="Добавить" >
+			</form>
+		</td>
 	</tr>
-  </tbody>
+</tbody>
 </table>
-<form ng-submit="vm.add()">
-	<input type="text" ng-model="vm.IText">
-	<input type="submit" class="btn btn-primary">
-</form>
-<ul>
-	<li ng-repeat="check in vm.kek">
-		{{check.text}}
-	</li>
-</ul>
-<!-- <div ng-repeat="item in vm.content | filter:{name: 'лел'}">
-	<p>value {{item}}</p>
-	<div ng-repeat="kek in item.subject">{{kek}}</div>
-</div> -->

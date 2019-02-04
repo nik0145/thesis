@@ -11,11 +11,6 @@
 				controller: 'indexController',
 				controllerAs: 'vm'
 				}
-			).when('/page1', {
-				templateUrl: 'page1/page1.html',
-				controller: 'page1Controller',
-				controllerAs: 'vm'
-				}
 			).when('/bootstrap', {
 				templateUrl: 'bootstrap/index.html',
 				controller: 'BstrpController',

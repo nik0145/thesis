@@ -1,33 +1,56 @@
 (function() {
 	function BstrpController() {
 		var vm = this;
-		vm.add = function(){
-			vm.kek.push({text:'sss'});
-			vm.IText='';
+
+		vm.addForm = function(index){
+			var numberClass = (vm.schedule[index]['lessons'].length)+1;
+			if(!vm.comment){
+				comment = '';
+			}else{
+				comment = vm.comment[index];
+			}
+			vm.schedule[index]['lessons'].push({
+					'teacher':vm['searchText' + index],
+					'discipline':vm['selectedSub' + index],
+					'number':numberClass,
+					'comment':comment,
+					'auditorium':vm.auditorium[index]
+				});
+			vm['searchText' + index] = '';
+			vm['selectedSub' + index] = '';
+			if(!vm.comment){
+				comment = '';
+			}else{
+				vm.comment[index]= '';
+			}
+			vm.auditorium[index] = '';
 		}
-		vm.searchText = '';
-		vm.kek= [
-			{text:'eeee'},
-			{text:'ffff'}
-		];
+
 		vm.schedule = [
 		{
 			'group':'1-ПКС-15-1',
 			'lessons':
 			[
 				{
-					'teacher':'aaa',
-					'discipline':'ssss',
+					'teacher':'Фруленко Ю.А.',
+					'discipline':'МДК 03.03',
 					'number':'1',
-					'comment':'dddd',
-					'auditorium':'ffff'
+					'comment':'',
+					'auditorium':'108'
 				},
 				{
-					'teacher':'qqqq',
-					'discipline':'wwww',
+					'teacher':'Слугин В.Г.',
+					'discipline':'МДК 03.02',
 					'number':'2',
-					'comment':'eeeeee',
-					'auditorium':'rrrrrr'
+					'comment':'',
+					'auditorium':'155'
+				},
+				{
+					'teacher':'Слугин В.Г.',
+					'discipline':'МДК 03.01',
+					'number':'3',
+					'comment':'практика',
+					'auditorium':'452'
 				}
 			]
 		},
@@ -36,18 +59,25 @@
 			'lessons':
 			[
 				{
-					'teacher':'aaa',
-					'discipline':'ssss',
+					'teacher':'Огудина А.Н.',
+					'discipline':'МДК 02.02',
 					'number':'1',
-					'comment':'dddd',
-					'auditorium':'ffff'
+					'comment':'',
+					'auditorium':'161'
 				},
 				{
-					'teacher':'tttt',
-					'discipline':'yyyyy',
+					'teacher':'Русинова Е.Г.',
+					'discipline':'псих.общ.и страт.трудоустр.',
 					'number':'2',
-					'comment':'iiii',
-					'auditorium':'uuuu'
+					'comment':'',
+					'auditorium':'313'
+				},
+				{
+					'teacher':'Огудина А.Н.',
+					'discipline':'МДК 02.05',
+					'number':'3',
+					'comment':'практика',
+					'auditorium':'156'
 				}
 			]
 		}
@@ -55,76 +85,48 @@
 		];
 		vm.content  = [
 	{
-		'name' : 'Препод1',
+		'name' : 'Огудина А.Н.',
 		'subject' : 
 		[
-			'Препод1предмет1',
-			'Препод1предмет2',
-			'Препод1предмет3',
-			'Препод1предмет4',
-			'Препод1предмет5'
+			'МДК 02.01',
+			'МДК 02.02',
+			'МДК 02.03',
+			'МДК 02.04',
+			'МДК 02.05'
 		]
 	},
 		{
-		'name' : 'ДЩдщ',
+		'name' : 'Русинова Е.Г.',
 		'subject' : 
 		[
-			'ДЩдщпредмет1',
-			'ДЩдщпредмет2',
-			'ДЩдщпредмет3',
-			'ДЩдщпредмет4',
-			'ДЩдщпредмет6'
+			'Психология',
+			'Общество',
+			'Трудоустройство'
 		]
 	},
 		{
-		'name' : 'Я кек',
+		'name' : 'Слугин В.Г.',
 		'subject' : 
 		[
-			'Я кекпредмет1',
-			'Я кекпредмет2',
-			'Я кекпредмет3',
-			'Я кекпредмет4',
-			'Я кекпредмет5'
+			'МДК 03.01',
+			'МДК 03.02',
+			'МДК 03.03',
+			'МДК 03.04'	
 		]
 	},
 		{
-		'name' : 'кеке',
+		'name' : 'Фруленко Ю.А.',
 		'subject' : 
 		[
-			'кекепредмет1',
-			'кекепредмет2',
-			'кекепредмет3',
-			'кекепредмет4',
-			'кекепредмет5'
-		]
-	},
-		{
-		'name' : 'лел',
-		'subject' : 
-		[
-			'лелпредмет1',
-			'лелпредмет2',
-			'лелпредмет3',
-			'лелпредмет4',
-			'лелпредмет5'
+			'МДК 13.02',
+			'МДК 23.02',
+			'МДК 33.02',
+			'МДК 43.02',
+			'МДК 53.02'
 		]
 	}
   ];
-  vm.addClassForG = function(){
-  	vm.kek.push({text:'keeee'});
- /* 	vm.schedule[1].push =({
-  		'teacher':vm.acTeacher,
-  		'discipline':vm.acSubject,
-  		'number':4,
-  		'comment':vm.comment,
-  		'auditorium':vm.auditorium
-  	});
-  	vm.acTeacher ='';
-  	vm.acSubject ='';
-  	vm.comment ='';
-  	vm.auditorium ='';*/
-  	
-  };
+
 	}
 
 	angular.module('myApp')
