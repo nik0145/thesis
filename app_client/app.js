@@ -20,6 +20,15 @@
 				templateUrl:'bootstrap/schedule.html',
 				controller:'BstrpController',
 				controllerAs: 'vm'
+				}
+			).when('/teacher', {
+				templateUrl:'teacher/teacher.html',
+				controller:'teacherController',
+				controllerAs: 'vm'
+				}
+			).when('/replacement', {
+				templateUrl:'replacement/replace.html',
+				controller:'AppCtrl'
 			})
 			.otherwise({redirectTo: '/'});
 
@@ -27,7 +36,6 @@
 	angular.module('myApp')
 		.config(['$routeProvider', config],
 			['$locationProvider', function($locationProvider) {
-			        $locationProvider.hashPrefix('');
 			    }]);
 })();
 
