@@ -8,14 +8,23 @@
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Группы</h1>
       </md-toolbar>
-      <md-content layout-padding="">
-        <md-button ng-click="closeleftSecond()" class="md-primary" hide-gt-md="">
+      <md-content layout-padding="" >
+      	<md-list flex="">
+      	       <md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="null">
+      	        
+      	         <div class="md-list-item-text" layout="column">
+      	           <h3>{{ item.title }}</h3>
+      	          
+      	         </div>
+      	       </md-list-item>
+      	       <md-divider></md-divider>
+        <md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
           Закрыть
         </md-button>
         <p hide="" show-gt-md="">
-         Список групп
+         Тут будет список групп
         </p>
-      </md-content>
+
 
     </md-sidenav>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
@@ -24,6 +33,15 @@
         <h1 class="md-toolbar-tools">Преподаватели</h1>
       </md-toolbar>
       <md-content layout-padding="" >
+      	<md-list flex="">
+      	       <md-list-item class="md-3-line" ng-repeat="item in teacher" ng-click="null">
+      	        
+      	         <div class="md-list-item-text" layout="column">
+      	           <h3>{{ item.title }}</h3>
+      	          
+      	         </div>
+      	       </md-list-item>
+      	       <md-divider></md-divider>
         <md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
           Закрыть
         </md-button>
@@ -35,49 +53,70 @@
     </md-sidenav>
 
     <md-content flex="" layout-padding="">
-    	<md-content class="md-padding">
-    	   <md-tabs md-selected="selectedIndex" md-border-bottom="" md-autoselect="" md-swipe-content="">
-    	     <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}">
-    	       <div class="demo-tab tab{{$index%4}}">
-    	         <div ng-bind="tab.content"></div>
-    	         <br>
+    	<md-content class="md-padding" >
+    	   <md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
+    	     <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
+    	       <div class="demo-tab tab{{$index%4}}" >
+    	         <!-- <div ng-bind="tab.content"></div> -->
+    	         <table class="table table-hover">
+    	           <thead>
+    	         	<tr>
+    	         	  <th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+    	         	  <th class=" text-center" scope="col">Дисциплина, МДК</th>
+    	         	  <th class=" text-center" scope="col">Пара</th>
+    	         	  <th class=" text-center" scope="col">Комментарий</th>
+    	         	  <th class=" text-center" scope="col">Аудитория</th>
+    	         	</tr>
+
+    	           </thead>
+    	           <tbody ng-repeat="item in tab.content['schedule']">
+    	           		<tr>
+    	           			<th  colspan = "5" class="table-info text-center">{{item.group}}</th>
+    	           		</tr>
+    	           		<tr ng-repeat="row in item.lessons">
+    	           			<td ng-model="row.teacher">{{row.teacher}}</td>
+    	           			<td ng-model="row.discipline">{{row.discipline}}</td>
+    	           			<td ng-model="row.number">{{row.number}}</td>
+    	           			<td ng-model="row.comment">{{row.comment}}</td>
+    	           			<td ng-model="row.auditorium">{{row.auditorium}}</td>
+    	           		</tr>
+    	           </tbody>
+    	         </table>
     	         <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
     	           Remove Tab
     	         </md-button>
     	       </div>
     	     </md-tab>
     	   </md-tabs>
-    	 </md-content>
+ 
+    </md-content>
 
-    	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
-    	   <div layout="row" layout-xs="column">
-    	     <div flex="">
-    	       <h2 class="md-subhead">Add a new Tab:</h2>
-    	     </div>
-    	     <md-input-container>
-    	       <label for="label">Label</label>
-    	       <input type="text" id="label" ng-model="tTitle">
-    	     </md-input-container>
-    	     <md-input-container>
-    	       <label for="content">Content</label>
-    	       <input type="text" id="content" ng-model="tContent">
-    	     </md-input-container>
-    	     <md-button class="add-tab md-primary md-raised" ng-disabled="!tTitle || !tContent" type="submit">
-    	       Add Tab
-    	     </md-button>
-    	   </div>
-    	 </form>
+<!--     	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
+  <div layout="row" layout-xs="column">
+    <div flex="">
+      <h2 class="md-subhead">Add a new Tab:</h2>
+    </div>
+    <md-input-container>
+      <label for="label">Label</label>
+      <input type="text" id="label" ng-model="tTitle">
+    </md-input-container>
+    <md-input-container>
+      <label for="content">Content</label>
+      <input type="text" id="content" ng-model="tContent">
+    </md-input-container>
+    <md-button class="add-tab md-primary md-raised" ng-disabled="!tTitle || !tContent" type="submit">
+      Add Tab
+    </md-button>
+  </div>
+</form> -->
       <div layout="column" layout-align="top center">
-       <p>Тут расписание</p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure aepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+       <p>Тут расписание</p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipm ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
        <a href="" ng-click="scrollTo('foo')">Text</a> Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit tempoLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error volupta
        <div id="foo">
          This is #foo
        </div>
-       s non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure aepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit tempoLorem ipsum dolor sit amet, consectetur adipisici excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibu, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit tempo
-        <p><a name="top">sssss</a></p> 
-       <a class="docs-anchor ng-scope" ng-href="#dynamic-nested-menus" name="dynamic-nested-menus" href="#dynamic-nested-menus">Dynamic Nested Menus</a>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit tempexcepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure aepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.
-<p><a href="#!/replacement#top">Наверх</a></p>
+       s non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, ex
+      	
         <div>
           <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
             Показать преподавателей

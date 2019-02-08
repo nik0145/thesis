@@ -9,9 +9,147 @@
     $scope.isOpenRight = function(){
       return $mdSidenav('right').isOpen();
     };
-
+    $scope.subject = [
+    	{id:1,title:'subject1'},
+    	{id:2,title:'subject2'},
+    	{id:3,title:'subject3'},
+    	{id:4,title:'subject4'},
+    	{id:5,title:'subject5'},
+    	{id:6,title:'subject6'}
+    ];
+    $scope.teacher = [
+    	{id:1,title:'teacher1'},
+    	{id:2,title:'teacher2'},
+    	{id:3,title:'teacher3'},
+    	{id:4,title:'teacher4'},
+    	{id:5,title:'teacher5'},
+    	{id:6,title:'teacher6'}
+    ]; 
+    $scope.schedule = 
+    {
+    	number:'00001',
+    	dateReg:'2019-02-08',
+    	dateSched:'2019-02-08',
+    	schedule:[
+    {
+    	'group':'1-ПКС-15-1',
+    	'lessons':
+    	[
+    		{
+    			'teacher':'Фруленко Ю.А.',
+    			'discipline':'МДК 03.03',
+    			'number':'1',
+    			'comment':'',
+    			'auditorium':'108'
+    		},
+    		{
+    			'teacher':'Слугин В.Г.',
+    			'discipline':'МДК 03.02',
+    			'number':'2',
+    			'comment':'',
+    			'auditorium':'155'
+    		},
+    		{
+    			'teacher':'Слугин В.Г.',
+    			'discipline':'МДК 03.01',
+    			'number':'3',
+    			'comment':'практика',
+    			'auditorium':'452'
+    		}
+    	]
+    },
+    {
+    	'group':'2-ПКС-15-1',
+    	'lessons':
+    	[
+    		{
+    			'teacher':'Огудина А.Н.',
+    			'discipline':'МДК 02.02',
+    			'number':'1',
+    			'comment':'',
+    			'auditorium':'161'
+    		},
+    		{
+    			'teacher':'Русинова Е.Г.',
+    			'discipline':'псих.общ.и страт.трудоустр.',
+    			'number':'2',
+    			'comment':'',
+    			'auditorium':'313'
+    		},
+    		{
+    			'teacher':'Огудина А.Н.',
+    			'discipline':'МДК 02.05',
+    			'number':'3',
+    			'comment':'практика',
+    			'auditorium':'156'
+    		}
+    	]
+    }
+    ]
+    };
     var tabs = [
-        { title: 'Понедельник', content: "Tabs will become paginated if there isn't enough room for them."},
+        { title: 'Понедельник', content: {
+    	number:'00001',
+    	dateReg:'2019-02-08',
+    	dateSched:'2019-02-08',
+    	schedule:[
+    {
+    	'group':'1-ПКС-15-1',
+    	'lessons':
+    	[
+    		{
+    			'teacher':'Фруленко Ю.А.',
+    			'discipline':'МДК 03.03',
+    			'number':'1',
+    			'comment':'',
+    			'auditorium':'108'
+    		},
+    		{
+    			'teacher':'Слугин В.Г.',
+    			'discipline':'МДК 03.02',
+    			'number':'2',
+    			'comment':'',
+    			'auditorium':'155'
+    		},
+    		{
+    			'teacher':'Слугин В.Г.',
+    			'discipline':'МДК 03.01',
+    			'number':'3',
+    			'comment':'практика',
+    			'auditorium':'452'
+    		}
+    	]
+    },
+    {
+    	'group':'2-ПКС-15-1',
+    	'lessons':
+    	[
+    		{
+    			'teacher':'Огудина А.Н.',
+    			'discipline':'МДК 02.02',
+    			'number':'1',
+    			'comment':'',
+    			'auditorium':'161'
+    		},
+    		{
+    			'teacher':'Русинова Е.Г.',
+    			'discipline':'псих.общ.и страт.трудоустр.',
+    			'number':'2',
+    			'comment':'',
+    			'auditorium':'313'
+    		},
+    		{
+    			'teacher':'Огудина А.Н.',
+    			'discipline':'МДК 02.05',
+    			'number':'3',
+    			'comment':'практика',
+    			'auditorium':'156'
+    		}
+    	]
+    }
+    ]
+    }
+},
         { title: 'Вторник', content: "You can swipe left and right on a mobile device to change tabs."},
         { title: 'Среда', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
         { title: 'Четверг', content: "If you set the selected tab binding to -1, it will leave no tab selected."},
