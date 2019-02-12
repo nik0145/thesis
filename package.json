@@ -8,6 +8,7 @@
   "dependencies": {
     "angular": "^1.7.6",
     "angular-material": "^1.1.12",
+    "angular-scroll": "^1.0.2",
     "bootstrap": "^4.2.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -16,6 +17,7 @@
     "jquery": "^3.3.1",
     "mongoose": "^5.4.6",
     "morgan": "~1.9.0",
+    "ngSmoothScroll": "^2.0.1",
     "pug": "2.0.0-beta11",
     "readline": "0.0.x"
   }

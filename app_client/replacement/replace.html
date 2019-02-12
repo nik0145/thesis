@@ -1,95 +1,98 @@
+
 <ng-include src="'templates/menu.html'"></ng-include>
 <div layout="column" style="height:90vh;" ng-cloak="" class="sidenavdemoBasicUsage">
 
-  <section layout="row" flex="">
+	<section layout="row" flex="">
 
-    <md-sidenav class="md-sidenav-left" md-component-id="leftSec" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+		<md-sidenav class="md-sidenav-left" md-component-id="leftSec" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
 
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Группы</h1>
-      </md-toolbar>
-      <md-content layout-padding="" >
-      	<md-list flex="">
-      	       <md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="null">
-      	        
-      	         <div class="md-list-item-text" layout="column">
-      	           <h3>{{ item.title }}</h3>
-      	          
-      	         </div>
-      	       </md-list-item>
-      	       <md-divider></md-divider>
-        <md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
-          Закрыть
-        </md-button>
-        <p hide="" show-gt-md="">
-         Тут будет список групп
-        </p>
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Группы</h1>
+			</md-toolbar>
+			<md-content layout-padding="" >
+				<md-list flex="">
+					<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.title)">
+
+						<div class="md-list-item-text" layout="column">
+							<h3 >{{ item.title }} </h3>
+
+						</div>
+					</md-list-item>
+					<md-divider></md-divider>
+					<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
+						Закрыть
+					</md-button>
+					<p hide="" show-gt-md="">
+						Тут будет список групп
+					</p>
 
 
-    </md-sidenav>
-    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+				</md-sidenav>
+				<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
 
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Преподаватели</h1>
-      </md-toolbar>
-      <md-content layout-padding="" >
-      	<md-list flex="">
-      	       <md-list-item class="md-3-line" ng-repeat="item in teacher" ng-click="null">
-      	        
-      	         <div class="md-list-item-text" layout="column">
-      	           <h3>{{ item.title }}</h3>
-      	          
-      	         </div>
-      	       </md-list-item>
-      	       <md-divider></md-divider>
-        <md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
-          Закрыть
-        </md-button>
-        <p hide="" show-gt-md="">
-         Тут будет список преподов
-        </p>
-      </md-content>
+					<md-toolbar class="md-theme-indigo">
+						<h1 class="md-toolbar-tools">Преподаватели</h1>
+					</md-toolbar>
+					<md-content layout-padding="" >
+						<md-list flex="">
+							<md-list-item class="md-3-line" ng-repeat="item in teacher" ng-click="null">
 
-    </md-sidenav>
+								<div class="md-list-item-text" layout="column">
+									<h3>{{ item.title }}</h3>
 
-    <md-content flex="" layout-padding="">
-    	<md-content class="md-padding" >
-    	   <md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
-    	     <md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
-    	       <div class="demo-tab tab{{$index%4}}" >
-    	         <!-- <div ng-bind="tab.content"></div> -->
-    	         <table class="table table-hover">
-    	           <thead>
-    	         	<tr>
-    	         	  <th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-    	         	  <th class=" text-center" scope="col">Дисциплина, МДК</th>
-    	         	  <th class=" text-center" scope="col">Пара</th>
-    	         	  <th class=" text-center" scope="col">Комментарий</th>
-    	         	  <th class=" text-center" scope="col">Аудитория</th>
-    	         	</tr>
+								</div>
+							</md-list-item>
+							<md-divider></md-divider>
+							<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
+								Закрыть
+							</md-button>
+							<p hide="" show-gt-md="">
+								Тут будет список преподов
+								<a href="#section-1" du-smooth-scroll >Section 1</a>
+								<a href="#section-2" du-smooth-scroll >Section 2</a>
+							</p>
+						</md-content>
 
-    	           </thead>
-    	           <tbody ng-repeat="item in tab.content['schedule']">
-    	           		<tr>
-    	           			<th  colspan = "5" class="table-info text-center">{{item.group}}</th>
-    	           		</tr>
-    	           		<tr ng-repeat="row in item.lessons">
-    	           			<td ng-model="row.teacher">{{row.teacher}}</td>
-    	           			<td ng-model="row.discipline">{{row.discipline}}</td>
-    	           			<td ng-model="row.number">{{row.number}}</td>
-    	           			<td ng-model="row.comment">{{row.comment}}</td>
-    	           			<td ng-model="row.auditorium">{{row.auditorium}}</td>
-    	           		</tr>
-    	           </tbody>
-    	         </table>
-    	         <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
-    	           Remove Tab
-    	         </md-button>
-    	       </div>
-    	     </md-tab>
-    	   </md-tabs>
- 
-    </md-content>
+					</md-sidenav>
+
+					<md-content flex="" layout-padding="" >
+						<md-content class="md-padding" >
+							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
+								<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
+									<div class="demo-tab tab{{$index%4}}" >
+										<!-- <div ng-bind="tab.content"></div> -->
+										<table class="table table-hover">
+											<thead>
+												<tr>
+													<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+													<th class=" text-center" scope="col">Дисциплина, МДК</th>
+													<th class=" text-center" scope="col">Пара</th>
+													<th class=" text-center" scope="col">Комментарий</th>
+													<th class=" text-center" scope="col">Аудитория</th>
+												</tr>
+
+											</thead>
+											<tbody ng-repeat="item in tab.content['schedule']">
+												<tr>
+													<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
+												</tr>
+												<tr ng-repeat="row in item.lessons">
+													<td ng-model="row.teacher">{{row.teacher}}</td>
+													<td ng-model="row.discipline">{{row.discipline}}</td>
+													<td ng-model="row.number">{{row.number}}</td>
+													<td ng-model="row.comment">{{row.comment}}</td>
+													<td ng-model="row.auditorium">{{row.auditorium}}</td>
+												</tr>
+											</tbody>
+										</table>
+										<md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
+											Remove Tab
+										</md-button>
+									</div>
+								</md-tab>
+							</md-tabs>
+
+						</md-content>
 
 <!--     	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
   <div layout="row" layout-xs="column">
@@ -109,31 +112,32 @@
     </md-button>
   </div>
 </form> -->
-      <div layout="column" layout-align="top center">
-       <p>Тут расписание</p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipm ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-       <a href="" ng-click="scrollTo('foo')">Text</a> Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit tempoLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error volupta
-       <div id="foo">
-         This is #foo
-       </div>
-       s non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, ex
-      	
-        <div>
-          <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
-            Показать преподавателей
-          </md-button>
-        </div>
-                <div>
-          <md-button ng-click="toggleLeftSec()" class="md-primary" hide-gt-md="">
-            Показать Группы
-          </md-button>
-        </div>
+<div layout="column" layout-align="top center">
+	<p>Тут расписание</p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipm ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+	<a href="" ng-click="scrollTo('4-ПКС-15-1')">Text</a> Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit tempoLorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error volupta
+	<div id="foo">
+		This is #foo
+	</div>
+	s non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, excepturi, unde iure amet laboriosam quam error voluptas non ut sit temporibus facilis ullam porro. Ducimus, et.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur atque perspiciatis deleniti placeat, ex
 
-      </div>
+	<div>
+		<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+			Показать преподавателей
+		</md-button>
+	</div>
+	<div>
+		<md-button ng-click="toggleLeftSec()" class="md-primary" hide-gt-md="">
+			Показать Группы
+		</md-button>
+	</div>
 
-      <div flex=""></div>
+</div>
 
-    </md-content>
-  </section>
+<div flex=""></div>
+
+</md-content>
+
+</section>
 </div>
 
 <!--

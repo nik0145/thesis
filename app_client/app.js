@@ -1,7 +1,6 @@
 (function() {
 	angular.module('myApp', ['ngRoute','ngMaterial']).
 	run(function(){
-		console.log('is ready');
 	});
 	function config($routeProvider) {
 
