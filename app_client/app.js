@@ -1,5 +1,5 @@
 (function() {
-	angular.module('myApp', ['ngRoute','ngMaterial','dndLists']).
+	angular.module('myApp', ['ngRoute','ngMaterial','dndLists','ngDragDrop']).
 	run(function(){
 	});
 	function config($routeProvider) {

@@ -6,7 +6,8 @@ angular.module('myApp')
 	$scope.scrollTo = function (id) {
 		$anchorScroll(id);  
 	}
-
+	$scope.selectedTeacher = null;
+	$scope.selectedTeacher1 = null;
 	$scope.isOpenRight = function(){
 		return $mdSidenav('right').isOpen();
 	};
@@ -18,14 +19,17 @@ angular.module('myApp')
 	{id:5,title:'5-ПКС-15-1'},
 	{id:6,title:'6-ПКС-15-1'}
 	];
-	$scope.teacher = [
-	{id:1,title:'teacher1'},
-	{id:2,title:'teacher2'},
-	{id:3,title:'teacher3'},
-	{id:4,title:'teacher4'},
-	{id:5,title:'teacher5'},
-	{id:6,title:'teacher6'}
+	$scope.teachers = [
+	{id:1,teacher:'teacher1'},
+	{id:2,teacher:'teacher2'},
+	{id:3,teacher:'teacher3'},
+	{id:4,teacher:'teacher4'},
+	{id:5,teacher:'teacher5'},
+	{id:6,teacher:'teacher6'}
 	]; 
+	$scope.$watch('teachers', function (model) {
+	    $scope.modelAsJson = angular.toJson(model, true);
+	}, true);
 	
 	var tabs = [
 	{ title: 'Понедельник', content: {
@@ -430,6 +434,9 @@ angular.module('myApp')
 selected = null,
 previous = null;
 $scope.tabs = tabs;
+	$scope.$watch('schedule', function (model) {
+	    $scope.modelAsJson = angular.toJson(model, true);
+	}, true);
 $scope.selectedIndex = 0;
 $scope.$watch('selectedIndex', function(current, old) {
 	previous = selected;

@@ -1,4 +1,41 @@
 <ng-include src="'templates/menu.html'"></ng-include>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title ng-binding">tewacherA</h3>
+            </div>
+            <div class="panel-body ng-scope">
+                <ul dnd-list="teacher" class="ng-scope">
+
+                    <li ng-repeat="item in teacher"
+                        dnd-draggable="item"
+                        dnd-moved="teacher.splice($index, 1)"
+                        dnd-effect-allowed="copy"
+                        class="ng-binding ng-scope"
+                        draggable="true">
+                        {{item.title}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title ng-binding">tewacher2</h3>
+            </div>
+            <div class="panel-body ng-scope">
+                <ul dnd-list="teachers" class="ng-scope">
+
+                    <li ng-repeat="item in teachers"
+                        dnd-draggable="item"
+                        dnd-moved="teachers.splice($index, 1)"
+                        dnd-effect-allowed="copy"
+                        ng-class="{'selected': s2elected === item}"
+                        class="ng-binding ng-scope"
+                        draggable="true">
+                        {{item.title}}
+                    </li>
+                </ul>
+            </div>
+        </div>
  <div ng-repeat="(listName, list) in models.lists" class="col-md-6 ng-scope">
         <div class="panel panel-info">
             <div class="panel-heading">

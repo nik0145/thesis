@@ -34,16 +34,22 @@
 						<h1 class="md-toolbar-tools">Преподаватели</h1>
 					</md-toolbar>
 					<md-content layout-padding="" >
-						<md-list flex="">
+						<md-list flex="" dnd-list="teacher" class="ng-scope">
 							<md-list-item class="md-3-line"
-							ng-repeat="item in teacher"
-							ng-click="null"
+							ng-repeat="item in teachers"
+							
 							dnd-draggable="item"
+							dnd-moved="teacher.splice($index, 1)"
 							dnd-effect-allowed="copy"
+							dnd-selected="selectedTeacher = item"
+							ng-class="{'selected': selectedTeacher === item}"
+							dnd-disable-if="teacher.length < 2"
+							class="ng-binding ng-scope"
+							draggable="true"
 							>
 
 								<div class="md-list-item-text" layout="column">
-									<h3>{{ item.title }}</h3>
+									<h3>{{ item.teacher }}</h3>
 
 								</div>
 							</md-list-item>
@@ -63,31 +69,49 @@
 							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
 								<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
 									<div class="demo-tab tab{{$index%4}}" >
-										<!-- <div ng-bind="tab.content"></div> -->
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-													<th class=" text-center" scope="col">Дисциплина, МДК</th>
-													<th class=" text-center" scope="col">Пара</th>
-													<th class=" text-center" scope="col">Комментарий</th>
-													<th class=" text-center" scope="col">Аудитория</th>
-												</tr>
+										<!-- <ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
+										    <li ng-repeat="row in item.lessons"
+										        dnd-draggable="row"
+										        dnd-moved="row.splice($index, 1)"
+										        dnd-effect-allowed="copy"
+										        dnd-selected="selected = row.teacher"
+										        class="ng-binding ng-scope"
+										        draggable="true">
+										        {{row.teacher}}
+										    </li>
+										</ul> -->
+									 	<table class="table table-hover">
+										<thead>
+											<tr>
+												<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+												<th class=" text-center" scope="col">Дисциплина, МДК</th>
+												<th class=" text-center" scope="col">Пара</th>
+												
+												<th class=" text-center" scope="col">Аудитория</th>
+											</tr>
+									
+										</thead>
+										<tbody ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
+											
+											<tr>
+												<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
+											</tr>
+											<tr ng-repeat="row in item.lessons"
 
-											</thead>
-											<tbody ng-repeat="item in tab.content['schedule']">
-												<tr>
-													<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
-												</tr>
-												<tr ng-repeat="row in item.lessons">
-													<td ng-model="row.teacher">{{row.teacher}}</td>
-													<td ng-model="row.discipline">{{row.discipline}}</td>
-													<td ng-model="row.number">{{row.number}}</td>
-													<td ng-model="row.comment">{{row.comment}}</td>
-													<td ng-model="row.auditorium">{{row.auditorium}}</td>
-												</tr>
-											</tbody>
-										</table>
+																					        dnd-draggable="row"
+																					        dnd-moved="row.splice($index, 1)"
+																					        dnd-effect-allowed="copy"
+																					        dnd-selected="selected = row.teacher"
+																					        class="ng-binding ng-scope"
+																					        draggable="true">
+												<td ng-model="row.teacher">{{row.teacher}}</td>
+												<td ng-model="row.discipline">{{row.discipline}}</td>
+												<td ng-model="row.number">{{row.number}}</td>
+												
+												<td ng-model="row.auditorium">{{row.auditorium}}</td>
+											</tr>
+										</tbody>
+									</table> 
 										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
 											Remove Tab
 										</md-button> -->
