@@ -3,6 +3,7 @@ angular.module('myApp')
 .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log,$anchorScroll,$document) {
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
+	$scope.toggleRight = buildDelayedToggler('right');
 	$scope.scrollTo = function (id) {
 		$anchorScroll(id);  
 	}
@@ -482,7 +483,12 @@ function buildDelayedToggler(navID) {
 	}, 200);
 }
 
-
+$scope.closeRight = function () {
+      $mdSidenav('right').close()
+        .then(function () {
+          $log.debug("close RIGHT is done");
+        });
+    };
 
 $scope.closeleft = function () {
 	$mdSidenav('left').close()

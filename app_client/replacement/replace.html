@@ -28,8 +28,9 @@
 
 
 				</md-sidenav>
-				<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
 
+				<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+	 
 					<md-toolbar class="md-theme-indigo">
 						<h1 class="md-toolbar-tools">Преподаватели</h1>
 					</md-toolbar>
@@ -57,9 +58,8 @@
 							<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
 								Закрыть
 							</md-button>
-							<p hide="" show-gt-md="">
-								Тут будет список преподов
-							</p>
+
+							
 						</md-content>
 
 					</md-sidenav>
@@ -147,18 +147,49 @@
 		</md-button>
 	</div>
 	<div>
-		<md-button ng-click="toggleLeftSec()" class="md-primary" hide-gt-md="">
-			Показать Группы
-		</md-button>
+
 	</div>
 
 </div>
 
 <div flex=""></div>
 
+
 </md-content>
+	<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Группы</h1>
+      </md-toolbar>
+      <md-content layout-padding="">
+      		<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.title)">
+
+						<div class="md-list-item-text" layout="column">
+							<h3 >{{ item.title }} </h3>
+
+						</div>
+					</md-list-item>
+        <!-- <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput" ng-model="data" md-autofocus="">
+          </md-input-container>
+        </form> -->
+        <md-button ng-click="closeRight()" class="md-primary">
+          Закрыть
+        </md-button>
+      </md-content>
+
+    </md-sidenav>
 
 </section>
+ <md-button  md-disable-backdrop ng-click="toggleRight()"class="md-primary md-fab md-fab-bottom-right">
+     <md-icon md-svg-src="svg/users-group.svg" class="s48" aria-label="Angular Icon"></md-icon>
+     <md-tooltip
+              md-direction="left">
+              Список групп
+            </md-tooltip>
+    </md-button>
 </div>
 
 <!--
