@@ -1,44 +1,86 @@
 (function() {
 	function teacherController($scope) {
- $scope.models = {
-        selected: 'null',
-        lists: { "A": [], "B": [] }
+
+$scope.dropCallback = function(index, item, external, type) {
+      // Return false here to cancel drop. Return true if you insert the item yourself.
+      // roll down and delete any empty columns//
+      var model = $scope.models.dropzones;
+      for (var y in model.B) {
+        for (var zz in model.B[y].columns) {
+          var myColumns = [];
+          var foundThem = false;
+          if (Array.isArray(model.B[y].columns[zz])) {
+            $scope.models.dropzones.B[y].columns.splice(zz, 1);
+          } 
+        }
+      }
+      
+      return item;
     };
-        $scope.list1 = [{
-        'name' : 'apple'
-    }, {
-        'name' : 'banana'
-    }, {
-        'name' : 'kiwi'
-    }];
-    $scope.s1elected = null;
-    $scope.s2elected = null;
-    $scope.teacher = [
-    {id:1,title:'teacher1',kek:'ss'},
-    {id:2,title:'teacher2',kek:'ss'},
-    {id:3,title:'teacher3',kek:'ss'},
-    {id:4,title:'teacher4',kek:'ss'},
-    {id:5,title:'teacher5',kek:'ss'},
-    {id:6,title:'teacher6',kek:'ss'}
-    ]; 
-    $scope.teachers = [
-    {id:1,title:'teacher56'},
-    {id:2,title:'teacher56'},
-    {id:3,title:'teacher56'},
-    {id:4,title:'teacher56'},
-    {id:5,title:'teacher56'},
-    {id:6,title:'teacher56'}
-    ]; 
 
-    // Generate initial model
-    for (var i = 1; i <= 3; ++i) {
-        $scope.models.lists.A.push({ label: "Item A" + i });
-        $scope.models.lists.B.push({ label: "Item B" + i });
-    }
+    $scope.models = {
+      selected: null,
+      templates: [{
+        type: "item",
+        id: 2
+      }, {
+        type: "container",
+        id: 1,
+        columns: [
+          []
+        ]
+      }],
+      dropzones: {
+        "B": [
 
-    // Model to JSON for demo purpose
-    $scope.$watch('models', function (model) {
-        $scope.modelAsJson = angular.toJson(model, true);
+          {
+            "type": "item",
+            "id": 7
+          }, {
+            "type": "item",
+            "id": 8
+          }, {
+            "type": "container",
+            "id": 1,
+            "columns": [
+
+
+              {
+                "type": "item",
+                "id": 2
+              }, {
+                "type": "item",
+                "id": 3
+              }
+
+            ]
+          }, {
+            "type": "container",
+            "id": 2,
+            "columns": [
+
+              {
+                "type": "item",
+                "id": 9
+              }, {
+                "type": "item",
+                "id": 10
+              }, {
+                "type": "item",
+                "id": 11
+              }
+
+            ]
+          }, {
+            "type": "item",
+            "id": 16
+          }
+        ]
+      }
+    };
+
+    $scope.$watch('models.dropzones', function(model) {
+      $scope.modelAsJson = angular.toJson(model, true);
     }, true);
 }
 	angular.module('myApp')

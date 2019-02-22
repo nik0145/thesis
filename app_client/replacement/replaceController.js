@@ -20,6 +20,14 @@ angular.module('myApp')
 	{id:5,title:'5-ПКС-15-1'},
 	{id:6,title:'6-ПКС-15-1'}
 	];
+	$scope.disciplines = [
+	{id:1,title:'discipline1'},
+	{id:2,title:'discipline2'},
+	{id:3,title:'discipline3'},
+	{id:4,title:'discipline4'},
+	{id:5,title:'discipline5'},
+	{id:6,title:'discipline6'}
+	];
 	$scope.teachers = [
 	{id:1,teacher:'teacher1'},
 	{id:2,teacher:'teacher2'},
@@ -31,7 +39,128 @@ angular.module('myApp')
 	$scope.$watch('teachers', function (model) {
 	    $scope.modelAsJson = angular.toJson(model, true);
 	}, true);
+			$scope.models = {
+	        selected: null,
+
+	        dropzones: {
+	            "A": [
+	                {
+	                    "type": "container",
+	                    "id": 1,
+	                    "columns": [
+	                        [
+	                            {
+	                                "type": "item",
+	                                "id": "1"
+	                            },
+	                            {
+	                                "type": "item",
+	                                "id": "2"
+	                            }
+	                        ],
+	                        [
+	                            {
+	                                "type": "item",
+	                                "id": "3"
+	                            }
+	                        ]
+	                    ]
+	                },
+	                {
+	                    "type": "item",
+	                    "id": "4"
+	                },
+	                {
+	                    "type": "item",
+	                    "id": "5"
+	                },
+	                {
+	                    "type": "item",
+	                    "id": "6"
+	                }
+	            ]
+	        }
+	    };
+
+	    $scope.$watch('models.dropzones', function(model) {
+	        $scope.modelAsJson = angular.toJson(model, true);
+	    }, true);
+	  $scope.tabs1 = [
+	{ title: 'Понедельник', content: {
+		number:'00001',
+		dateReg:'2019-02-08',
+		dateSched:'2019-02-08',
+		schedule:[
+		{	'selected':null,
+			'type': 'container',
+			'group':'1-ПКС-15-1',
+				'columns':[
+					[
+							{
+								'teacher':'Фруленко Ю.А.',
+								'type':'item',
+								'id':'1'
+							},
+							{
+								'teacher':'Фруленко111 Ю.А.',
+								'type':'item',
+								'id':'1'
+							}
+
+					],
+					[
+							{
+								'discipline':'МДК 03.03.',
+								'type':'item',
+								'id':'2'
+							},
+							{
+								'discipline':'МДК 03.03.',
+								'type':'item',
+								'id':'2'
+							}
+					],
+					[
+						{
+							'number':'МДК 03.03.',
+						},
+						{
+							'number':'МДК 03.03.',
+						}
+					], 
+					[
+						{
+								'comment':'',
+							},
+								{
+								'comment':'',
+							}
+					],
+					[
+
+							{
+								'auditorium':'108',
+							},
+							{
+								'auditorium':'108',
+							}
+					]
+				]
+
+		}
 	
+		]
+		}
+},
+{ title: 'Вторник', content: 'kekeke'
+	},
+{ title: 'Среда', content: "You can bind the selected tab via the selected attribute on the md-tabs element."},
+{ title: 'Четверг', content: "If you set the selected tab binding to -1, it will leave no tab selected."},
+{ title: 'Пятница', content: "If you remove a tab, it will try to select a new one."},
+{ title: 'Суббота', content: "There's an ink bar that follows the selected tab, you can turn it off if you want."}
+],
+selected = null,
+previous = null;
 	var tabs = [
 	{ title: 'Понедельник', content: {
 		number:'00001',

@@ -1,17 +1,57 @@
 
 <ng-include src="'templates/menu.html'"></ng-include>
-<div layout="column" style="height:90vh;" ng-cloak="" class="sidenavdemoBasicUsage">
+<script type="text/ng-template" id="list.html">
+    <ul dnd-list="list">
+        <li ng-repeat="item in list"
+            dnd-draggable="item"
+            dnd-effect-allowed="move"
+            dnd-moved="list.splice($index, 1)"
+            dnd-selected="models.selected = item"
+            ng-class="{selected: models.selected === item}"
+            ng-include="item.type + '.html'">
+        </li>
+    </ul>
+</script>
+<script type="text/ng-template" id="lists.html">
+    <ul dnd-list="list">
+        <li ng-repeat="item in list"
+            dnd-draggable="item"
+            dnd-effect-allowed="move"
+            dnd-moved="list.splice($index, 1)"
+            dnd-selected="tab.content['schedule'].selected = item"
+            ng-class="{selected: tab.content['schedule'].selected === item}"
+            ng-include="item.type + '.html'">
+        </li>
+    </ul>
+</script>
+
+<!-- This template is responsible for rendering a container element. It uses
+     the above list template to render each container column -->
+<script type="text/ng-template" id="container.html">
+    <div class="container-element box box-blue">
+        <h3>Группа </h3>
+        <div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+
+<!-- Template for a normal list item -->
+<script type="text/ng-template" id="item.html">
+    <div class="item" ng-if="item.teacher"> {{item.teacher}}</div>
+    <div class="item" ng-if="item.discipline"> {{item.discipline}}</div>
+</script>
+<div layout="column" style="height:90vh;" ng-cloak="" >
 
 	<section layout="row" flex="">
 
 		<md-sidenav class="md-sidenav-left" md-component-id="leftSec" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
 
 			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Группы</h1>
+				<h1 class="md-toolbar-tools">Предметы</h1>
 			</md-toolbar>
 			<md-content layout-padding="" >
 				<md-list flex="">
-					<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.title)">
+					<md-list-item class="md-3-line" ng-repeat="item in disciplines" ng-click="scrollTo(item.title)">
 
 						<div class="md-list-item-text" layout="column">
 							<h3 >{{ item.title }} </h3>
@@ -120,7 +160,59 @@
 							</md-tabs>
 
 						</md-content>
+						<div class="alert-info">{{tabs1}}</div>
+						<md-content class="md-padding" >
+							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
+								<md-tab ng-repeat="tab in tabs1" ng-disabled="tab.disabled" label="{{tab.title}}" >
+									<div class="demo-tab tab{{$index%4}}" >
 
+									 
+										
+																					       <div ng-repeat="(zone, list) in [tab.content['schedule']]" class="col-md-12">
+																					           <div class="dropzone box box-yellow">
+																					               <div ng-include="'lists.html'"></div>
+																					           </div>
+																					       </div>
+
+										</div>
+									</table> 
+										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
+											Remove Tab
+										</md-button> -->
+									</div>
+								</md-tab>
+							</md-tabs>
+
+						</md-content>
+<div class="col-md-10">
+    <div class="row">
+        <div ng-repeat="(zone, list) in models.dropzones" class="col-md-6">
+            <div class="dropzone box box-yellow">
+                <!-- The dropzone also uses the list template -->
+                <h3>Dropzone {{zone}}</h3>
+                 <h6>kek {{list}}</h6>
+                <div ng-include="'list.html'"></div>
+            </div>
+        </div>
+    </div>
+
+    <div view-source="nested"></div>
+
+    <h2>Generated Model</h2>
+    <pre>{{modelAsJson1}}</pre>
+</div>
+
+<!-- Sidebar -->
+
+
+    <div ng-if="models.selected" class="box box-grey box-padding">
+        <h3>Selected</h3>
+        <strong>Type: </strong> {{models.selected.type}}<br>
+        <input type="text" ng-model="models.selected.id" class="form-control" style="margin-top: 5px" />
+    </div>
+
+
+</div>
 <!--     	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
   <div layout="row" layout-xs="column">
     <div flex="">
@@ -178,6 +270,7 @@
         <md-button ng-click="closeRight()" class="md-primary">
           Закрыть
         </md-button>
+
       </md-content>
 
     </md-sidenav>
