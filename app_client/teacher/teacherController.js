@@ -1,87 +1,34 @@
 (function() {
 	function teacherController($scope) {
 
-$scope.dropCallback = function(index, item, external, type) {
-      // Return false here to cancel drop. Return true if you insert the item yourself.
-      // roll down and delete any empty columns//
-      var model = $scope.models.dropzones;
-      for (var y in model.B) {
-        for (var zz in model.B[y].columns) {
-          var myColumns = [];
-          var foundThem = false;
-          if (Array.isArray(model.B[y].columns[zz])) {
-            $scope.models.dropzones.B[y].columns.splice(zz, 1);
-          } 
-        }
-      }
-      
+ $scope.title ="drag and drop"
+
+  $scope.lists = [ {id: 1, name: "list1", cards: [{id: 1, name: "1card1"}, {id: 2, name: "1card2"}]},
+  {id: 2, name: "list2",  cards: [{id: 1, name: "2card1"}, {id: 2, name: "2card2"}]},
+  {id: 3, name: "list3", cards: [{id: 1, name: "3card1"}, {id: 2, name: "3card2"},]},
+  {id: 4, name: "list4", cards: [{id: 1, name: "4card1"}, {id: 2, name: "4card2"},]}]
+   
+   $scope.dropCallbackItems = function(index, item, external, ind){
+     console.log(index, item, external, ind)
+   }
+   
+    $scope.dropCallback = function(index, item, external, ind) {
+      console.log("drop", item, ind );
+      $scope.draggedTo = index.toString();
+      $scope.draggedItem = item;
+      //do something here with list array and information
+      // index is index of lists object where is card is droped
+      //item is card object 
+      //external is $scope.lists
       return item;
     };
-
-    $scope.models = {
-      selected: null,
-      templates: [{
-        type: "item",
-        id: 2
-      }, {
-        type: "container",
-        id: 1,
-        columns: [
-          []
-        ]
-      }],
-      dropzones: {
-        "B": [
-
-          {
-            "type": "item",
-            "id": 7
-          }, {
-            "type": "item",
-            "id": 8
-          }, {
-            "type": "container",
-            "id": 1,
-            "columns": [
-
-
-              {
-                "type": "item",
-                "id": 2
-              }, {
-                "type": "item",
-                "id": 3
-              }
-
-            ]
-          }, {
-            "type": "container",
-            "id": 2,
-            "columns": [
-
-              {
-                "type": "item",
-                "id": 9
-              }, {
-                "type": "item",
-                "id": 10
-              }, {
-                "type": "item",
-                "id": 11
-              }
-
-            ]
-          }, {
-            "type": "item",
-            "id": 16
-          }
-        ]
-      }
-    };
-
-    $scope.$watch('models.dropzones', function(model) {
-      $scope.modelAsJson = angular.toJson(model, true);
-    }, true);
+    
+    $scope.dragStart = function(ind,card){
+      console.log(ind);
+      console.log(card);
+      
+      $scope.draggedFrom = ind.toString()
+    }
 }
 	angular.module('myApp')
 		.controller('teacherController', teacherController);

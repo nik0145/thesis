@@ -1,106 +1,45 @@
 <ng-include src="'templates/menu.html'"></ng-include>
-      <!-- Markup for lists inside the dropzone. It's inside a seperate template
-     because it will be used recursively. The dnd-list directive enables
-     to drop elements into the referenced array. The dnd-draggable directive
-     makes an element draggable and will transfer the object that was
-     assigned to it. If an element was dragged away, you have to remove
-     it from the original list yourself using the dnd-moved attribute -->
-
-
-<!-- Main area with dropzones and source code -->
-    <!-- Markup for lists inside the dropzone. It's inside a seperate template
-     because it will be used recursively. The dnd-list directive enables
-     to drop elements into the referenced array. The dnd-draggable directive
-     makes an element draggable and will transfer the object that was
-     assigned to it. If an element was dragged away, you have to remove
-     it from the original list yourself using the dnd-moved attribute -->
-
-    <!-- <link href="../Apps/ui/js/nestedDemo/nested.css?v=1.4" rel="stylesheet" /> -->
-
-    <script type="text/ng-template" id="list.html">
-      <ul dnd-list="lists">
-        <li ng-repeat="item in lists" dnd-draggable="item" dnd-type="item.type" dnd-effect-allowed="move" dnd-moved="lists.splice($index, 1)" dnd-selected="models.selected = item">
-          <div ng-class="item.type === 'container' ? 'container-element box-blue' : ''">
-            <h3>{{item.type + item.id}}</h3>
-            <div dnd-list="item.columns" dnd-allowed-types="['item']" dnd-drop="dropCallback(index, item, external, type)">
-              <div ng-repeat="subItem in item.columns" dnd-draggable="subItem" dnd-type="'item'" dnd-moved="item.columns.splice($index, 1)" dnd-effect-allowed="move">
-                <div style="padding:10px; border:1px solid #cccccc">{{subItem.type + subItem.id}}&nbsp;</div>
-              </div>
-              <div class="dndPlaceholder">
-                <strong>Drop Any Row in Container</strong>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="dndPlaceholder">
-          <strong>Drop Any Row Here</strong>
+<dnd-nodrag>
+      <ul dnd-list="lists"
+       dnd-allowed-types="['item']"
+       >
+       <li ng-repeat="item in lists" ng-init="ind = $index"
+        dnd-type="'item'"
+        dnd-draggable="item"
+        dnd-moved="lists.splice($index, 1)"
+        dnd-effect-allowed="move"
+        dnd-selected="models.selected = item"
+        ng-class="{'selected': models.selected === item}"
+        >
+        {{item.name}}
+        <ul style="min-height: 30px" dnd-list="item.cards"
+           dnd-allowed-types="['card']"
+          >
+            <li ng-repeat="card in item.cards"
+             dnd-type="'card'"
+             dnd-draggable="card"
+             dnd-effect-allowed="move"
+             dnd-moved="item.cards.splice($index, 1)"
+            >
+          {{card.name}}</li>
+          </ul>
+    </li>
+</ul>
+ </dnd-nodrag>
+      
+      <h2>Dragged from :         <span ng-if="draggedFrom">lists[{{draggedFrom}}] </span>
+      </h2>
+      <h2>Dragged to :         <span ng-if="draggedTo">lists[{{draggedTo}}]</span>
+      </h2>
+      <h2>Object: {{draggedItem}}</h2>
+      <h1>Result list:</h1>
+      <ul>
+        <li ng-repeat="list in lists track by $index">
+          {{list.id}}  {{list.name}} 
+              <ul>
+            <li ng-repeat="c in list.cards track by $index">
+              {{c.name}}
+           </li>
+          </ul>
         </li>
       </ul>
-    </script>
-
-    <!-- This template is responsible for rendering a container element. It uses
-     the above list template to render each container column -->
-    <script type="text/ng-template" id="container.html">
-      <div class="container-element box box-blue">
-        <h3>Container {{item.id}}</h3>
-        <div style="padding:125px" class="column" ng-repeat="lists in item.columns" ng-include="'list.html'"></div>
-       
-      </div>
-    </script>
-
-    <!-- Template for a normal list item -->
-    <script type="text/ng-template" id="item.html">
-      <div class="item">Item {{item.id}}</div>
-    </script>
-
-    <!-- Main area with dropzones and source code -->
-    <div class="nestedDemo">
-      <div class="col-sm-6">
-        <div class="row">
-          <div ng-repeat="(zone, lists) in models.dropzones" class="col-md-6">
-            <div class="dropzone box box-yellow">
-              <!-- The dropzone also uses the list template -->
-              <h3>Dropzone {{zone}}</h3>
-              <div ng-include="'list.html'"></div>
-            </div>
-          </div>
-        </div>
-
-        <div view-source="nested"></div>
-
-        <h2>Generated Model</h2>
-        <pre>{{modelAsJson}}</pre>
-      </div>
-
-      <!-- Sidebar -->
-      <div class="col-sm-3">
-
-        <div class="toolbox box box-grey box-padding">
-          <h3>New Elements</h3>
-          <ul>
-            <!-- The toolbox only allows to copy objects, not move it. After a new
-                 element was created, dnd-copied is invoked and we generate the next id -->
-            <li ng-repeat="item in models.templates" dnd-draggable="item" dnd-effect-allowed="copy" dnd-copied="item.id = item.id + 1" dnd-type="item.type">
-              <button type="button" class="btn btn-default btn-lg" disabled="disabled">{{item.type}}</button>
-            </li>
-          </ul>
-        </div>
-
-        <div ng-if="models.selected" class="box box-grey box-padding">
-          <h3>Selected</h3>
-          <strong>Type: </strong> {{models.selected.type}}
-          <br>
-          <input type="text" ng-model="models.selected.id" class="form-control" style="margin-top: 5px" />
-        </div>
-
-        <div class="trashcan box box-grey box-padding">
-          <h3>Trashcan</h3>
-          <ul dnd-list="[]">
-            <li><img src="https://marceljuenemann.github.io/angular-drag-and-drop-lists/demo/nested/trashcan.jpg"></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-</div>

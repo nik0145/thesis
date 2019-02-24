@@ -1,10 +1,14 @@
 
 <ng-include src="'templates/menu.html'"></ng-include>
+
 <script type="text/ng-template" id="list.html">
-    <ul dnd-list="list">
+    <ul dnd-list="list" dnd-drop="dropCallback($index, item, lists)"
+    dnd-allowed-types="'container'">
         <li ng-repeat="item in list"
             dnd-draggable="item"
+            dnd-allowed-types="item.types"
             dnd-effect-allowed="move"
+			dnd-type="'container'"
             dnd-moved="list.splice($index, 1)"
             dnd-selected="models.selected = item"
             ng-class="{selected: models.selected === item}"
@@ -12,32 +16,21 @@
         </li>
     </ul>
 </script>
-<script type="text/ng-template" id="lists.html">
-    <ul dnd-list="list">
-        <li ng-repeat="item in list"
-            dnd-draggable="item"
-            dnd-effect-allowed="move"
-            dnd-moved="list.splice($index, 1)"
-            dnd-selected="tab.content['schedule'].selected = item"
-            ng-class="{selected: tab.content['schedule'].selected === item}"
-            ng-include="item.type + '.html'">
-        </li>
-    </ul>
-</script>
 
-<!-- This template is responsible for rendering a container element. It uses
-     the above list template to render each container column -->
+
 <script type="text/ng-template" id="container.html">
-    <div class="container-element box box-blue">
+    <dnd-nodrag><div class="container-element box ">
         <h3>Группа </h3>
-        <div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div>
+        <div class="column" ng-repeat="list in item.columns"    ng-include="'list.html'"></div> </dnd-nodrag>
         <div class="clearfix"></div>
     </div>
 </script>
 
 <!-- Template for a normal list item -->
 <script type="text/ng-template" id="item.html">
-    <div class="item" ng-if="item.teacher"> {{item.teacher}}</div>
+    <div class="item" ng-if="item.teacher"> 
+
+    {{item.teacher}}</div>
     <div class="item" ng-if="item.discipline"> {{item.discipline}}</div>
 </script>
 <div layout="column" style="height:90vh;" ng-cloak="" >
@@ -51,10 +44,16 @@
 			</md-toolbar>
 			<md-content layout-padding="" >
 				<md-list flex="">
-					<md-list-item class="md-3-line" ng-repeat="item in disciplines" ng-click="scrollTo(item.title)">
+					<md-list-item class="md-3-line" ng-repeat="item in disciplines"
+					dnd-draggable="item"
+					dnd-effect-allowed="copy"
+					dnd-selected="selectedDisciplines = item"
+					ng-class="{'selected': selectedDisciplines === item}"
+					class="ng-binding ng-scope"
+					draggable="true">
 
 						<div class="md-list-item-text" layout="column">
-							<h3 >{{ item.title }} </h3>
+							<h3 >{{ item.discipline }} </h3>
 
 						</div>
 					</md-list-item>
@@ -80,11 +79,9 @@
 							ng-repeat="item in teachers"
 							
 							dnd-draggable="item"
-							dnd-moved="teacher.splice($index, 1)"
 							dnd-effect-allowed="copy"
 							dnd-selected="selectedTeacher = item"
 							ng-class="{'selected': selectedTeacher === item}"
-							dnd-disable-if="teacher.length < 2"
 							class="ng-binding ng-scope"
 							draggable="true"
 							>
@@ -108,8 +105,9 @@
 						<md-content class="md-padding" >
 							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
 								<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
-									<div class="demo-tab tab{{$index%4}}" >
-										<!-- <ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
+									<div class=" demo-tab tab{{$index%4}}" >
+										 <ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope" 
+										 >
 										    <li ng-repeat="row in item.lessons"
 										        dnd-draggable="row"
 										        dnd-moved="row.splice($index, 1)"
@@ -117,9 +115,10 @@
 										        dnd-selected="selected = row.teacher"
 										        class="ng-binding ng-scope"
 										        draggable="true">
-										        {{row.teacher}}
+										        {{index}},  {{external}} qqqq 
+										        {{row.teacher}} 1 {{row.discipline}}
 										    </li>
-										</ul> -->
+										</ul> 
 									 	<table class="table table-hover">
 										<thead>
 											<tr>
@@ -140,15 +139,15 @@
 
 																					        dnd-draggable="row"
 																					        dnd-moved="row.splice($index, 1)"
+																					        dnd-drop="false"
 																					        dnd-effect-allowed="copy"
-																					        dnd-selected="selected = row.teacher"
 																					        class="ng-binding ng-scope"
 																					        draggable="true">
-												<td ng-model="row.teacher">{{row.teacher}}</td>
-												<td ng-model="row.discipline">{{row.discipline}}</td>
-												<td ng-model="row.number">{{row.number}}</td>
+												<td >{{row.teacher}}</td>
+												<td >{{row.discipline}}</td>
+												<td >{{row.number}}</td>
 												
-												<td ng-model="row.auditorium">{{row.auditorium}}</td>
+												<td >{{row.auditorium}}</td>
 											</tr>
 										</tbody>
 									</table> 
@@ -164,15 +163,44 @@
 						<md-content class="md-padding" >
 							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
 								<md-tab ng-repeat="tab in tabs1" ng-disabled="tab.disabled" label="{{tab.title}}" >
-									<div class="demo-tab tab{{$index%4}}" >
+									<div class="demo-tab tab{{$index%4}}" dnd-allowed-types="['item']">
 
-									 
-										
-																					       <div ng-repeat="(zone, list) in [tab.content['schedule']]" class="col-md-12">
-																					           <div class="dropzone box box-yellow">
-																					               <div ng-include="'lists.html'"></div>
-																					           </div>
-																					       </div>
+				       <div ng-repeat="(zone, list) in [tab.content['schedule']]" dnd-allowed-types="['item']"  
+				        class="col-md-12">
+				           <div class="dropzone box box-yellow">
+				                   <ul dnd-list="list" dnd-drop="dropCallback($index, item, lists)"
+				                 dnd-allowed-types="['container']">
+				                       <li ng-repeat="item in list"
+				                           dnd-draggable="item"
+				                           dnd-allowed-types="item.type"
+				                           dnd-effect-allowed="move"
+				               				dnd-type="'container'"
+				                           dnd-moved="list.splice($index, 1)"
+				                           dnd-selected="models.selected = item"
+				                           ng-class="{selected: models.selected === item}"
+				                           >
+				                           <div class="container-element box ">
+				                               <h3>{{item.group}} </h3>
+				                               <div class="column" ng-repeat="list in item.columns">
+				                               	    <ul dnd-list="list" dnd-drop="dropCallback($index, item, lists)"
+				                               	    dnd-allowed-types="item.type">
+				                               	        <li ng-repeat="item in list"
+				                               	            dnd-draggable="item"
+				                               	            dnd-effect-allowed="move"
+				                               				dnd-type="'item'"
+				                               	            dnd-moved="list.splice($index, 1)"
+				                               	            dnd-selected="models.selected = item"
+				                               	            ng-class="{selected: models.selected === item}"
+				                               	            ng-include="item.type + '.html'">
+				                               	        </li>
+				                               	    </ul>
+				                               </div> 
+				                               <div class="clearfix"></div>
+				                           </div>
+				                       </li>
+				                   </ul>
+				           </div>
+				       </div>
 
 										</div>
 									</table> 
@@ -184,32 +212,6 @@
 							</md-tabs>
 
 						</md-content>
-<div class="col-md-10">
-    <div class="row">
-        <div ng-repeat="(zone, list) in models.dropzones" class="col-md-6">
-            <div class="dropzone box box-yellow">
-                <!-- The dropzone also uses the list template -->
-                <h3>Dropzone {{zone}}</h3>
-                 <h6>kek {{list}}</h6>
-                <div ng-include="'list.html'"></div>
-            </div>
-        </div>
-    </div>
-
-    <div view-source="nested"></div>
-
-    <h2>Generated Model</h2>
-    <pre>{{modelAsJson1}}</pre>
-</div>
-
-<!-- Sidebar -->
-
-
-    <div ng-if="models.selected" class="box box-grey box-padding">
-        <h3>Selected</h3>
-        <strong>Type: </strong> {{models.selected.type}}<br>
-        <input type="text" ng-model="models.selected.id" class="form-control" style="margin-top: 5px" />
-    </div>
 
 
 </div>

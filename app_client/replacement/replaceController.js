@@ -4,10 +4,28 @@ angular.module('myApp')
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
 	$scope.toggleRight = buildDelayedToggler('right');
+
+    $scope.dropCallback = function(index, item, external, ind) {
+      console.log("drops",index, item, external, ind );
+      $scope.draggedTo = index.toString()
+      $scope.draggedItem = item;
+      //проверка на типы, когда дропаешь элемент. index говорит нам о номере стобца. если столбец четный то предмет, если нет то препод
+      if(item.types == 'teacher' &&  !(index & 1)){
+		return item;
+      }else if(item.types == 'discipline'  &&  (index & 1)){
+      	return item;
+      }
+      else{
+      	return false;
+      }
+      
+    };
+	
 	$scope.scrollTo = function (id) {
 		$anchorScroll(id);  
 	}
 	$scope.selectedTeacher = null;
+	$scope.selectedDisciplines = null;
 	$scope.selectedTeacher1 = null;
 	$scope.isOpenRight = function(){
 		return $mdSidenav('right').isOpen();
@@ -21,21 +39,31 @@ angular.module('myApp')
 	{id:6,title:'6-ПКС-15-1'}
 	];
 	$scope.disciplines = [
-	{id:1,title:'discipline1'},
-	{id:2,title:'discipline2'},
-	{id:3,title:'discipline3'},
-	{id:4,title:'discipline4'},
-	{id:5,title:'discipline5'},
-	{id:6,title:'discipline6'}
+	{discipline:'discipline1','types':'discipline','type':'item',id:1},
+	{discipline:'discipline2','types':'discipline','type':'item',id:2},
+	{discipline:'discipline3','types':'discipline','type':'item',id:3},
+	{discipline:'discipline4','types':'discipline','type':'item',id:4},
+	{discipline:'discipline5','types':'discipline','type':'item',id:5},
+	{discipline:'discipline6','types':'discipline','type':'item',id:6}
 	];
+
 	$scope.teachers = [
-	{id:1,teacher:'teacher1'},
-	{id:2,teacher:'teacher2'},
-	{id:3,teacher:'teacher3'},
-	{id:4,teacher:'teacher4'},
-	{id:5,teacher:'teacher5'},
-	{id:6,teacher:'teacher6'}
+	{teacher:'teacher1','types':'teacher','type':'item',id:1},
+	{teacher:'teacher2','types':'teacher','type':'item',id:2},
+	{teacher:'teacher3','types':'teacher','type':'item',id:3},
+	{teacher:'teacher4','types':'teacher','type':'item',id:4},
+	{teacher:'teacher5','types':'teacher','type':'item',id:5},
+	{teacher:'teacher6','types':'teacher','type':'item',id:6}
 	]; 
+	 $scope.li = [ {id: 1, name: "list1", cards: [{id: 1, name: "1card1"}, {id: 2, name: "1card2"}]},
+  {id: 2, name: "list2",  cards: [{id: 1, name: "2card1"}, {id: 2, name: "2card2"}]},
+  {id: 3, name: "list3", cards: [{id: 1, name: "3card1"}, {id: 2, name: "3card2"},]},
+  {id: 4, name: "list4", cards: [{id: 1, name: "4card1"}, {id: 2, name: "4card2"},]}]
+/*	$scope.dropCallback = function(index, item, external, type) {
+		console.log('dropped at', index, external, type);
+	        $scope.logListEvent('dropped at', index, external, type);
+	        // Return false here to cancel drop. Return true if you insert the item yourself.
+	    };*/
 	$scope.$watch('teachers', function (model) {
 	    $scope.modelAsJson = angular.toJson(model, true);
 	}, true);
@@ -99,24 +127,28 @@ angular.module('myApp')
 							{
 								'teacher':'Фруленко Ю.А.',
 								'type':'item',
+								'types':'teacher',
 								'id':'1'
 							},
 							{
-								'teacher':'Фруленко111 Ю.А.',
+								'teacher':'Слугин В.Г.',
 								'type':'item',
+								'types':'teacher',
 								'id':'1'
 							}
 
 					],
 					[
 							{
-								'discipline':'МДК 03.03.',
+								'discipline':'Охрана труда 03.03.',
 								'type':'item',
+								'types':'discipline',
 								'id':'2'
 							},
 							{
 								'discipline':'МДК 03.03.',
 								'type':'item',
+								'types':'discipline',
 								'id':'2'
 							}
 					],
@@ -147,6 +179,68 @@ angular.module('myApp')
 					]
 				]
 
+		},{
+			'selected':null,
+					'type': 'container',
+					'group':'2-ПКС-15-1',
+						'columns':[
+							[
+									{
+										'teacher':'Фруленко Ю.А.',
+										'type':'item',
+										'types':'teacher',
+										'id':'1'
+									},
+									{
+										'teacher':'Фруленко111 Ю.А.',
+										'type':'item',
+										'types':'teacher',
+										'id':'1'
+									}
+
+							],
+							[
+									{
+										'discipline':'МДК 03.03.',
+										'type':'item',
+										'types':'discipline',
+										'id':'2'
+									},
+									{
+										'discipline':'МДК 03.03.',
+										'type':'item',
+										'types':'discipline',
+										'id':'2'
+									}
+							],
+							[
+								{
+									'number':'МДК 03.03.',
+								},
+								{
+									'number':'МДК 03.03.',
+								}
+							], 
+							[
+								{
+										'comment':'',
+									},
+										{
+										'comment':'',
+									}
+							],
+							[
+
+									{
+										'auditorium':'108',
+									},
+									{
+										'auditorium':'108',
+									}
+							]
+						]
+
+				
 		}
 	
 		]
@@ -191,7 +285,7 @@ previous = null;
 				'number':'3',
 				'comment':'практика',
 				'auditorium':'452'
-			}
+			},
 			]
 		},
 		{
@@ -299,7 +393,29 @@ previous = null;
 				'number':'3',
 				'comment':'практика',
 				'auditorium':'156'
-			}
+			},
+			{
+			    "type": "container",
+			    "id": 1,
+			    "columns": [
+			        [
+			            {
+			                "type": "item",
+			                "id": "1"
+			            },
+			            {
+			                "type": "item",
+			                "id": "2"
+			            }
+			        ],
+			        [
+			            {
+			                "type": "item",
+			                "id": "3"
+			            }
+			        ]
+			    ]
+			},
 			]
 		},
 		{
