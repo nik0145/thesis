@@ -4,21 +4,37 @@ angular.module('myApp')
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
 	$scope.toggleRight = buildDelayedToggler('right');
-
+	    $scope.dragStart = function(ind){
+      console.log(ind)
+      $scope.draggedFrom = ind.toString()
+    }
     $scope.dropCallback = function(index, item, external, ind) {
-      console.log("drops",index, item, external, ind );
+      console.log("dropsС",index, item, external, ind );
+      //получаем нужный тип
+      typeItem = external[0].types;
       $scope.draggedTo = index.toString()
       $scope.draggedItem = item;
-      //проверка на типы, когда дропаешь элемент. index говорит нам о номере стобца. если столбец четный то предмет, если нет то препод
-      if(item.types == 'teacher' &&  !(index & 1)){
+      if(item.types == typeItem){
 		return item;
-      }else if(item.types == 'discipline'  &&  (index & 1)){
-      	return item;
       }
       else{
       	return false;
       }
       
+    };
+    $scope.dropCallback1 = function(index, item, external, ind) {
+      console.log("drop1",index, item, external, ind );
+      console.log("drop1", $scope.lists);
+      $scope.draggedTo = index.toString()
+      $scope.draggedItem = item;
+      return item;
+    };
+    $scope.dropCallback2 = function(index, item, external, ind) {
+      console.log("drop1",index, item, external, ind );
+      console.log("drop1", $scope.lists);
+      $scope.draggedTo = index.toString()
+      $scope.draggedItem = item;
+      return item;
     };
 	
 	$scope.scrollTo = function (id) {
@@ -59,11 +75,7 @@ angular.module('myApp')
   {id: 2, name: "list2",  cards: [{id: 1, name: "2card1"}, {id: 2, name: "2card2"}]},
   {id: 3, name: "list3", cards: [{id: 1, name: "3card1"}, {id: 2, name: "3card2"},]},
   {id: 4, name: "list4", cards: [{id: 1, name: "4card1"}, {id: 2, name: "4card2"},]}]
-/*	$scope.dropCallback = function(index, item, external, type) {
-		console.log('dropped at', index, external, type);
-	        $scope.logListEvent('dropped at', index, external, type);
-	        // Return false here to cancel drop. Return true if you insert the item yourself.
-	    };*/
+
 	$scope.$watch('teachers', function (model) {
 	    $scope.modelAsJson = angular.toJson(model, true);
 	}, true);
@@ -109,7 +121,9 @@ angular.module('myApp')
 	            ]
 	        }
 	    };
-
+	    $scope.$watch('tabs1', function(model) {
+	        $scope.modelAsJson = angular.toJson(model, true);
+	    }, true);
 	    $scope.$watch('models.dropzones', function(model) {
 	        $scope.modelAsJson = angular.toJson(model, true);
 	    }, true);
@@ -152,20 +166,29 @@ angular.module('myApp')
 								'id':'2'
 							}
 					],
-					[
+/*					[
 						{
 							'number':'МДК 03.03.',
+							'types':'number',
+							'id':'2'
 						},
 						{
 							'number':'МДК 03.03.',
+							'types':'number',
+							'id':'2'
 						}
 					], 
 					[
 						{
 								'comment':'',
+								'types':'comment',
+								'id':'2'
+
 							},
 								{
 								'comment':'',
+								'types':'<comment></comment>',
+								'id':'2'
 							}
 					],
 					[
@@ -176,7 +199,7 @@ angular.module('myApp')
 							{
 								'auditorium':'108',
 							}
-					]
+					]*/
 				]
 
 		},{
@@ -213,7 +236,7 @@ angular.module('myApp')
 										'id':'2'
 									}
 							],
-							[
+							/*[
 								{
 									'number':'МДК 03.03.',
 								},
@@ -237,7 +260,7 @@ angular.module('myApp')
 									{
 										'auditorium':'108',
 									}
-							]
+							]*/
 						]
 
 				

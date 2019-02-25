@@ -1,8 +1,6 @@
 (function() {
 	function teacherController($scope) {
 
- $scope.title ="drag and drop"
-
   $scope.lists = [ {id: 1, name: "list1", cards: [{id: 1, name: "1card1"}, {id: 2, name: "1card2"}]},
   {id: 2, name: "list2",  cards: [{id: 1, name: "2card1"}, {id: 2, name: "2card2"}]},
   {id: 3, name: "list3", cards: [{id: 1, name: "3card1"}, {id: 2, name: "3card2"},]},
@@ -13,8 +11,9 @@
    }
    
     $scope.dropCallback = function(index, item, external, ind) {
-      console.log("drop", item, ind );
-      $scope.draggedTo = index.toString();
+      console.log("drop",index, item, external, ind );
+      console.log("drop", $scope.lists);
+      $scope.draggedTo = index.toString()
       $scope.draggedItem = item;
       //do something here with list array and information
       // index is index of lists object where is card is droped
@@ -23,9 +22,8 @@
       return item;
     };
     
-    $scope.dragStart = function(ind,card){
-      console.log(ind);
-      console.log(card);
+    $scope.dragStart = function(ind){
+      console.log(ind)
       
       $scope.draggedFrom = ind.toString()
     }

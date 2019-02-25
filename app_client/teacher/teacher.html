@@ -1,6 +1,6 @@
 <ng-include src="'templates/menu.html'"></ng-include>
 <dnd-nodrag>
-      <ul dnd-list="lists"
+     <ul dnd-list="lists"
        dnd-allowed-types="['item']"
        >
        <li ng-repeat="item in lists" ng-init="ind = $index"
@@ -13,12 +13,14 @@
         >
         {{item.name}}
         <ul style="min-height: 30px" dnd-list="item.cards"
+           dnd-drop="dropCallback($index, item, lists, ind)"
            dnd-allowed-types="['card']"
           >
             <li ng-repeat="card in item.cards"
              dnd-type="'card'"
              dnd-draggable="card"
              dnd-effect-allowed="move"
+             dnd-dragstart="dragStart(ind)"
              dnd-moved="item.cards.splice($index, 1)"
             >
           {{card.name}}</li>

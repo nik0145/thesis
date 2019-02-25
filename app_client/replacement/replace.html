@@ -2,36 +2,34 @@
 <ng-include src="'templates/menu.html'"></ng-include>
 
 <script type="text/ng-template" id="list.html">
-    <ul dnd-list="list" dnd-drop="dropCallback($index, item, lists)"
-    dnd-allowed-types="'container'">
-        <li ng-repeat="item in list"
-            dnd-draggable="item"
-            dnd-allowed-types="item.types"
-            dnd-effect-allowed="move"
-			dnd-type="'container'"
-            dnd-moved="list.splice($index, 1)"
-            dnd-selected="models.selected = item"
-            ng-class="{selected: models.selected === item}"
-            ng-include="item.type + '.html'">
-        </li>
-    </ul>
+	<ul dnd-list="list" dnd-drop="dropCallback1($index, item, lists)"
+	dnd-allowed-types="'asd'">
+	<li ng-repeat="item in list"
+	dnd-draggable="item"
+	dnd-allowed-types="item.types"
+	dnd-effect-allowed="move"
+	dnd-moved="list.splice($index, 1)"
+	dnd-selected="models.selected = item"
+
+	ng-class="{selected: models.selected === item}"
+	ng-include="item.type + '.html'">
+</li>
+</ul>
 </script>
 
 
 <script type="text/ng-template" id="container.html">
-    <dnd-nodrag><div class="container-element box ">
-        <h3>Группа </h3>
-        <div class="column" ng-repeat="list in item.columns"    ng-include="'list.html'"></div> </dnd-nodrag>
-        <div class="clearfix"></div>
-    </div>
+	<dnd-nodrag><div class="container-element box ">
+		<h3>Группа </h3>
+		<div class="column" ng-repeat="list in item.columns"    ng-include="'list.html'"></div> </dnd-nodrag>
+		<div class="clearfix"></div>
+	</div>
 </script>
 
 <!-- Template for a normal list item -->
 <script type="text/ng-template" id="item.html">
-    <div class="item" ng-if="item.teacher"> 
-
-    {{item.teacher}}</div>
-    <div class="item" ng-if="item.discipline"> {{item.discipline}}</div>
+<div class="item" ng-if="item.teacher">{{item.teacher}}</div>
+<div class="item" ng-if="item.discipline">{{item.discipline}}</div>
 </script>
 <div layout="column" style="height:90vh;" ng-cloak="" >
 
@@ -52,8 +50,42 @@
 					class="ng-binding ng-scope"
 					draggable="true">
 
+					<div class="md-list-item-text" layout="column">
+						<h3 >{{ item.discipline }} </h3>
+
+					</div>
+				</md-list-item>
+				<md-divider></md-divider>
+				<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
+					Закрыть
+				</md-button>
+				<p hide="" show-gt-md="">
+					Тут будет список групп
+				</p>
+
+
+			</md-sidenav>
+
+			<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+
+				<md-toolbar class="md-theme-indigo">
+					<h1 class="md-toolbar-tools">Преподаватели</h1>
+				</md-toolbar>
+				<md-content layout-padding="" >
+					<md-list flex="" dnd-list="teacher" class="ng-scope">
+						<md-list-item class="md-3-line"
+						ng-repeat="item in teachers"
+
+						dnd-draggable="item"
+						dnd-effect-allowed="copy"
+						dnd-selected="selectedTeacher = item"
+						ng-class="{'selected': selectedTeacher === item}"
+						class="ng-binding ng-scope"
+						draggable="true"
+						>
+
 						<div class="md-list-item-text" layout="column">
-							<h3 >{{ item.discipline }} </h3>
+							<h3>{{ item.teacher }}</h3>
 
 						</div>
 					</md-list-item>
@@ -61,96 +93,62 @@
 					<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
 						Закрыть
 					</md-button>
-					<p hide="" show-gt-md="">
-						Тут будет список групп
-					</p>
 
 
-				</md-sidenav>
+				</md-content>
 
-				<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-	 
-					<md-toolbar class="md-theme-indigo">
-						<h1 class="md-toolbar-tools">Преподаватели</h1>
-					</md-toolbar>
-					<md-content layout-padding="" >
-						<md-list flex="" dnd-list="teacher" class="ng-scope">
-							<md-list-item class="md-3-line"
-							ng-repeat="item in teachers"
-							
-							dnd-draggable="item"
-							dnd-effect-allowed="copy"
-							dnd-selected="selectedTeacher = item"
-							ng-class="{'selected': selectedTeacher === item}"
-							class="ng-binding ng-scope"
-							draggable="true"
-							>
+			</md-sidenav>
 
-								<div class="md-list-item-text" layout="column">
-									<h3>{{ item.teacher }}</h3>
+			<md-content flex="" layout-padding="" >
+				<md-content class="md-padding" >
+					<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
+						<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
+							<div class=" demo-tab tab{{$index%4}}" >
+								<ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope" 
+								>
+								<li ng-repeat="row in item.lessons"
+								dnd-draggable="row"
+								dnd-moved="row.splice($index, 1)"
+								dnd-effect-allowed="copy"
+								dnd-selected="selected = row.teacher"
+								class="ng-binding ng-scope"
+								draggable="true">
+								{{index}},  {{external}} qqqq 
+								{{row.teacher}} 1 {{row.discipline}}
+							</li>
+						</ul> 
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+									<th class=" text-center" scope="col">Дисциплина, МДК</th>
+									<th class=" text-center" scope="col">Пара</th>
 
-								</div>
-							</md-list-item>
-							<md-divider></md-divider>
-							<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
-								Закрыть
-							</md-button>
+									<th class=" text-center" scope="col">Аудитория</th>
+								</tr>
 
-							
-						</md-content>
+							</thead>
+							<tbody ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
 
-					</md-sidenav>
+								<tr>
+									<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
+								</tr>
+								<tr ng-repeat="row in item.lessons"
 
-					<md-content flex="" layout-padding="" >
-						<md-content class="md-padding" >
-							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
-								<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
-									<div class=" demo-tab tab{{$index%4}}" >
-										 <ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope" 
-										 >
-										    <li ng-repeat="row in item.lessons"
-										        dnd-draggable="row"
-										        dnd-moved="row.splice($index, 1)"
-										        dnd-effect-allowed="copy"
-										        dnd-selected="selected = row.teacher"
-										        class="ng-binding ng-scope"
-										        draggable="true">
-										        {{index}},  {{external}} qqqq 
-										        {{row.teacher}} 1 {{row.discipline}}
-										    </li>
-										</ul> 
-									 	<table class="table table-hover">
-										<thead>
-											<tr>
-												<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-												<th class=" text-center" scope="col">Дисциплина, МДК</th>
-												<th class=" text-center" scope="col">Пара</th>
-												
-												<th class=" text-center" scope="col">Аудитория</th>
-											</tr>
-									
-										</thead>
-										<tbody ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
-											
-											<tr>
-												<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
-											</tr>
-											<tr ng-repeat="row in item.lessons"
+								dnd-draggable="row"
+								dnd-moved="row.splice($index, 1)"
+								dnd-drop="false"
+								dnd-effect-allowed="copy"
+								class="ng-binding ng-scope"
+								draggable="true">
+								<td >{{row.teacher}}</td>
+								<td >{{row.discipline}}</td>
+								<td >{{row.number}}</td>
 
-																					        dnd-draggable="row"
-																					        dnd-moved="row.splice($index, 1)"
-																					        dnd-drop="false"
-																					        dnd-effect-allowed="copy"
-																					        class="ng-binding ng-scope"
-																					        draggable="true">
-												<td >{{row.teacher}}</td>
-												<td >{{row.discipline}}</td>
-												<td >{{row.number}}</td>
-												
-												<td >{{row.auditorium}}</td>
-											</tr>
-										</tbody>
-									</table> 
+								<td >{{row.auditorium}}</td>
+							</tr>
+						</tbody>
+					</table> 
 										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
 											Remove Tab
 										</md-button> -->
@@ -165,45 +163,49 @@
 								<md-tab ng-repeat="tab in tabs1" ng-disabled="tab.disabled" label="{{tab.title}}" >
 									<div class="demo-tab tab{{$index%4}}" dnd-allowed-types="['item']">
 
-				       <div ng-repeat="(zone, list) in [tab.content['schedule']]" dnd-allowed-types="['item']"  
-				        class="col-md-12">
-				           <div class="dropzone box box-yellow">
-				                   <ul dnd-list="list" dnd-drop="dropCallback($index, item, lists)"
-				                 dnd-allowed-types="['container']">
-				                       <li ng-repeat="item in list"
-				                           dnd-draggable="item"
-				                           dnd-allowed-types="item.type"
-				                           dnd-effect-allowed="move"
-				               				dnd-type="'container'"
-				                           dnd-moved="list.splice($index, 1)"
-				                           dnd-selected="models.selected = item"
-				                           ng-class="{selected: models.selected === item}"
-				                           >
-				                           <div class="container-element box ">
-				                               <h3>{{item.group}} </h3>
-				                               <div class="column" ng-repeat="list in item.columns">
-				                               	    <ul dnd-list="list" dnd-drop="dropCallback($index, item, lists)"
-				                               	    dnd-allowed-types="item.type">
-				                               	        <li ng-repeat="item in list"
-				                               	            dnd-draggable="item"
-				                               	            dnd-effect-allowed="move"
-				                               				dnd-type="'item'"
-				                               	            dnd-moved="list.splice($index, 1)"
-				                               	            dnd-selected="models.selected = item"
-				                               	            ng-class="{selected: models.selected === item}"
-				                               	            ng-include="item.type + '.html'">
-				                               	        </li>
-				                               	    </ul>
-				                               </div> 
-				                               <div class="clearfix"></div>
-				                           </div>
-				                       </li>
-				                   </ul>
-				           </div>
-				       </div>
+										<div ng-repeat="(zone, list) in [tab.content['schedule']]" dnd-allowed-types="['item']"  
+										class="col-md-12">
+										<div class="dropzone box box-yellow">
+											<ul dnd-list="list" dnd-drop="dropCallback2($index, item, lists)"
+											dnd-allowed-types="['container']">
+											<li ng-repeat="item in list"
+											
+											dnd-draggable="item"
+											
+											dnd-effect-allowed="move"
+											dnd-type="'container'"
+											dnd-moved="list.splice($index, 1)"
+											dnd-selected="models.selected = item"
+											ng-class="{selected: models.selected === item}"
+											>
+											<div class="container-element box ">
+												<h3>{{item.group}} </h3>
+												<div class="column" ng-repeat="list in item.columns">
+													<ul  dnd-allowed-types="list[0].types" dnd-list="list" dnd-drop="dropCallback($index, item, list)"
+													dnd-allowed-types="item.type">
+													<li ng-repeat="item in list"
+													ng-init="ind = $index"
+													dnd-draggable="item"
+													dnd-effect-allowed="move"
+														 dnd-dragstart="dragStart(ind)"
+													dnd-type="item.types"
+													dnd-moved="list.splice($index, 1)"
+													dnd-selected="models.selected = item"
+													ng-class="{selected: models.selected === item}"
+													ng-include="item.type + '.html'">
 
-										</div>
-									</table> 
+												</li>
+											</ul>
+										</div> 
+										<div class="clearfix"></div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</table> 
 										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
 											Remove Tab
 										</md-button> -->
@@ -214,7 +216,7 @@
 						</md-content>
 
 
-</div>
+					</div>
 <!--     	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
   <div layout="row" layout-xs="column">
     <div flex="">
@@ -232,60 +234,60 @@
       Add Tab
     </md-button>
   </div>
-</form> -->
-<div layout="column" layout-align="top center">
-	
-	<div>
-		<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
-			Показать преподавателей
-		</md-button>
-	</div>
-	<div>
+ </form> -->
+ <div layout="column" layout-align="top center">
 
-	</div>
+ 	<div>
+ 		<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+ 			Показать преподавателей
+ 		</md-button>
+ 	</div>
+ 	<div>
 
-</div>
+ 	</div>
 
-<div flex=""></div>
+ </div>
+
+ <div flex=""></div>
 
 
 </md-content>
-	<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
 
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Группы</h1>
-      </md-toolbar>
-      <md-content layout-padding="">
-      		<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.title)">
+	<md-toolbar class="md-theme-light">
+		<h1 class="md-toolbar-tools">Группы</h1>
+	</md-toolbar>
+	<md-content layout-padding="">
+		<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.title)">
 
-						<div class="md-list-item-text" layout="column">
-							<h3 >{{ item.title }} </h3>
+			<div class="md-list-item-text" layout="column">
+				<h3 >{{ item.title }} </h3>
 
-						</div>
-					</md-list-item>
+			</div>
+		</md-list-item>
         <!-- <form>
           <md-input-container>
             <label for="testInput">Test input</label>
             <input type="text" id="testInput" ng-model="data" md-autofocus="">
           </md-input-container>
-        </form> -->
-        <md-button ng-click="closeRight()" class="md-primary">
-          Закрыть
-        </md-button>
+         </form> -->
+         <md-button ng-click="closeRight()" class="md-primary">
+         	Закрыть
+         </md-button>
 
-      </md-content>
+        </md-content>
 
-    </md-sidenav>
+       </md-sidenav>
 
-</section>
- <md-button  md-disable-backdrop ng-click="toggleRight()"class="md-primary md-fab md-fab-bottom-right">
-     <md-icon md-svg-src="svg/users-group.svg" class="s48" aria-label="Angular Icon"></md-icon>
-     <md-tooltip
-              md-direction="left">
-              Список групп
-            </md-tooltip>
-    </md-button>
-</div>
+      </section>
+      <md-button  md-disable-backdrop ng-click="toggleRight()"class="md-primary md-fab md-fab-bottom-right">
+      	<md-icon md-svg-src="svg/users-group.svg" class="s48" aria-label="Angular Icon"></md-icon>
+      	<md-tooltip
+      	md-direction="left">
+      	Список групп
+      </md-tooltip>
+     </md-button>
+    </div>
 
 <!--
 Copyright 2018 Google LLC. All Rights Reserved. 
