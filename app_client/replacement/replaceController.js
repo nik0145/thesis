@@ -46,6 +46,13 @@ angular.module('myApp')
 	$scope.isOpenRight = function(){
 		return $mdSidenav('right').isOpen();
 	};
+	$scope.lengthItemSubj = function(mas){
+		if(mas.length ==0){
+			return 1;
+		}else{
+			return 50;
+		}
+	}
 	$scope.subject = [
 	{id:1,title:'1-ПКС-15-1'},
 	{id:2,title:'2-ПКС-15-1'},

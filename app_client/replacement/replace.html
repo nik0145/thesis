@@ -41,8 +41,22 @@
 				<h1 class="md-toolbar-tools">Предметы</h1>
 			</md-toolbar>
 			<md-content layout-padding="" >
+									<md-autocomplete
+				  			  	md-selected-item="selectedItems"
+				  			  	md-search-text="searchSubj"
+				  			  	md-items="subj in disciplines | filter:searchSubj"
+				  			  	md-item-text="subj.discipline"
+				  			  	md-min-length="lengthItemSubj(disciplines | filter:searchSubj)"
+				  			  	placeholder="Предмет">
+				  		        <md-item-template>
+				  		          <span md-highlight-text="searchSubj" md-highlight-flags="^i">{{searchSubj.length}}</span>
+				  		        </md-item-template>
+				  		        <md-not-found>
+				  		          Предмет не найден
+				  		        </md-not-found>
+				  		      </md-autocomplete>
 				<md-list flex="">
-					<md-list-item class="md-3-line" ng-repeat="item in disciplines"
+					<md-list-item class="md-3-line" ng-repeat="item in disciplines | filter:searchSubj"
 					dnd-draggable="item"
 					dnd-effect-allowed="copy"
 					dnd-selected="selectedDisciplines = item"
@@ -60,7 +74,6 @@
 					Закрыть
 				</md-button>
 				<p hide="" show-gt-md="">
-					Тут будет список групп
 				</p>
 
 
@@ -72,10 +85,23 @@
 					<h1 class="md-toolbar-tools">Преподаватели</h1>
 				</md-toolbar>
 				<md-content layout-padding="" >
+					<md-autocomplete
+  			  	md-selected-item="selectedItem"
+  			  	md-search-text="searchText"
+  			  	md-items="itemTeacher in teachers | filter:searchText"
+  			  	md-item-text="itemTeacher.teacher"
+  			  	md-min-length="lengthItemSubj(teachers | filter:searchText)"
+  			  	placeholder="Фамилия Преподавателя">
+  		        <md-item-template>
+  		          <span md-highlight-text="searchText" md-highlight-flags="^i">{{itemTeacher.teacher}}</span>
+  		        </md-item-template>
+  		        <md-not-found>
+  		          Преподаватель не найден
+  		        </md-not-found>
+  		      </md-autocomplete>
 					<md-list flex="" dnd-list="teacher" class="ng-scope">
 						<md-list-item class="md-3-line"
-						ng-repeat="item in teachers"
-
+						ng-repeat="item in teachers | filter:searchText"
 						dnd-draggable="item"
 						dnd-effect-allowed="copy"
 						dnd-selected="selectedTeacher = item"
@@ -100,64 +126,64 @@
 			</md-sidenav>
 
 			<md-content flex="" layout-padding="" >
-				<md-content class="md-padding" >
-					<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
-						<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
-							<div class=" demo-tab tab{{$index%4}}" >
-								<ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope" 
-								>
-								<li ng-repeat="row in item.lessons"
-								dnd-draggable="row"
-								dnd-moved="row.splice($index, 1)"
-								dnd-effect-allowed="copy"
-								dnd-selected="selected = row.teacher"
-								class="ng-binding ng-scope"
-								draggable="true">
-								{{index}},  {{external}} qqqq 
-								{{row.teacher}} 1 {{row.discipline}}
-							</li>
-						</ul> 
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-									<th class=" text-center" scope="col">Дисциплина, МДК</th>
-									<th class=" text-center" scope="col">Пара</th>
+<!-- 				<md-content class="md-padding" >
+	<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
+		<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
+			<div class=" demo-tab tab{{$index%4}}" >
+				<ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope" 
+				>
+				<li ng-repeat="row in item.lessons"
+				dnd-draggable="row"
+				dnd-moved="row.splice($index, 1)"
+				dnd-effect-allowed="copy"
+				dnd-selected="selected = row.teacher"
+				class="ng-binding ng-scope"
+				draggable="true">
+				{{index}},  {{external}} qqqq 
+				{{row.teacher}} 1 {{row.discipline}}
+			</li>
+		</ul> 
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
+					<th class=" text-center" scope="col">Дисциплина, МДК</th>
+					<th class=" text-center" scope="col">Пара</th>
 
-									<th class=" text-center" scope="col">Аудитория</th>
-								</tr>
+					<th class=" text-center" scope="col">Аудитория</th>
+				</tr>
 
-							</thead>
-							<tbody ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
+			</thead>
+			<tbody ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
 
-								<tr>
-									<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
-								</tr>
-								<tr ng-repeat="row in item.lessons"
+				<tr>
+					<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
+				</tr>
+				<tr ng-repeat="row in item.lessons"
 
-								dnd-draggable="row"
-								dnd-moved="row.splice($index, 1)"
-								dnd-drop="false"
-								dnd-effect-allowed="copy"
-								class="ng-binding ng-scope"
-								draggable="true">
-								<td >{{row.teacher}}</td>
-								<td >{{row.discipline}}</td>
-								<td >{{row.number}}</td>
+				dnd-draggable="row"
+				dnd-moved="row.splice($index, 1)"
+				dnd-drop="false"
+				dnd-effect-allowed="copy"
+				class="ng-binding ng-scope"
+				draggable="true">
+				<td >{{row.teacher}}</td>
+				<td >{{row.discipline}}</td>
+				<td >{{row.number}}</td>
 
-								<td >{{row.auditorium}}</td>
-							</tr>
-						</tbody>
-					</table> 
-										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
-											Remove Tab
-										</md-button> -->
-									</div>
-								</md-tab>
-							</md-tabs>
+				<td >{{row.auditorium}}</td>
+			</tr>
+		</tbody>
+	</table> 
+						<md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
+							Remove Tab
+						</md-button>
+					</div>
+				</md-tab>
+			</md-tabs>
 
-						</md-content>
-						<div class="alert-info">{{tabs1}}</div>
+		</md-content>
+		<div class="alert-info">{{tabs1}}</div> -->
 						<md-content class="md-padding" >
 							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
 								<md-tab ng-repeat="tab in tabs1" ng-disabled="tab.disabled" label="{{tab.title}}" >
