@@ -204,8 +204,8 @@
 											dnd-selected="models.selected = item"
 											ng-class="{selected: models.selected === item}"
 											>
-											<div class="container-element box ">
-												<h3>{{item.group}} </h3>
+											<div class="container-element box " id = "{{item.group}}">
+												<h3 >{{item.group}} </h3>
 												<div class="column" ng-repeat="list in item.columns">
 													<ul  dnd-allowed-types="list[0].types" dnd-list="list" dnd-drop="dropCallback($index, item, list)"
 													dnd-allowed-types="item.type">
@@ -221,9 +221,13 @@
 													ng-include="item.type + '.html'">
 
 												</li>
+												<li class="dndPlaceholder">
+        Перетащите {{list[0].types}}
+    </li>
 											</ul>
 										</div> 
 										<div class="clearfix"></div>
+
 									</div>
 								</li>
 							</ul>

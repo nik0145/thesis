@@ -62,21 +62,21 @@ angular.module('myApp')
 	{id:6,title:'6-ПКС-15-1'}
 	];
 	$scope.disciplines = [
-	{discipline:'discipline1','types':'discipline','type':'item',id:1},
-	{discipline:'discipline2','types':'discipline','type':'item',id:2},
-	{discipline:'discipline3','types':'discipline','type':'item',id:3},
-	{discipline:'discipline4','types':'discipline','type':'item',id:4},
-	{discipline:'discipline5','types':'discipline','type':'item',id:5},
-	{discipline:'discipline6','types':'discipline','type':'item',id:6}
+	{discipline:'discipline1','types':'Предмет','type':'item',id:1},
+	{discipline:'discipline2','types':'Предмет','type':'item',id:2},
+	{discipline:'discipline3','types':'Предмет','type':'item',id:3},
+	{discipline:'discipline4','types':'Предмет','type':'item',id:4},
+	{discipline:'discipline5','types':'Предмет','type':'item',id:5},
+	{discipline:'discipline6','types':'Предмет','type':'item',id:6}
 	];
 
 	$scope.teachers = [
-	{teacher:'teacher1','types':'teacher','type':'item',id:1},
-	{teacher:'teacher2','types':'teacher','type':'item',id:2},
-	{teacher:'teacher3','types':'teacher','type':'item',id:3},
-	{teacher:'teacher4','types':'teacher','type':'item',id:4},
-	{teacher:'teacher5','types':'teacher','type':'item',id:5},
-	{teacher:'teacher6','types':'teacher','type':'item',id:6}
+	{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},
+	{teacher:'teacher2','types':'Преподавателя','type':'item',id:2},
+	{teacher:'teacher3','types':'Преподавателя','type':'item',id:3},
+	{teacher:'teacher4','types':'Преподавателя','type':'item',id:4},
+	{teacher:'teacher5','types':'Преподавателя','type':'item',id:5},
+	{teacher:'teacher6','types':'Преподавателя','type':'item',id:6}
 	]; 
 	 $scope.li = [ {id: 1, name: "list1", cards: [{id: 1, name: "1card1"}, {id: 2, name: "1card2"}]},
   {id: 2, name: "list2",  cards: [{id: 1, name: "2card1"}, {id: 2, name: "2card2"}]},
@@ -148,13 +148,13 @@ angular.module('myApp')
 							{
 								'teacher':'Фруленко Ю.А.',
 								'type':'item',
-								'types':'teacher',
+								'types':'Преподавателя',
 								'id':'1'
 							},
 							{
 								'teacher':'Слугин В.Г.',
 								'type':'item',
-								'types':'teacher',
+								'types':'Преподавателя',
 								'id':'1'
 							}
 
@@ -163,13 +163,13 @@ angular.module('myApp')
 							{
 								'discipline':'Охрана труда 03.03.',
 								'type':'item',
-								'types':'discipline',
+								'types':'Предмет',
 								'id':'2'
 							},
 							{
 								'discipline':'МДК 03.03.',
 								'type':'item',
-								'types':'discipline',
+								'types':'Предмет',
 								'id':'2'
 							}
 					],
@@ -218,13 +218,13 @@ angular.module('myApp')
 									{
 										'teacher':'Фруленко Ю.А.',
 										'type':'item',
-										'types':'teacher',
+										'types':'Преподавателя',
 										'id':'1'
 									},
 									{
 										'teacher':'Фруленко111 Ю.А.',
 										'type':'item',
-										'types':'teacher',
+										'types':'Преподавателя',
 										'id':'1'
 									}
 
@@ -233,13 +233,13 @@ angular.module('myApp')
 									{
 										'discipline':'МДК 03.03.',
 										'type':'item',
-										'types':'discipline',
+										'types':'Предмет',
 										'id':'2'
 									},
 									{
 										'discipline':'МДК 03.03.',
 										'type':'item',
-										'types':'discipline',
+										'types':'Предмет',
 										'id':'2'
 									}
 							],

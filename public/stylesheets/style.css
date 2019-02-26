@@ -9,9 +9,7 @@
     min-height: 42px;
     padding-left: 0px;
 }
-.kekeke{
-	background-color: red;
-}
+
 .dropzone li {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -42,9 +40,13 @@
  * while the user is dragging over it.
  */
 .dropzone .dndPlaceholder {
-    background-color: #ddd;
+    line-height: 30px;
+    background-color: #00d318;
     display: block;
     min-height: 42px;
+}
+.container-element h3{
+  text-align: center;
 }
 
 /***************************** Element Selection *****************************/
