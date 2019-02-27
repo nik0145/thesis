@@ -1,6 +1,17 @@
 
 angular.module('myApp')
-.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log,$anchorScroll,$document) {
+.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log,$anchorScroll,$document,listDisciplines) {
+	$scope.disciplines = listDisciplines.data;
+	console.log($scope.disciplines);
+/*		$scope.disciplines = [
+	{discipline:'discipline1','types':'Предмет','type':'item',id:1},
+	{discipline:'discipline2','types':'Предмет','type':'item',id:2},
+	{discipline:'discipline3','types':'Предмет','type':'item',id:3},
+	{discipline:'discipline4','types':'Предмет','type':'item',id:4},
+	{discipline:'discipline5','types':'Предмет','type':'item',id:5},
+	{discipline:'discipline6','types':'Предмет','type':'item',id:6}
+	];*/
+
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
 	$scope.toggleRight = buildDelayedToggler('right');
@@ -61,14 +72,7 @@ angular.module('myApp')
 	{id:5,title:'5-ПКС-15-1'},
 	{id:6,title:'6-ПКС-15-1'}
 	];
-	$scope.disciplines = [
-	{discipline:'discipline1','types':'Предмет','type':'item',id:1},
-	{discipline:'discipline2','types':'Предмет','type':'item',id:2},
-	{discipline:'discipline3','types':'Предмет','type':'item',id:3},
-	{discipline:'discipline4','types':'Предмет','type':'item',id:4},
-	{discipline:'discipline5','types':'Предмет','type':'item',id:5},
-	{discipline:'discipline6','types':'Предмет','type':'item',id:6}
-	];
+
 
 	$scope.teachers = [
 	{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},

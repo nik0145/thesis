@@ -25,7 +25,13 @@
 .dropzone .dndDragging {
     opacity: 0.7;
 }
+md-list-item:nth-child(even){
+          background-color:#e3ecf5;
+          }
 
+   md-list-item:nth-child(odd){
+          background-color:#ffffff;
+          }
 /**
  * The dndDraggingSource class will be applied to the source element of a drag
  * operation. It makes sense to hide it to give the user the feeling that he's

@@ -35,7 +35,7 @@
 
 	<section layout="row" flex="">
 
-		<md-sidenav class="md-sidenav-left" md-component-id="leftSec" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+		<md-sidenav class="md-sidenav-left" md-component-id="leftSec" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
 
 			<md-toolbar class="md-theme-indigo">
 				<h1 class="md-toolbar-tools">Предметы</h1>
@@ -55,6 +55,8 @@
 				  		          Предмет не найден
 				  		        </md-not-found>
 				  		      </md-autocomplete>
+				  		      <p hide="" show-gt-sm="">
+				  		      </p>
 				<md-list flex="">
 					<md-list-item class="md-3-line" ng-repeat="item in disciplines | filter:searchSubj"
 					dnd-draggable="item"
@@ -70,16 +72,16 @@
 					</div>
 				</md-list-item>
 				<md-divider></md-divider>
-				<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
+				<md-button ng-click="closeleft()" class="md-primary" hide-gt-sm="">
 					Закрыть
 				</md-button>
-				<p hide="" show-gt-md="">
+				<p hide="" show-gt-sm="">
 				</p>
 
 
 			</md-sidenav>
 
-			<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+			<md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
 
 				<md-toolbar class="md-theme-indigo">
 					<h1 class="md-toolbar-tools">Преподаватели</h1>
@@ -116,7 +118,7 @@
 						</div>
 					</md-list-item>
 					<md-divider></md-divider>
-					<md-button ng-click="closeleft()" class="md-primary" hide-gt-md="">
+					<md-button ng-click="closeleft()" class="md-primary" hide-gt-sm="">
 						Закрыть
 					</md-button>
 
@@ -268,7 +270,7 @@
  <div layout="column" layout-align="top center">
 
  	<div>
- 		<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
+ 		<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-sm="">
  			Показать преподавателей
  		</md-button>
  	</div>

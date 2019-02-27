@@ -25,7 +25,12 @@
 				}
 			).when('/replacement', {
 				templateUrl:'replacement/replace.html',
-				controller:'AppCtrl'
+				controller:'AppCtrl',
+				resolve:{
+				     listDisciplines: function(getDisciplines) {
+				        return getDisciplines.getDisciplines();
+				    }
+				}
 			})
 			.otherwise({redirectTo: '/'});
 
@@ -59,8 +64,22 @@
   $mdThemingProvider.theme('default')
     .primaryPalette('amazingPaletteName')
 
-})
-		.config(['$routeProvider', config],
+}).factory('getDisciplines', function($http ) {
+ var getDisciplines = {
+        getDisciplines: function() {
+            var promise = $http({
+		      method: 'GET',
+		      url: '/api/discipline'
+		   }).then(function (response){
+		   	return response;
+		   },function (error){
+		   	сonsole.log('get query error:', err);
+		   });
+            return promise;
+        }
+    }; 
+    return getDisciplines;
+}).config(['$routeProvider', config],
 			['$locationProvider', function($locationProvider) {
 			    }]);
 })();
