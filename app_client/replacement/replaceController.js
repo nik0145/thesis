@@ -1,17 +1,43 @@
 
 angular.module('myApp')
-.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log,$anchorScroll,$document,listDisciplines) {
+.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log,$anchorScroll,$document,listDisciplines,listTeachers) {
+	
 	$scope.disciplines = listDisciplines.data;
-	console.log($scope.disciplines);
-/*		$scope.disciplines = [
-	{discipline:'discipline1','types':'Предмет','type':'item',id:1},
-	{discipline:'discipline2','types':'Предмет','type':'item',id:2},
-	{discipline:'discipline3','types':'Предмет','type':'item',id:3},
-	{discipline:'discipline4','types':'Предмет','type':'item',id:4},
-	{discipline:'discipline5','types':'Предмет','type':'item',id:5},
-	{discipline:'discipline6','types':'Предмет','type':'item',id:6}
-	];*/
-
+	$scope.teachers = listTeachers.data;
+	/*if(listDisciplines.data){
+		$scope.disciplines = listDisciplines.data;
+	}else{
+		$scope.disciplines = [
+		{discipline:'discipline1','types':'Предмет','type':'item',id:1},
+		{discipline:'discipline2','types':'Предмет','type':'item',id:2},
+		{discipline:'discipline3','types':'Предмет','type':'item',id:3},
+		{discipline:'discipline4','types':'Предмет','type':'item',id:4},
+		{discipline:'discipline5','types':'Предмет','type':'item',id:5},
+		{discipline:'discipline6','types':'Предмет','type':'item',id:6}
+	];
+	}
+	disciplines = {
+		value :[
+		{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},
+			{teacher:'teacher2','types':'Преподавателя','type':'item',id:2},
+			{teacher:'teacher3','types':'Преподавателя','type':'item',id:3},
+			{teacher:'teacher4','types':'Преподавателя','type':'item',id:4},
+			{teacher:'teacher5','types':'Преподавателя','type':'item',id:5},
+			{teacher:'teacher6','types':'Преподавателя','type':'item',id:6}
+	];
+	}
+	if(listTeachers.data){
+		$scope.teachers = listTeachers.data;
+	}else{
+		$scope.teachers = [
+	{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},
+	{teacher:'teacher2','types':'Преподавателя','type':'item',id:2},
+	{teacher:'teacher3','types':'Преподавателя','type':'item',id:3},
+	{teacher:'teacher4','types':'Преподавателя','type':'item',id:4},
+	{teacher:'teacher5','types':'Преподавателя','type':'item',id:5},
+	{teacher:'teacher6','types':'Преподавателя','type':'item',id:6}
+	]; 
+	}*/
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
 	$scope.toggleRight = buildDelayedToggler('right');
@@ -74,14 +100,7 @@ angular.module('myApp')
 	];
 
 
-	$scope.teachers = [
-	{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},
-	{teacher:'teacher2','types':'Преподавателя','type':'item',id:2},
-	{teacher:'teacher3','types':'Преподавателя','type':'item',id:3},
-	{teacher:'teacher4','types':'Преподавателя','type':'item',id:4},
-	{teacher:'teacher5','types':'Преподавателя','type':'item',id:5},
-	{teacher:'teacher6','types':'Преподавателя','type':'item',id:6}
-	]; 
+
 	 $scope.li = [ {id: 1, name: "list1", cards: [{id: 1, name: "1card1"}, {id: 2, name: "1card2"}]},
   {id: 2, name: "list2",  cards: [{id: 1, name: "2card1"}, {id: 2, name: "2card2"}]},
   {id: 3, name: "list3", cards: [{id: 1, name: "3card1"}, {id: 2, name: "3card2"},]},
