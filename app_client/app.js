@@ -28,8 +28,10 @@
 			controller:'AppCtrl',
 			resolve:{
 				listDisciplines: function(getDisciplines) {
-					
 					return getDisciplines.getDisciplines();
+				},
+				schedule: function(getSchedule) {
+					return getSchedule.getSchedule();
 				},
 				listTeachers: function(getTeacher) {
 					return getTeacher.getTeacher();
@@ -98,6 +100,22 @@
 			}
 		}; 
 		return getTeacher;
+	})
+	.factory('getSchedule', function($http,$q ) {
+		var getSchedule = {
+			getSchedule: function() {
+				var promise = $http({
+					method: 'GET',
+					url: '/api/schedule'
+				}).then(function (response){
+					return response;
+				},function (error){
+					  return $q.when("error!"+error);
+				});
+				return promise;
+			}
+		}; 
+		return getSchedule;
 	}).config(['$routeProvider', config],
 	['$locationProvider', function($locationProvider) {
 	}]);

@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var ctrlNews  = require('../controllers/news');
-var ctrldiscipline  = require('../controllers/discipline');
-var ctrlteacher  = require('../controllers/teacher');
+var ctrlDiscipline  = require('../controllers/discipline');
+var ctrlTeacher  = require('../controllers/teacher');
+var ctrlSchedule  = require('../controllers/schedule');
 
 router.get('/news', ctrlNews.newsList);
 router.get('/news/:id', ctrlNews.newsListOne);
@@ -10,14 +11,19 @@ router.post('/news', ctrlNews.newsCreate);
 router.put('/news/:id', ctrlNews.newUpdate);
 router.delete('/news/:id', ctrlNews.newsDeleteOne);
 
-router.get('/discipline', ctrldiscipline.disciplineList);
-router.post('/discipline', ctrldiscipline.disciplineCreate);
-router.put('/discipline/:id', ctrldiscipline.disciplineUpdate);
-router.delete('/discipline/:id', ctrldiscipline.disciplineDeleteOne);
+router.get('/discipline', ctrlDiscipline.disciplineList);
+router.post('/discipline', ctrlDiscipline.disciplineCreate);
+router.put('/discipline/:id', ctrlDiscipline.disciplineUpdate);
+router.delete('/discipline/:id', ctrlDiscipline.disciplineDeleteOne);
 
-router.get('/teacher', ctrlteacher.teacherList);
-router.post('/teacher', ctrlteacher.teacherCreate);
-router.put('/teacher/:id', ctrlteacher.teacherUpdate);
-router.delete('/teacher/:id', ctrlteacher.teacherDeleteOne);
+router.get('/teacher', ctrlTeacher.teacherList);
+router.post('/teacher', ctrlTeacher.teacherCreate);
+router.put('/teacher/:id', ctrlTeacher.teacherUpdate);
+router.delete('/teacher/:id', ctrlTeacher.teacherDeleteOne);
+
+router.get('/schedule', ctrlSchedule.scheduleList);
+router.post('/schedule', ctrlSchedule.scheduleCreate);
+router.put('/schedule/:id', ctrlSchedule.scheduleUpdate);
+router.delete('/schedule/:id', ctrlSchedule.scheduleDeleteOne);
 
 module.exports = router;
