@@ -25,11 +25,32 @@ module.exports.scheduleCreate = function(req,res) {
 	});
 }
 module.exports.scheduleUpdate = function(req,res){
-	//думаю не пригодится
-	sendJsonResponse(res, 200, {message: "scheduleUpdate"});
+
+	if(!req.params.title){
+		sendJsonResponse(res, 404, {message: "Not found"});
+		return;
+	}
+	console.log(req.body);
+	scheduleSchema.update({'title':req.params.title},{
+		'$set':{'content':req.body}
+	},function(err,item) {
+		console.log(err);
+		console.log(item);
+		if(err){
+			sendJsonResponse(res, 404, {message: err})
+		}else{
+			sendJsonResponse(res, 200, item)
+		}
+	});
+
 }
 
 module.exports.scheduleDeleteOne = function(req,res){
+	   scheduleSchema.remove({}, function(err) {
+                sendJsonResponse(res, 410 , {message: "removed"});
+            
+        }
+    );
 	//думаю не пригодится
 	sendJsonResponse(res, 200, {message: "scheduleDeleteOne"});
 }

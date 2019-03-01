@@ -16,6 +16,7 @@ var scheduleSchema = new mongoose.Schema(
 					[
 						{
 							teacher:{type:String, required:false},
+							discipline:{type:String, required:false},
 							type:{type:String, required:false},
 							types:{type:String, required:true},
 							id:{type:Number, required:false},

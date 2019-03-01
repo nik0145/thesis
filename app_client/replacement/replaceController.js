@@ -2,7 +2,7 @@
 angular.module('myApp')
 .controller('AppCtrl', function ($scope, $timeout, 
 							     $mdSidenav, $log,
-							     $anchorScroll,$document,
+							     $anchorScroll,$document,$http,
 								 listDisciplines,listTeachers,schedule) {
 	$scope.tabs1 = schedule.data;
 	$scope.disciplines = listDisciplines.data;
@@ -79,6 +79,24 @@ angular.module('myApp')
 	
 	$scope.scrollTo = function (id) {
 		$anchorScroll(id);  
+	}
+	$scope.putTab = function(item){
+		title = item.title;
+		console.log();
+		if(item && title){
+			console.log(item.content);
+			$http({
+				method: 'PUT',
+				url: '/api/schedule/'+title,
+				data:item.content
+			}).then(function (response){
+				console.log(response);
+			},function (error){
+				  return $q.when("error!"+error);
+			});
+		}
+
+		
 	}
 	$scope.selectedTeacher = null;
 	$scope.selectedDisciplines = null;

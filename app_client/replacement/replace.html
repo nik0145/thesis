@@ -189,10 +189,10 @@
 		</md-content>
 		<div class="alert-info">{{tabs1}}</div> -->
 						<md-content class="md-padding" >
-							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
-								<md-tab ng-repeat="tab in tabs1" ng-disabled="tab.disabled" label="{{tab.title}}" >
+							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"   ng-dblclick="kek(tab)" md-border-bottom="" md-autoselect="" md-swipe-content="" >
+								<md-tab  ng-repeat="tab in tabs1" label="{{tab.title}}"   >
 									<div class="demo-tab tab{{$index%4}}" dnd-allowed-types="['item']">
-
+									<div class="alert-info">{{tab}}</div>
 										<div ng-repeat="(zone, list) in [tab.content['schedule']]" dnd-allowed-types="['item']"  
 										class="col-md-12">
 										<div class="dropzone box box-yellow">
@@ -209,7 +209,7 @@
 											ng-class="{selected: models.selected === item}"
 											>
 											<div class="container-element box " id = "{{item.group}}">
-												<h3 >{{item.group}} </h3>
+												<h3 >{{item.group}}{{count}} </h3>
 												<div class="column" ng-repeat="list in item.columns">
 													<ul  dnd-allowed-types="list[0].types" dnd-list="list" dnd-drop="dropCallback($index, item, list)"
 													dnd-allowed-types="item.type">
@@ -239,12 +239,17 @@
 					</div>
 
 				</div>
-			</table> 
+	
+											<md-button  ng-click ="putTab(tab)" class="md-primary md-fab md-fab-top-right">
+			     	<md-icon md-svg-src="svg/ic_save_48px.svg" class="s48" aria-label="Angular Icon"></md-icon>
+			   </md-button>
 										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
 											Remove Tab
 										</md-button> -->
 									</div>
+
 								</md-tab>
+
 							</md-tabs>
 
 						</md-content>

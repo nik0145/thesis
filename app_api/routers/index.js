@@ -23,7 +23,7 @@ router.delete('/teacher/:id', ctrlTeacher.teacherDeleteOne);
 
 router.get('/schedule', ctrlSchedule.scheduleList);
 router.post('/schedule', ctrlSchedule.scheduleCreate);
-router.put('/schedule/:id', ctrlSchedule.scheduleUpdate);
-router.delete('/schedule/:id', ctrlSchedule.scheduleDeleteOne);
+router.put('/schedule/:title', ctrlSchedule.scheduleUpdate);
+router.delete('/schedule/', ctrlSchedule.scheduleDeleteOne);
 
 module.exports = router;
