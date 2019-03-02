@@ -41,18 +41,21 @@
 				<h1 class="md-toolbar-tools">Предметы</h1>
 			</md-toolbar>
 			<md-content layout-padding="" >
+
 									<md-autocomplete
+										 	id ="disciplineAuto"
 				  			  	md-selected-item="selectedItems"
 				  			  	md-search-text="searchSubj"
 				  			  	md-items="subj in disciplines | filter:searchSubj"
 				  			  	md-item-text="subj.discipline"
 				  			  	md-min-length="lengthItemSubj(disciplines | filter:searchSubj)"
 				  			  	placeholder="Предмет">
+
 				  		        <md-item-template>
-				  		          <span md-highlight-text="searchSubj" md-highlight-flags="^i">{{searchSubj.length}}</span>
+				  		          <span md-highlight-text="searchSubj" md-highlight-flags="^i">{{searchSubj.discipline}}</span>
 				  		        </md-item-template>
 				  		        <md-not-found>
-				  		          Предмет не найден
+				  		          Предмет не найден <a style="text-decoration:underline; " class="md-primary" ng-click="newDiscipline(searchSubj,disciplines)">Добавьте его!</a>
 				  		        </md-not-found>
 				  		      </md-autocomplete>
 				  		      <p hide="" show-gt-sm="">
@@ -88,6 +91,7 @@
 				</md-toolbar>
 				<md-content layout-padding="" >
 					<md-autocomplete
+							 id ="teacherAuto"
   			  	md-selected-item="selectedItem"
   			  	md-search-text="searchText"
   			  	md-items="itemTeacher in teachers | filter:searchText"
@@ -99,7 +103,7 @@
   		        </md-item-template>
   		        <md-not-found>
   		          Преподаватель не найден
-  		           <a class="md-primary" ng-click="newTeacher(searchText)">Добавьте его!</a>
+  		           <a style="text-decoration:underline; " class="md-primary" ng-click="newTeacher(searchText,teachers)">Добавьте его!</a>
   		        </md-not-found>
   		      </md-autocomplete>
 					  		      <p hide="" show-gt-sm="">

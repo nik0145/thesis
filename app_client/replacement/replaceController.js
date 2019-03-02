@@ -7,8 +7,44 @@ angular.module('myApp')
 	$scope.tabs1 = schedule.data;
 	$scope.disciplines = listDisciplines.data;
 	$scope.teachers = listTeachers.data;
-	$scope.newTeacher = function(name){
-		console.log('создай'+name);
+	$scope.newTeacher = function(name,list){
+
+		if(name){
+			name = name[0].toUpperCase() + name.slice(1);
+			$http({
+				method:'POST',
+				url:'/api/teacher',
+				data:{"teacher":name}
+			}).then(function(response){
+				if(response){
+					list.push(response.data);
+										 var autoChild = document.getElementById('teacherAuto').firstElementChild;
+					        var el = angular.element(autoChild);
+					        el.scope().$mdAutocompleteCtrl.hidden = true;
+				}
+			}).catch(function(error){
+				console.log(error);
+			})
+		}
+	}
+		$scope.newDiscipline = function(name,list){
+		if(name){
+			name = name[0].toUpperCase() + name.slice(1);
+			$http({
+				method:'POST',
+				url:'/api/discipline',
+				data:{"discipline":name}
+			}).then(function(response){
+				if(response){
+					list.push(response.data);
+										 var autoChild = document.getElementById('disciplineAuto').firstElementChild;
+					        var el = angular.element(autoChild);
+					        el.scope().$mdAutocompleteCtrl.hidden = true;
+				}
+			}).catch(function(error){
+				console.log(error);
+			})
+		}
 	}
 
 	$scope.removeFromList = function(list, index) {
