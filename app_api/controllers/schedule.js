@@ -46,8 +46,9 @@ module.exports.scheduleUpdate = function(req,res){
 }
 
 module.exports.scheduleDeleteOne = function(req,res){
+	/*.remove().exec()*/
 	   scheduleSchema.remove({}, function(err) {
-                sendJsonResponse(res, 410 , {message: "removed"});
+                sendJsonResponse(res, 410 , {"message": "removed"});
             
         }
     );

@@ -1,46 +1,73 @@
 
 angular.module('myApp')
 .controller('AppCtrl', function ($scope, $timeout, 
-							     $mdSidenav, $log,
+							     $mdSidenav, $log,$mdToast,
 							     $anchorScroll,$document,$http,
 								 listDisciplines,listTeachers,schedule) {
 	$scope.tabs1 = schedule.data;
 	$scope.disciplines = listDisciplines.data;
 	$scope.teachers = listTeachers.data;
-	/*if(listDisciplines.data){
-		$scope.disciplines = listDisciplines.data;
-	}else{
-		$scope.disciplines = [
-		{discipline:'discipline1','types':'Предмет','type':'item',id:1},
-		{discipline:'discipline2','types':'Предмет','type':'item',id:2},
-		{discipline:'discipline3','types':'Предмет','type':'item',id:3},
-		{discipline:'discipline4','types':'Предмет','type':'item',id:4},
-		{discipline:'discipline5','types':'Предмет','type':'item',id:5},
-		{discipline:'discipline6','types':'Предмет','type':'item',id:6}
-	];
+	$scope.newTeacher = function(name){
+		console.log('создай'+name);
 	}
-	disciplines = {
-		value :[
-		{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},
-			{teacher:'teacher2','types':'Преподавателя','type':'item',id:2},
-			{teacher:'teacher3','types':'Преподавателя','type':'item',id:3},
-			{teacher:'teacher4','types':'Преподавателя','type':'item',id:4},
-			{teacher:'teacher5','types':'Преподавателя','type':'item',id:5},
-			{teacher:'teacher6','types':'Преподавателя','type':'item',id:6}
-	];
+
+	$scope.removeFromList = function(list, index) {
+		console.log(list[index]);
+		var name = '';
+		if(list[index].teacher){
+			name = list[index].teacher;
+			$http({
+				method: 'Delete',
+				url: '/api/teacher/'+name,
+			}).then(function (response){
+				console.log(response);
+				if(response){
+					list.splice(index, 1);
+							$mdToast.show(
+					        $mdToast.simple()
+					        .textContent('Преподаватель удален!')
+					        .position('top left')
+					        .hideDelay(2500))
+					      .then(function() {
+					      	console.log('Toast dismissed.');
+					      })/*.catch(function() {
+					      	console.log('Toast failed or was forced to close early by another toast.');
+					      });*/
+				}
+			},function (error){
+				  return $q.when("error!"+error);
+			});
+		}else if(list[index].discipline){
+			name = list[index].discipline;
+			$http({
+				method: 'Delete',
+				url: '/api/discipline/'+name,
+			}).then(function (response){
+				console.log(response);
+				if(response){
+					list.splice(index, 1);
+							$mdToast.show(
+					        $mdToast.simple()
+					        .textContent('Предмет удален!')
+					        .position('top left')
+					        .hideDelay(2500))
+					      .then(function() {
+					      	console.log('Toast dismissed.');
+					      }).catch(function() {
+					      	console.log('Toast failed or was forced to close early by another toast.');
+					      });
+				}
+
+			},function (error){
+				  return $q.when("error!"+error);
+			});
+		}
+		
+
+		
+	 // list.splice(index, 1);
 	}
-	if(listTeachers.data){
-		$scope.teachers = listTeachers.data;
-	}else{
-		$scope.teachers = [
-	{teacher:'teacher1','types':'Преподавателя','type':'item',id:1},
-	{teacher:'teacher2','types':'Преподавателя','type':'item',id:2},
-	{teacher:'teacher3','types':'Преподавателя','type':'item',id:3},
-	{teacher:'teacher4','types':'Преподавателя','type':'item',id:4},
-	{teacher:'teacher5','types':'Преподавателя','type':'item',id:5},
-	{teacher:'teacher6','types':'Преподавателя','type':'item',id:6}
-	]; 
-	}*/
+
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
 	$scope.toggleRight = buildDelayedToggler('right');
@@ -91,6 +118,19 @@ angular.module('myApp')
 				data:item.content
 			}).then(function (response){
 				console.log(response);
+				if(response){
+									$mdToast.show(
+					        $mdToast.simple()
+					        .textContent('Расписание изменено!')
+					        .position('top right')
+					        .hideDelay(2500))
+					      .then(function() {
+					      	console.log('Toast dismissed.');
+					      }).catch(function() {
+					      	console.log('Toast failed or was forced to close early by another toast.');
+					      });
+				}
+
 			},function (error){
 				  return $q.when("error!"+error);
 			});

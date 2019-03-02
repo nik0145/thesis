@@ -14,12 +14,12 @@ router.delete('/news/:id', ctrlNews.newsDeleteOne);
 router.get('/discipline', ctrlDiscipline.disciplineList);
 router.post('/discipline', ctrlDiscipline.disciplineCreate);
 router.put('/discipline/:id', ctrlDiscipline.disciplineUpdate);
-router.delete('/discipline/:id', ctrlDiscipline.disciplineDeleteOne);
+router.delete('/discipline/:name', ctrlDiscipline.disciplineDeleteOne);
 
 router.get('/teacher', ctrlTeacher.teacherList);
 router.post('/teacher', ctrlTeacher.teacherCreate);
 router.put('/teacher/:id', ctrlTeacher.teacherUpdate);
-router.delete('/teacher/:id', ctrlTeacher.teacherDeleteOne);
+router.delete('/teacher/:name', ctrlTeacher.teacherDeleteOne);
 
 router.get('/schedule', ctrlSchedule.scheduleList);
 router.post('/schedule', ctrlSchedule.scheduleCreate);

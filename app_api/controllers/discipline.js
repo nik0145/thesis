@@ -29,8 +29,24 @@ module.exports.disciplineUpdate = function(req,res){
 	sendJsonResponse(res, 200, {message: "disciplineUpdate"});
 }
 
-module.exports.disciplineDeleteOne = function(req,res){
-	//думаю не пригодится
-	sendJsonResponse(res, 200, {message: "disciplineDeleteOne"});
-}
 
+module.exports.disciplineDeleteOne = function(req,res){
+	
+	if(!req.params.name){
+		sendJsonResponse(res, 404, {message: "Not found"});
+		return;
+	}
+	if(req.params.name){
+		disciplineSchema.deleteOne({'discipline':req.params.name},function(err,result){
+			if (err) {
+				sendJsonResponse(res,400,err);
+			    }
+			    else {
+			      sendJsonResponse(res,201,{message: "removed"});
+			    }
+		});
+	}
+
+
+	
+}

@@ -30,7 +30,23 @@ module.exports.teacherUpdate = function(req,res){
 }
 
 module.exports.teacherDeleteOne = function(req,res){
-	//думаю не пригодится
-	sendJsonResponse(res, 200, {message: "teacherDeleteOne"});
+	
+	if(!req.params.name){
+		sendJsonResponse(res, 404, {message: "Not found"});
+		return;
+	}
+	if(req.params.name){
+		teacherSchema.deleteOne({'teacher':req.params.name},function(err,result){
+			if (err) {
+				sendJsonResponse(res,400,err);
+			    }
+			    else {
+			      sendJsonResponse(res,201,{message: "removed"});
+			    }
+		});
+	}
+
+
+	
 }
 
