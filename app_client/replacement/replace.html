@@ -1,6 +1,64 @@
+<script type="text/ng-template" id="dialog1.tmpl.html">
+	<md-dialog aria-label="Вход">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Войти в систему</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+      <md-icon md-svg-src="svg/ic_cancel_36px.svg" aria-label="Закрыть"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
 
-<ng-include src="'templates/menu.html'"></ng-include>
+    <md-dialog-content>
 
+      <div class="md-dialog-content">
+      	 <div class="wrongUser" ng-if="statusUser">Неправильный логин или пароль</div>
+      	<div class="row"> <md-input-container flex="">
+          <label>Имя пользователя</label>
+          <input required name="clientName" ng-model="userName">
+          <div ng-messages="userName.$error">
+            <div ng-message="required">Обязательно для заполнения.</div>
+          </div>
+        </md-input-container></div>
+        	<div class="row"> <md-input-container flex="">
+          <label>Пароль</label>
+          <input type = "password" required name="passwordName" ng-model="passwordName">
+          <div ng-messages="passwordName.$error">
+            <div ng-message="required">Обязательно для заполнения.</div>
+          </div>
+        </md-input-container></div>
+    
+
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+    
+      <span flex></span>
+      <md-button ng-click="login()">
+       Войти
+      </md-button>
+     
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</script>
+<md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 flex md-truncate>Составление расписание</h2>
+         <div ng-if="status" id="status">
+    <p  class = "statusSingUp" layout="row" layout-align="center center" class="md-padding">
+      {{status}}
+    </p>
+  </div>
+        <md-button class="md-raised md-accent md-hue-3" aria-label="Вход" ng-click="showPrompt($event)">
+          Войти
+        </md-button>
+
+      </div>
+    </md-toolbar>
 <script type="text/ng-template" id="list.html">
 	<ul dnd-list="list" dnd-drop="dropCallback1($index, item, lists)"
 	dnd-allowed-types="'asd'">
@@ -215,7 +273,7 @@
 											ng-class="{selected: models.selected === item}"
 											>
 											<div class="container-element box " id = "{{item.group}}">
-												<h3 >{{item.group}}{{count}} </h3>
+												<h3 >{{item.group}} </h3>
 												<div class="column" ng-repeat="list in item.columns">
 													<ul  dnd-allowed-types="list[0].types" dnd-list="list" dnd-drop="dropCallback($index, item, list)"
 													dnd-allowed-types="item.type">

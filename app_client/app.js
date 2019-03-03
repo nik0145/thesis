@@ -13,6 +13,11 @@
 			controller: 'BstrpController',
 			controllerAs: 'vm'
 		}
+		).when('/login', {
+			templateUrl: 'login/login.html',
+			controller: 'loginController',
+			controllerAs: 'vm'
+		}
 		).when('/schedule', {
 			templateUrl:'bootstrap/schedule.html',
 			controller:'BstrpController',
