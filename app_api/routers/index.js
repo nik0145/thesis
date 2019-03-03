@@ -37,5 +37,6 @@ router.delete('/schedule/', ctrlSchedule.scheduleDeleteOne);
 
 router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
+router.delete('/login', ctrlAuth.loginDelete);
 
 module.exports = router;

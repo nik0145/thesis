@@ -47,14 +47,17 @@
 </script>
 <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2 flex md-truncate>Составление расписание</h2>
+        <h2 flex md-truncate>Составление расписания</h2>
          <div ng-if="status" id="status">
     <p  class = "statusSingUp" layout="row" layout-align="center center" class="md-padding">
       {{status}}
     </p>
   </div>
-        <md-button class="md-raised md-accent md-hue-3" aria-label="Вход" ng-click="showPrompt($event)">
+        <md-button ng-if= "!userNameTitle " class=" md-raised md-accent md-hue-3" aria-label="Вход" ng-click="showPrompt($event)">
           Войти
+        </md-button>
+        <md-button ng-if= "userNameTitle "  class="md-raised md-accent md-hue-3" aria-label="Выход" ng-click="logout()">
+          Выйти
         </md-button>
 
       </div>
@@ -178,7 +181,7 @@
 						>
 
 						<div class="md-list-item-text" layout="column">
-							<h3>{{ item.teacher }} <a class="close" ng-click="removeFromList(teachers, $index)">×</a></h3>
+							<h3>{{ item.teacher }} <a class="close" ng-click="removeFromList(teachers, $index,$event)">×</a></h3>
 
 						</div>
 					</md-list-item>

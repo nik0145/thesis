@@ -4,14 +4,28 @@
 
 		$routeProvider
 		.when('/', {
-			templateUrl: 'index/index.html',
-			controller: 'indexController',
-			controllerAs: 'vm'
+			templateUrl:'replacement/replace.html',
+			controller:'AppCtrl',
+			resolve:{
+				listDisciplines: function(getDisciplines) {
+					return getDisciplines.getDisciplines();
+				},
+				schedule: function(getSchedule) {
+					return getSchedule.getSchedule();
+				},
+				listTeachers: function(getTeacher) {
+					return getTeacher.getTeacher();
+				}
+			}
 		}
 		).when('/bootstrap', {
 			templateUrl: 'bootstrap/index.html',
 			controller: 'BstrpController',
 			controllerAs: 'vm'
+		}
+		).when('/logout', {
+			templateUrl: 'logout/logout.html',
+			controller: 'logoutController',
 		}
 		).when('/login', {
 			templateUrl: 'login/login.html',

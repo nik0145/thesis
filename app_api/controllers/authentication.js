@@ -64,4 +64,12 @@ module.exports.login = function (req, res) {
 
     })(req, res);
 };
+module.exports.loginDelete = function (req, res) {
+       User.remove({}, function(err) {
+                  sendJsonResponse(res, 410 , {"message": "removed"});
+              
+          }
+      );
+
+};
 

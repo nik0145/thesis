@@ -32,7 +32,7 @@ userSchema.methods.generateJwt = function(){
         _id: this._id,
         name: this.name,
         exp: parseInt(expiry.getTime()/1000)
-    }, 'thisIsSecret');
+    }, 'kek');
 };
 
 mongoose.model('user', userSchema);

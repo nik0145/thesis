@@ -1,12 +1,23 @@
 
 angular.module('myApp')
 .controller('AppCtrl', function ($scope, $timeout,$mdDialog,
-	$mdSidenav, $log,$mdToast,
+	$mdSidenav, $log,$mdToast,$window,
 	$anchorScroll,$document,$http,
 	listDisciplines,listTeachers,schedule) {
 	$scope.tabs1 = schedule.data;
+	if(localStorage.getItem('user')){
+		$scope.userNameTitle = localStorage.getItem('user');
+
+	}else{
+		$scope.userNameTitle = '';
+	}
 	$scope.disciplines = listDisciplines.data;
 	$scope.teachers = listTeachers.data;
+	$scope.logout = function(){
+		localStorage.removeItem('token');
+		localStorage.removeItem('user');
+		$window.location.href= '/#';
+	}
 	$scope.newTeacher = function(name,list){
 
 		if(name){
@@ -41,6 +52,22 @@ angular.module('myApp')
 			})
 		}
 	}
+	$scope.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete your debt?')
+          .textContent('All of the banks have agreed to forgive you your debts.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Please do it!')
+          .cancel('Sounds like a scam');
+
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'You decided to get rid of your debt.';
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  };
 	$scope.newDiscipline = function(name,list){
 		if(name){
 			name = name[0].toUpperCase() + name.slice(1);
@@ -75,48 +102,57 @@ angular.module('myApp')
 		}
 	}
 
-	$scope.removeFromList = function(list, index) {
+	$scope.removeFromList = function(list, index,ev) {
 		
 		var name = '';
+		   // Appending dialog to document.body to cover sidenav in docs app
+		   
 		if(list[index].teacher){
 			name = list[index].teacher;
-			$http({
-				method: 'Delete',
-				url: '/api/teacher/'+name,
-				headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
-			}).then(function (response){
-				console.log(response);
-				if(response){
-					list.splice(index, 1);
-					$mdToast.show(
-						$mdToast.simple()
-						.textContent('Преподаватель удален!')
-						.position('top left')
-						.hideDelay(2500))
-					.then(function() {
-						console.log('Toast dismissed.');
-					      })/*.catch(function() {
-					      	console.log('Toast failed or was forced to close early by another toast.');
-					      });*/
-					  }
-					},function (error){
-						
-  			if(error.data.message.indexOf('UnauthorizedError') !=-1){
-  				err = 'Войдите в систему';
-  			}else{
-  				err = error.data.message;
-  			}
-    $mdDialog.show(
-      $mdDialog.alert()
-        .clickOutsideToClose(true)
-        .title('Ошибка!')
-        .textContent(err)
-        .ariaLabel('Left to right demo')
-        .ok('Продолжить')
-    );
+			var confirm = $mdDialog.confirm()
+		         .title('Удаление')
+		         .textContent('Вы правда хотите удалить преподавателя из списка ?')
+		         .ariaLabel('Удаление')
+		         .targetEvent(ev)
+		         .ok('Удалить')
+		         .cancel('Отменить');
 
-  		
-					});
+		   $mdDialog.show(confirm).then(function() {
+		     			$http({
+		     				method: 'Delete',
+		     				url: '/api/teacher/'+name,
+		     				headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+		     			}).then(function (response){
+		     				if(response){
+		     					list.splice(index, 1);
+		     					$mdToast.show(
+		     						$mdToast.simple()
+		     						.textContent('Преподаватель удален!')
+		     						.position('top left')
+		     						.hideDelay(2500))
+		     					.then(function() {
+		     					      })
+		     					  }
+		     					},function (error){
+		     						
+		       			if(error.data.message.indexOf('UnauthorizedError') !=-1){
+		       				err = 'Войдите в систему';
+		       			}else{
+		       				err = error.data.message;
+		       			}
+		         $mdDialog.show(
+		           $mdDialog.alert()
+		             .clickOutsideToClose(true)
+		             .title('Ошибка!')
+		             .textContent(err)
+		             .ariaLabel('Left to right demo')
+		             .ok('Продолжить')
+		         );
+
+		       		
+		     					});
+		   }, function() {});
+			
 		}else if(list[index].discipline){
 			name = list[index].discipline;
 			$http({
@@ -124,20 +160,32 @@ angular.module('myApp')
 				url: '/api/discipline/'+name,
 				headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
 			}).then(function (response){
-				console.log(response);
-				if(response){
-					list.splice(index, 1);
-					$mdToast.show(
-						$mdToast.simple()
-						.textContent('Предмет удален!')
-						.position('top left')
-						.hideDelay(2500))
-					.then(function() {
-						console.log('Toast dismissed.');
-					}).catch(function() {
-						console.log('Toast failed or was forced to close early by another toast.');
-					});
-				}
+
+
+		   var confirm = $mdDialog.confirm()
+		         .title('Удаление')
+		         .textContent('Вы правда хотите удалить предмет из списка ?')
+		         .ariaLabel('Удаление')
+		         .targetEvent(ev)
+		         .ok('Удалить')
+		         .cancel('Отменить');
+
+		   $mdDialog.show(confirm).then(function() {
+		   	if(response){
+		   		list.splice(index, 1);
+		   		$mdToast.show(
+		   			$mdToast.simple()
+		   			.textContent('Предмет удален!')
+		   			.position('top left')
+		   			.hideDelay(2500))
+		   		.then(function() {
+		   			console.log('Toast dismissed.');
+		   		}).catch(function() {
+		   			console.log('Toast failed or was forced to close early by another toast.');
+		   		});
+		   	}
+		   	}, function() {});
+
 
 			},function (error){
 				
@@ -232,7 +280,7 @@ angular.module('myApp')
       $mdDialog.alert()
         .clickOutsideToClose(true)
         .title('Ошибка!')
-        .textContent(error.data.message)
+        .textContent(err)
         .ariaLabel('Left to right demo')
         .ok('Продолжить')
     );
@@ -277,8 +325,8 @@ angular.module('myApp')
   				data:{name:$scope.userName, password:$scope.passwordName}
   			}).then(function (response){
   				localStorage.setItem('token', response.data.token);
+  				localStorage.setItem('user',$scope.userName);
   				$mdDialog.hide($scope.userName);
-  				return $scope.userName;
   			},function (error){
   				$scope.statusUser = true;
   			});
@@ -301,9 +349,14 @@ angular.module('myApp')
   	})
   	.then(function(name) {
   		console.log(name);
+  		$scope.userNameTitle = name;
+  		$scope.userName = name;
   		$scope.status = 'Вы вошли как "' + name + '".';
   	}, function() {
-  		$scope.status = 'Вы не вошли в систему!';
+  		if(!$scope.userNameTitle){
+  			$scope.status = 'Вы не вошли в систему!';
+  		}
+  		
   	});
   };
 
