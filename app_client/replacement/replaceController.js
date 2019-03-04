@@ -156,6 +156,14 @@ angular.module('myApp')
 			
 		}else if(list[index].discipline){
 			name = list[index].discipline;
+			var confirm = $mdDialog.confirm()
+			      .title('Удаление')
+			      .textContent('Вы правда хотите удалить предмет из списка ?')
+			      .ariaLabel('Удаление')
+			      .targetEvent(ev)
+			      .ok('Удалить')
+			      .cancel('Отменить');
+			      $mdDialog.show(confirm).then(function() {
 			$http({
 				method: 'Delete',
 				url: '/api/discipline/'+name,
@@ -163,15 +171,9 @@ angular.module('myApp')
 			}).then(function (response){
 
 
-		   var confirm = $mdDialog.confirm()
-		         .title('Удаление')
-		         .textContent('Вы правда хотите удалить предмет из списка ?')
-		         .ariaLabel('Удаление')
-		         .targetEvent(ev)
-		         .ok('Удалить')
-		         .cancel('Отменить');
 
-		   $mdDialog.show(confirm).then(function() {
+
+	
 		   	if(response){
 		   		list.splice(index, 1);
 		   		$mdToast.show(
@@ -185,7 +187,7 @@ angular.module('myApp')
 		   			console.log('Toast failed or was forced to close early by another toast.');
 		   		});
 		   	}
-		   	}, function() {});
+		   
 
 
 			},function (error){
@@ -206,6 +208,7 @@ angular.module('myApp')
 
 						
 			});
+				}, function() {});
 		}
 		
 	}
@@ -258,7 +261,6 @@ angular.module('myApp')
   			headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
   			data:item.content
   		}).then(function (response){
-  			console.log(response);
   			if(response){
   				$mdToast.show(
   					$mdToast.simple()
@@ -267,7 +269,6 @@ angular.module('myApp')
   					.hideDelay(2500))
   				.then(function() {
   				}).catch(function() {
-  					console.log('asd');
   				});
   			}
 
@@ -355,7 +356,6 @@ angular.module('myApp')
   		fullscreen: $scope.customFullscreen 
   	})
   	.then(function(name) {
-  		console.log(name);
   		$scope.userNameTitle = name;
   		$scope.userName = name;
   		$scope.status = 'Вы вошли как "' + name + '".';
@@ -808,7 +808,6 @@ $scope.$watch('selectedIndex', function(current, old) {
 		jQuery.each(schedule.data, function( index, value ) {
 			if(value.title == selected.title){
 				jQuery.each(value.content.schedule, function( indexInner, valueInner ) {
-					console.log(valueInner);
 					group = valueInner.group;
 					$scope.subject.push({ title : group, id : valueInner._id });
 				});
