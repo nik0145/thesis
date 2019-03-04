@@ -5,6 +5,7 @@ angular.module('myApp')
 	$anchorScroll,$document,$http,
 	listDisciplines,listTeachers,schedule) {
 	$scope.tabs1 = schedule.data;
+	$scope.subject =[];
 	if(localStorage.getItem('user')){
 		$scope.userNameTitle = localStorage.getItem('user');
 
@@ -367,15 +368,6 @@ angular.module('myApp')
   };
 
 
-
-  $scope.subject = [
-  {id:1,title:'1-ПКС-15-1'},
-  {id:2,title:'2-ПКС-15-1'},
-  {id:3,title:'3-ПКС-15-1'},
-  {id:4,title:'4-ПКС-15-1'},
-  {id:5,title:'5-ПКС-15-1'},
-  {id:6,title:'6-ПКС-15-1'}
-  ];
   var tabs = [
   { title: 'Понедельник', content: {
   	number:'00001',
@@ -810,9 +802,18 @@ $scope.$watch('selectedIndex', function(current, old) {
 	selected = tabs[current];
 	if (old + 1 && (old !== current)) {
 		$log.debug('Goodbye ' + previous.title + '!');
-	}
+		$scope.subject = [];
+	};
 	if (current + 1) {
-		$log.debug('Hello ' + selected.title + '!');
+		jQuery.each(schedule.data, function( index, value ) {
+			if(value.title == selected.title){
+				jQuery.each(value.content.schedule, function( indexInner, valueInner ) {
+					console.log(valueInner);
+					group = valueInner.group;
+					$scope.subject.push({ title : group, id : valueInner._id });
+				});
+			}
+		});
 	}
 });
 $scope.addTab = function(title, view) {
