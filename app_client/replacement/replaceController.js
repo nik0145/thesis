@@ -297,11 +297,17 @@ angular.module('myApp')
   	return $mdSidenav('right').isOpen();
   };
   $scope.lengthItemSubj = function(mas){
-  	if(mas.length ==0){
+  	masWrap = mas;
+  	if(masWrap === undefined){
   		return 1;
   	}else{
-  		return 50;
+  		if(mas.length ==0){
+  			return 1;
+  		}else{
+  			return 50;
+  		}
   	}
+
   }
 
   function DialogController($scope, $mdDialog) {

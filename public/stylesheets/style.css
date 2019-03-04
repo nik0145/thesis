@@ -16,6 +16,7 @@
   width: 300px;
  }
  .close {
+  cursor: pointer;
   float: right;
   font-size: 21px;
   font-weight: 700;
