@@ -36,19 +36,19 @@ angular.module('myApp')
 					el.scope().$mdAutocompleteCtrl.hidden = true;
 				}
 			}).catch(function(error){
-							if(error.data.message.indexOf('UnauthorizedError') !=-1){
-								err = 'Войдите в систему';
-							}else{
-								err = error.data.message;
-							}
-				  $mdDialog.show(
-				    $mdDialog.alert()
-				      .clickOutsideToClose(true)
-				      .title('Ошибка!')
-				      .textContent(err)
-				      .ariaLabel('Left to right demo')
-				      .ok('Продолжить')
-				  );
+				if(error.data.message.indexOf('UnauthorizedError') !=-1){
+					err = 'Войдите в систему';
+				}else{
+					err = error.data.message;
+				}
+				$mdDialog.show(
+					$mdDialog.alert()
+					.clickOutsideToClose(true)
+					.title('Ошибка!')
+					.textContent(err)
+					.ariaLabel('Left to right demo')
+					.ok('Продолжить')
+					);
 
 			})
 		}
@@ -56,172 +56,169 @@ angular.module('myApp')
 	$scope.showConfirm = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
     var confirm = $mdDialog.confirm()
-          .title('Would you like to delete your debt?')
-          .textContent('All of the banks have agreed to forgive you your debts.')
-          .ariaLabel('Lucky day')
-          .targetEvent(ev)
-          .ok('Please do it!')
-          .cancel('Sounds like a scam');
+    .title('Would you like to delete your debt?')
+    .textContent('All of the banks have agreed to forgive you your debts.')
+    .ariaLabel('Lucky day')
+    .targetEvent(ev)
+    .ok('Please do it!')
+    .cancel('Sounds like a scam');
 
     $mdDialog.show(confirm).then(function() {
-      $scope.status = 'You decided to get rid of your debt.';
+    	$scope.status = 'You decided to get rid of your debt.';
     }, function() {
-      $scope.status = 'You decided to keep your debt.';
+    	$scope.status = 'You decided to keep your debt.';
     });
-  };
-	$scope.newDiscipline = function(name,list){
-		if(name){
-			name = name[0].toUpperCase() + name.slice(1);
-			$http({
-				method:'POST',
-				url:'/api/discipline',
-				headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
-				data:{"discipline":name}
-			}).then(function(response){
-				if(response){
-					list.push(response.data);
-					var autoChild = document.getElementById('disciplineAuto').firstElementChild;
-					var el = angular.element(autoChild);
-					el.scope().$mdAutocompleteCtrl.hidden = true;
-				}
-			}).catch(function(error){
-							if(error.data.message.indexOf('UnauthorizedError') !=-1){
-								err = 'Войдите в систему';
-							}else{
-								err = error.data.message;
-							}
-				  $mdDialog.show(
-				    $mdDialog.alert()
-				      .clickOutsideToClose(true)
-				      .title('Ошибка!')
-				      .textContent(err)
-				      .ariaLabel('Left to right demo')
-				      .ok('Продолжить')
-				  );
+};
+$scope.newDiscipline = function(name,list){
+	if(name){
+		name = name[0].toUpperCase() + name.slice(1);
+		$http({
+			method:'POST',
+			url:'/api/discipline',
+			headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
+			data:{"discipline":name}
+		}).then(function(response){
+			if(response){
+				list.push(response.data);
+				var autoChild = document.getElementById('disciplineAuto').firstElementChild;
+				var el = angular.element(autoChild);
+				el.scope().$mdAutocompleteCtrl.hidden = true;
+			}
+		}).catch(function(error){
+			if(error.data.message.indexOf('UnauthorizedError') !=-1){
+				err = 'Войдите в систему';
+			}else{
+				err = error.data.message;
+			}
+			$mdDialog.show(
+				$mdDialog.alert()
+				.clickOutsideToClose(true)
+				.title('Ошибка!')
+				.textContent(err)
+				.ariaLabel('Left to right demo')
+				.ok('Продолжить')
+				);
 
-			})
-		}
+		})
 	}
+}
 
-	$scope.removeFromList = function(list, index,ev) {
-		
-		var name = '';
+$scope.removeFromList = function(list, index,ev) {
+	
+	var name = '';
 		   // Appending dialog to document.body to cover sidenav in docs app
 		   
-		if(list[index].teacher){
-			name = list[index].teacher;
-			var confirm = $mdDialog.confirm()
-		         .title('Удаление')
-		         .textContent('Вы правда хотите удалить преподавателя из списка ?')
-		         .ariaLabel('Удаление')
-		         .targetEvent(ev)
-		         .ok('Удалить')
-		         .cancel('Отменить');
+		   if(list[index].teacher){
+		   	name = list[index].teacher;
+		   	var confirm = $mdDialog.confirm()
+		   	.title('Удаление')
+		   	.textContent('Вы правда хотите удалить преподавателя из списка ?')
+		   	.ariaLabel('Удаление')
+		   	.targetEvent(ev)
+		   	.ok('Удалить')
+		   	.cancel('Отменить');
 
-		   $mdDialog.show(confirm).then(function() {
-		     			$http({
-		     				method: 'Delete',
-		     				url: '/api/teacher/'+name,
-		     				headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
-		     			}).then(function (response){
-		     				if(response){
-		     					list.splice(index, 1);
-		     					$mdToast.show(
-		     						$mdToast.simple()
-		     						.textContent('Преподаватель удален!')
-		     						.position('top left')
-		     						.hideDelay(2500))
-		     					.then(function() {
-		     					      })
-		     					  }
-		     					},function (error){
-		     						
-		       			if(error.data.message.indexOf('UnauthorizedError') !=-1){
-		       				err = 'Войдите в систему';
-		       			}else{
-		       				err = error.data.message;
-		       			}
-		         $mdDialog.show(
-		           $mdDialog.alert()
-		             .clickOutsideToClose(true)
-		             .title('Ошибка!')
-		             .textContent(err)
-		             .ariaLabel('Left to right demo')
-		             .ok('Продолжить')
-		         );
+		   	$mdDialog.show(confirm).then(function() {
+		   		$http({
+		   			method: 'Delete',
+		   			url: '/api/teacher/'+name,
+		   			headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+		   		}).then(function (response){
+		   			if(response){
+		   				list.splice(index, 1);
+		   				$mdToast.show(
+		   					$mdToast.simple()
+		   					.textContent('Преподаватель удален!')
+		   					.position('top left')
+		   					.hideDelay(2500))
+		   				.then(function() {
+		   				})
+		   			}
+		   		},function (error){
+		   			
+		   			if(error.data.message.indexOf('UnauthorizedError') !=-1){
+		   				err = 'Войдите в систему';
+		   			}else{
+		   				err = error.data.message;
+		   			}
+		   			$mdDialog.show(
+		   				$mdDialog.alert()
+		   				.clickOutsideToClose(true)
+		   				.title('Ошибка!')
+		   				.textContent(err)
+		   				.ariaLabel('Left to right demo')
+		   				.ok('Продолжить')
+		   				);
 
-		       		
-		     					});
-		   }, function() {});
-			
-		}else if(list[index].discipline){
-			name = list[index].discipline;
-			var confirm = $mdDialog.confirm()
-			      .title('Удаление')
-			      .textContent('Вы правда хотите удалить предмет из списка ?')
-			      .ariaLabel('Удаление')
-			      .targetEvent(ev)
-			      .ok('Удалить')
-			      .cancel('Отменить');
-			      $mdDialog.show(confirm).then(function() {
-			$http({
-				method: 'Delete',
-				url: '/api/discipline/'+name,
-				headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
-			}).then(function (response){
-
-
-
-
-	
-		   	if(response){
-		   		list.splice(index, 1);
-		   		$mdToast.show(
-		   			$mdToast.simple()
-		   			.textContent('Предмет удален!')
-		   			.position('top left')
-		   			.hideDelay(2500))
-		   		.then(function() {
-		   			console.log('Toast dismissed.');
-		   		}).catch(function() {
-		   			console.log('Toast failed or was forced to close early by another toast.');
+		   			
 		   		});
-		   	}
+		   	}, function() {});
+		   	
+		   }else if(list[index].discipline){
+		   	name = list[index].discipline;
+		   	var confirm = $mdDialog.confirm()
+		   	.title('Удаление')
+		   	.textContent('Вы правда хотите удалить предмет из списка ?')
+		   	.ariaLabel('Удаление')
+		   	.targetEvent(ev)
+		   	.ok('Удалить')
+		   	.cancel('Отменить');
+		   	$mdDialog.show(confirm).then(function() {
+		   		$http({
+		   			method: 'Delete',
+		   			url: '/api/discipline/'+name,
+		   			headers: {'Authorization': 'Bearer '+localStorage.getItem('token')}
+		   		}).then(function (response){
+
+
+
+
+		   			
+		   			if(response){
+		   				list.splice(index, 1);
+		   				$mdToast.show(
+		   					$mdToast.simple()
+		   					.textContent('Предмет удален!')
+		   					.position('top left')
+		   					.hideDelay(2500))
+		   				.then(function() {
+		   				}).catch(function() {
+		   				});
+		   			}
+		   			
+
+
+		   		},function (error){
+		   			
+		   			if(error.data.message.indexOf('UnauthorizedError') !=-1){
+		   				err = 'Войдите в систему';
+		   			}else{
+		   				err = error.data.message;
+		   			}
+		   			$mdDialog.show(
+		   				$mdDialog.alert()
+		   				.clickOutsideToClose(true)
+		   				.title('Ошибка!')
+		   				.textContent(err)
+		   				.ariaLabel('Left to right demo')
+		   				.ok('Продолжить')
+		   				);
+
+		   			
+		   		});
+		   	}, function() {});
+		   }
 		   
-
-
-			},function (error){
-				
-							if(error.data.message.indexOf('UnauthorizedError') !=-1){
-								err = 'Войдите в систему';
-							}else{
-								err = error.data.message;
-							}
-				  $mdDialog.show(
-				    $mdDialog.alert()
-				      .clickOutsideToClose(true)
-				      .title('Ошибка!')
-				      .textContent(err)
-				      .ariaLabel('Left to right demo')
-				      .ok('Продолжить')
-				  );
-
-						
-			});
-				}, function() {});
 		}
-		
-	}
 
-	$scope.toggleLeft = buildDelayedToggler('left');
-	$scope.toggleLeftSec = buildDelayedToggler('leftSec');
-	$scope.toggleRight = buildDelayedToggler('right');
-	$scope.dragStart = function(ind){
-		console.log(ind)
-		$scope.draggedFrom = ind.toString()
-	}
-	$scope.dropCallback = function(index, item, external, ind) {
-		console.log("dropsС",index, item, external, ind );
+		$scope.toggleLeft = buildDelayedToggler('left');
+		$scope.toggleLeftSec = buildDelayedToggler('leftSec');
+		$scope.toggleRight = buildDelayedToggler('right');
+		$scope.dragStart = function(ind){
+			$scope.draggedFrom = ind.toString()
+		}
+		$scope.dropCallback = function(index, item, external, ind) {
+			//console.log("dropsС",index, item, external, ind );
       //получаем нужный тип
       typeItem = external[0].types;
       $scope.draggedTo = index.toString()
@@ -235,15 +232,15 @@ angular.module('myApp')
       
   };
   $scope.dropCallback1 = function(index, item, external, ind) {
-  	console.log("drop1",index, item, external, ind );
-  	console.log("drop1", $scope.lists);
+  	//console.log("drop1",index, item, external, ind );
+  	//console.log("drop1", $scope.lists);
   	$scope.draggedTo = index.toString()
   	$scope.draggedItem = item;
   	return item;
   };
   $scope.dropCallback2 = function(index, item, external, ind) {
-  	console.log("drop1",index, item, external, ind );
-  	console.log("drop1", $scope.lists);
+  	//console.log("drop1",index, item, external, ind );
+  	//console.log("drop1", $scope.lists);
   	$scope.draggedTo = index.toString()
   	$scope.draggedItem = item;
   	return item;
@@ -278,14 +275,14 @@ angular.module('myApp')
   			}else{
   				err = error.data.message;
   			}
-    $mdDialog.show(
-      $mdDialog.alert()
-        .clickOutsideToClose(true)
-        .title('Ошибка!')
-        .textContent(err)
-        .ariaLabel('Left to right demo')
-        .ok('Продолжить')
-    );
+  			$mdDialog.show(
+  				$mdDialog.alert()
+  				.clickOutsideToClose(true)
+  				.title('Ошибка!')
+  				.textContent(err)
+  				.ariaLabel('Left to right demo')
+  				.ok('Продолжить')
+  				);
 
   		});
   	}

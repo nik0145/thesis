@@ -1,0 +1,1967 @@
+[
+	{
+		"title":"Понедельник",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"4РА-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},		
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4РЭТ-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4КСК-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"2РЭТ-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"2ПКС-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-1уп",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РЭТ-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3КСК-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ИС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				}
+				
+			]
+		}
+	},
+	{
+		"title":"Вторник",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"4РА-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},		
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4РЭТ-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4КСК-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"2РЭТ-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"2ПКС-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-1уп",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РЭТ-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3КСК-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ИС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				}
+				
+			]
+		}
+	},{
+		"title":"Среда",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"4РА-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},		
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4РЭТ-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4КСК-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"2РЭТ-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"2ПКС-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-1уп",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РЭТ-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3КСК-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ИС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				}
+				
+			]
+		}
+	},{
+		"title":"Четверг",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"4РА-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},		
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4РЭТ-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4КСК-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"2РЭТ-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"2ПКС-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-1уп",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РЭТ-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3КСК-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ИС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				}
+				
+			]
+		}
+	},{
+		"title":"Пятница",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"4РА-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},		
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4РЭТ-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4КСК-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"2РЭТ-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"2ПКС-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-1уп",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РЭТ-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3КСК-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ИС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				}
+				
+			]
+		}
+	},{
+		"title":"Суббота",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"4РА-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},		
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4РЭТ-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4КСК-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"4ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},
+								{
+					"selected":null,
+					"type":"container",
+					"group":"2РЭТ-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"2ПКС-17-2с",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-1уп",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РА-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3РЭТ-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ПКС-16-2",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3КСК-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				},								{
+					"selected":null,
+					"type":"container",
+					"group":"3ИС-16-1",
+					"columns":[
+						[
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя",
+							"id":2
+						}
+						],
+					[
+						{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет",
+							"id":4
+						}
+						
+					]
+						]
+					
+				}
+				
+			]
+		}
+	}
+
+]
