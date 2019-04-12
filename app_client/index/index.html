@@ -1,40 +1,6 @@
-
-<ng-include src="'templates/menu.html'"></ng-include>
-<div class="typesDemo row">
-
-	<div ng-repeat="list in lists" class="col-md-4">
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h3 class="panel-title">List of {{list.label}} (max. {{list.max}})</h3>
-			</div>
-			<div class="panel-body"><ul dnd-list="list.people"
-    dnd-allowed-types="list.allowedTypes"
-    dnd-disable-if="list.people.length >= list.max">
-
-    <li ng-repeat="person in list.people"
-        dnd-draggable="person"
-        dnd-type="person.type"
-        dnd-disable-if="person.type == 'unknown'"
-        dnd-moved="list.people.splice($index, 1)"
-        class="background-{{person.type}}"
-        >
-        <dnd-nodrag>
-          <div dnd-handle class="handle">:::</div>
-          <div class="name">
-              <div type="text" ng-model="person.name" class="background-{{person.type}}">{{person.type}}
-              	<div>
-          </div>
-        </dnd-nodrag>
-    </li>
-
-    <li class="dndPlaceholder">
-        Drop any <strong>{{list.allowedTypes.join(' or ')}}</strong> here
-    </li>
-
-</ul></div>
-		</div>
-	</div>
-
+<div>
+  маска <input type="text" ng-model="maks"  id = "mask" >
+  <p>Email: <input ng-model="email" type="email" id="mail"></p>
+  <p>FIO: <input ng-model="FIO" type="text" id="fio" ></p>
+  <input type="button" value="проверить ФИО" id = "check">
 </div>
-
-

@@ -1,5 +1,5 @@
 (function() {
-	angular.module('myApp', ['ngRoute','ngMaterial','dndLists']);
+	angular.module('myApp', ['ngRoute','ngMaterial','dndLists','ngMessages']);
 	function config($routeProvider) {
 
 		$routeProvider
@@ -22,6 +22,10 @@
 			templateUrl: 'bootstrap/index.html',
 			controller: 'BstrpController',
 			controllerAs: 'vm'
+		}
+		).when('/index', {
+			templateUrl: 'index/index.html',
+			controller: 'indexController',
 		}
 		).when('/logout', {
 			templateUrl: 'logout/logout.html',

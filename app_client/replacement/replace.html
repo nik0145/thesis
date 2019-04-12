@@ -276,7 +276,7 @@
 											ng-class="{selected: models.selected === item}"
 											>
 											<dnd-nodrag>
-											<div class="container-element box " id = "{{item.group}}">
+											<div class="container-element box " id ="{{item.group}}">
 												<h3 >{{item.group}} </h3>
 												<div class="column" ng-repeat="list in item.columns">
 													<ul  dnd-allowed-types="list[0].types" dnd-list="list" dnd-drop="dropCallback($index, item, list)"
