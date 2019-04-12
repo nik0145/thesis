@@ -7,6 +7,9 @@
  .statusSingUp{
   margin: 0;
  }
+ md-sidenav{
+  min-height:calc(100vh - 64px);
+ }
  
  .wrongUser{ 
   color:rgb(221,44,0);
@@ -78,22 +81,22 @@ md-list-item:nth-child(even){
 }
 
 /***************************** Element Selection *****************************/
-
- .dropzone .selected .item {
-    color: #3c763d;
-    background-color: #dff0d8;
+/* убрал */
+/*  .dropzone .selected .item {
+   color: #3c763d;
+   background-color: #dff0d8;
 }
 
 .dropzone .selected .box {
-    border-color: #d6e9c6;
+   border-color: #d6e9c6;
 }
 
- .dropzone .selected .box > h3 {
-    background-color: #dff0d8;
-    background-image: linear-gradient(to bottom,#dff0d8 0,#d0e9c6 100%);
-    border-color: #d6e9c6;
-    color: #3c763d;
-}
+.dropzone .selected .box > h3 {
+   background-color: #dff0d8;
+   background-image: linear-gradient(to bottom,#dff0d8 0,#d0e9c6 100%);
+   border-color: #d6e9c6;
+   color: #3c763d;
+} */
 
 /***************************** Element type specific styles *****************************/
 
