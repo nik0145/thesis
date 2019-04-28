@@ -91,6 +91,9 @@
 <script type="text/ng-template" id="item.html">
 <div class="item" ng-if="item.teacher">{{item.teacher}}</div>
 <div class="item" ng-if="item.discipline">{{item.discipline}}</div>
+<dnd-nodrag ng-if="item.auditorium !== undefined"><div class="itemCab" ><input type="text" ng-model="item.auditorium" class="form-control input-sm"></div></dnd-nodrag>
+<dnd-nodrag ng-if="item.comment !== undefined"><div class="itemCab" ><input type="text" ng-model="item.comment" class="form-control input-sm"></div></dnd-nodrag>
+
 </script>
 <div layout="column" style="height:90vh;" ng-cloak="" >
 
@@ -263,38 +266,35 @@
 										<div ng-repeat="(zone, list) in [tab.content['schedule']]" dnd-allowed-types="['item']"  
 										class="col-md-12">
 										<div class="dropzone box box-yellow">
-											<ul dnd-list="list" dnd-drop="dropCallback2($index, item, lists)"
+											<ul dnd-list="list" 
 											dnd-allowed-types="['container']">
 											<li ng-repeat="item in list"
-											
 											dnd-draggable="item"
-											
 											dnd-effect-allowed="move"
 											dnd-type="'container'"
 											dnd-moved="list.splice($index, 1)"
-											
 											ng-class="{selected: models.selected === item}"
 											>
 											<dnd-nodrag>
 											<div class="container-element box " id ="{{item.group}}">
 												<h3 >{{item.group}} </h3>
-												<div class="column" ng-repeat="list in item.columns">
-													<ul  dnd-allowed-types="list[0].types" dnd-list="list" dnd-drop="dropCallback($index, item, list)"
+												<div ng-style="{'width': 100/item.columns.length + '%'}" class="column" ng-repeat="list1 in item.columns">
+													<ul  dnd-allowed-types="list1[0].types" dnd-list="list1" dnd-drop="dropCallback($index, item, list1,list)"
 													dnd-allowed-types="item.type">
-													<li ng-repeat="item in list"
+													<li ng-repeat="item in list1"
 													ng-init="ind = $index"
 													dnd-draggable="item"
 													dnd-effect-allowed="move"
 														 dnd-dragstart="dragStart(ind)"
 													dnd-type="item.types"
-													dnd-moved="list.splice($index, 1)"
+													dnd-moved="list1.splice($index, 1)"
 													
 													ng-class="{selected: models.selected === item}"
 													ng-include="item.type + '.html'">
 
 												</li>
 												<li class="dndPlaceholder">
-        Перетащите {{list[0].types}}
+        Перетащите {{list1[0].types}}
     </li>
 											</ul>
 										</div> 
@@ -309,10 +309,10 @@
 
 				</div>
 	
-											<md-button  ng-click ="putTab(tab)" class="md-primary md-fab md-fab-top-right">
-			     	<md-icon md-svg-src="svg/ic_save_48px.svg" class="s48" aria-label="Angular Icon"></md-icon>
+											<md-button  ng-click ="putTab(tab)" class="md-primary md-fab md-fab-top-right s48">
+			     	<md-icon md-svg-src="svg/ic_save_48px.svg"  aria-label="Сохранить изменения"></md-icon>
 			     		<md-tooltip
-			     		md-direction="top">
+			     		md-direction="left">
 			     		Сохранить изменения
 			     	</md-tooltip>
 			   </md-button>

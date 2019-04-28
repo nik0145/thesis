@@ -68,39 +68,39 @@ angular.module('myApp')
     }, function() {
     	$scope.status = 'You decided to keep your debt.';
     });
-};
-$scope.newDiscipline = function(name,list){
-	if(name){
-		name = name[0].toUpperCase() + name.slice(1);
-		$http({
-			method:'POST',
-			url:'/api/discipline',
-			headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
-			data:{"discipline":name}
-		}).then(function(response){
-			if(response){
-				list.push(response.data);
-				var autoChild = document.getElementById('disciplineAuto').firstElementChild;
-				var el = angular.element(autoChild);
-				el.scope().$mdAutocompleteCtrl.hidden = true;
-			}
-		}).catch(function(error){
-			if(error.data.message.indexOf('UnauthorizedError') !=-1){
-				err = 'Войдите в систему';
-			}else{
-				err = error.data.message;
-			}
-			$mdDialog.show(
-				$mdDialog.alert()
-				.clickOutsideToClose(true)
-				.title('Ошибка!')
-				.textContent(err)
-				.ariaLabel('Left to right demo')
-				.ok('Продолжить')
-				);
+  };
+  $scope.newDiscipline = function(name,list){
+   if(name){
+    name = name[0].toUpperCase() + name.slice(1);
+    $http({
+     method:'POST',
+     url:'/api/discipline',
+     headers: {'Authorization': 'Bearer '+localStorage.getItem('token')},
+     data:{"discipline":name}
+   }).then(function(response){
+     if(response){
+      list.push(response.data);
+      var autoChild = document.getElementById('disciplineAuto').firstElementChild;
+      var el = angular.element(autoChild);
+      el.scope().$mdAutocompleteCtrl.hidden = true;
+    }
+  }).catch(function(error){
+   if(error.data.message.indexOf('UnauthorizedError') !=-1){
+    err = 'Войдите в систему';
+  }else{
+    err = error.data.message;
+  }
+  $mdDialog.show(
+    $mdDialog.alert()
+    .clickOutsideToClose(true)
+    .title('Ошибка!')
+    .textContent(err)
+    .ariaLabel('Left to right demo')
+    .ok('Продолжить')
+    );
 
-		})
-	}
+})
+}
 }
 
 $scope.removeFromList = function(list, index,ev) {
@@ -209,20 +209,28 @@ $scope.removeFromList = function(list, index,ev) {
 		   	}, function() {});
 		   }
 		   
-		}
+     }
 
-		$scope.toggleLeft = buildDelayedToggler('left');
-		$scope.toggleLeftSec = buildDelayedToggler('leftSec');
-		$scope.toggleRight = buildDelayedToggler('right');
-		$scope.dragStart = function(ind){
-			$scope.draggedFrom = ind.toString()
-		}
-		$scope.dropCallback = function(index, item, external, ind) {
-			//console.log("dropsС",index, item, external, ind );
+     $scope.toggleLeft = buildDelayedToggler('left');
+     $scope.toggleLeftSec = buildDelayedToggler('leftSec');
+     $scope.toggleRight = buildDelayedToggler('right');
+     $scope.dragStart = function(ind){
+       $scope.draggedFrom = ind.toString()
+     }
+     $scope.dropCallback = function(index, item, external, list) {
+		
       //получаем нужный тип
       typeItem = external[0].types;
       $scope.draggedTo = index.toString()
       $scope.draggedItem = item;
+      if(item.types == typeItem){
+          console.log("dropsС",index, item, list);
+          console.log(list);
+          if(list[0]["columns"][1].length ==  list[0]["columns"][2].length && 
+             list[0]["columns"][0].length ==  list[0]["columns"][2].length){
+             list[0]["columns"][2].push({auditorium: "",type: "item",types: "Кабинет"});
+          }
+      }
       if(item.types == typeItem){
       	return item;
       }
@@ -230,16 +238,16 @@ $scope.removeFromList = function(list, index,ev) {
       	return false;
       }
       
-  };
-  $scope.dropCallback1 = function(index, item, external, ind) {
-  	//console.log("drop1",index, item, external, ind );
+    };
+    $scope.dropCallback1 = function(index, item, external, ind) {
+  	console.log("drop1",index, item, external, ind );
   	//console.log("drop1", $scope.lists);
   	$scope.draggedTo = index.toString()
   	$scope.draggedItem = item;
   	return item;
   };
   $scope.dropCallback2 = function(index, item, external, ind) {
-  	//console.log("drop1",index, item, external, ind );
+  	console.log("drop2",index, item, external, ind );
   	//console.log("drop1", $scope.lists);
   	$scope.draggedTo = index.toString()
   	$scope.draggedItem = item;

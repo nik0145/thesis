@@ -104,13 +104,19 @@ md-list-item:nth-child(even){
     padding: 10px 15px;
 }
 
+ .dropzone .itemCab {
+    padding: 3px 15px;
+}
+.s48{
+  top: -5px!important;
+}
  .dropzone .container-element {
     margin: 10px;
 }
 
  .dropzone .container-element .column {
     float: left;
-    width: 50%;
+   
 }
 
 /***************************** Toolbox *****************************/
