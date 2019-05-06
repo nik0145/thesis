@@ -1,0 +1,77 @@
+[
+	{
+		"title":"Понедельник",
+		"content":{
+			"number":"0001",
+			"dateReg":"2019-02-08",
+			"dateSched":"2019-02-08",
+			"schedule":[
+				{
+					"selected":null,
+					"type":"container",
+					"group":"1-ПКС-15-1",
+					"columns":[
+						[
+						{
+							"teacher":"Фруленко Ю.А.",
+							"type":"item",
+							"types":"Преподавателя"
+						},
+						{
+							"teacher":"Слугин В.Г.",
+							"type":"item",
+							"types":"Преподавателя"
+						}
+
+						],
+					[
+					{
+							"teacher":"Бумажки",
+							"type":"item",
+							"types":"Предмет",
+							"id":3
+						},
+												{
+							"teacher":"AngularJS",
+							"type":"item",
+							"types":"Предмет"
+						}
+						
+					],
+											[
+					{
+							"auditorium":"123",
+							"type":"item",
+							"types":"Кабинет"
+						},
+												{
+							"auditorium":"123",
+							"type":"item",
+							"types":"Кабинет"
+						}
+						
+					],
+																	[
+					{
+							"comment":"i coometn",
+							"type":"item",
+							"types":"Комментарий"
+						},
+												{
+							"comment":"",
+							"type":"item",
+							"types":"Комментарий"
+						}
+						
+					]
+					
+						]
+					
+				}
+			]
+		}
+	}
+		
+	
+	
+]
