@@ -1,5 +1,6 @@
 (function() {
 	angular.module('myApp', ['ngRoute','ngMaterial','dndLists','ngMessages']);
+
 	function config($routeProvider) {
 
 		$routeProvider
@@ -8,13 +9,20 @@
 			controller:'AppCtrl',
 			resolve:{
 				listDisciplines: function(getDisciplines) {
+
 					return getDisciplines.getDisciplines();
 				},
 				schedule: function(getSchedule) {
+
 					return getSchedule.getSchedule();
 				},
 				listTeachers: function(getTeacher) {
+
 					return getTeacher.getTeacher();
+				},
+				listSubject: function(getSubject) {
+
+					return getSubject.getSubject();
 				}
 			}
 		}
@@ -95,20 +103,21 @@
 
 	}).factory('getDisciplines', function($http,$q ) {
 		var getDisciplines = {
-			getDisciplines: function() {
-				var promise = $http({
-					method: 'GET',
-					url: '/api/discipline'
-				}).then(function (response){
-					return response;
-				},function (error){
-					 return $q.when("error!"+error);
-				});
-				return promise;
-			}
-		}; 
+				getDisciplines: function() {
+					var promise = $http({
+						method: 'GET',
+						url: '/api/discipline'
+					}).then(function (response){
+						return response;
+					},function (error){
+						 return $q.when("error!"+error);
+					});
+					return promise;
+				}
+			}; 
 		return getDisciplines;
-	}).factory('getTeacher', function($http,$q ) {
+	}).factory('getTeacher', function($http,$q) {
+		
 		var getTeacher = {
 			getTeacher: function() {
 				var promise = $http({
@@ -129,7 +138,27 @@
 			getSchedule: function() {
 				var promise = $http({
 					method: 'GET',
-					url: '/api/schedule'
+					//url: '/api/schedule',
+					url: '/api/subject',
+					
+				}).then(function (response){
+					return response;
+				},function (error){
+					  return error;
+				}).catch(function (error){
+					  return error;
+				});
+				return promise;
+			}
+		}; 
+		return getSchedule;
+	}).factory('getSubject', function($http,$q ) {
+		var getSubject = {
+			getSubject: function() {
+				var promise = $http({
+					method: 'GET',
+					url: '/api/subject',
+					
 				}).then(function (response){
 					return response;
 				},function (error){
@@ -138,7 +167,7 @@
 				return promise;
 			}
 		}; 
-		return getSchedule;
+		return getSubject;
 	}).config(['$routeProvider', config],
 	['$locationProvider', function($locationProvider) {
 	}]);

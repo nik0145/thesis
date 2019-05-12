@@ -116,10 +116,10 @@
 				  			  	placeholder="Предмет">
 
 				  		        <md-item-template>
-				  		          <span md-highlight-text="searchSubj" md-highlight-flags="^i">{{searchSubj.discipline}}</span>
+				  		          <span md-highlight-text="searchSubj" md-highlight-flags="^i">{{searchSubj.Description}}</span>
 				  		        </md-item-template>
 				  		        <md-not-found>
-				  		          Предмет не найден <a style="text-decoration:underline; " class="md-primary" ng-click="newDiscipline(searchSubj,disciplines)">Добавьте его!</a>
+				  		          Предмет не найден
 				  		        </md-not-found>
 				  		      </md-autocomplete>
 				  		      <p hide="" show-gt-sm="">
@@ -134,7 +134,7 @@
 					draggable="true">
 
 					<div class="md-list-item-text" layout="column">
-						<h3 >{{ item.discipline }} <a class="close" ng-click="removeFromList(disciplines, $index)">×</a></h3>
+						<h3 >{{ item.Description }} <a class="close" ng-click="removeFromList(disciplines, $index)">×</a></h3>
 
 					</div>
 				</md-list-item>
@@ -163,11 +163,10 @@
   			  	md-min-length="lengthItemSubj(teachers | filter:searchText)"
   			  	placeholder="Фамилия Преподавателя">
   		        <md-item-template>
-  		          <span md-highlight-text="searchText" md-highlight-flags="^i">{{itemTeacher.teacher}}</span>
+  		          <span md-highlight-text="searchText" md-highlight-flags="^i">{{itemTeacher.Description}}</span>
   		        </md-item-template>
   		        <md-not-found>
   		          Преподаватель не найден
-  		           <a style="text-decoration:underline; " class="md-primary" ng-click="newTeacher(searchText,teachers)">Добавьте его!</a>
   		        </md-not-found>
   		      </md-autocomplete>
 					  		      <p hide="" show-gt-sm="">
@@ -184,7 +183,7 @@
 						>
 
 						<div class="md-list-item-text" layout="column">
-							<h3>{{ item.teacher }} <a class="close" ng-click="removeFromList(teachers, $index,$event)">×</a></h3>
+							<h3>{{ item.Description }} <a class="close" ng-click="removeFromList(teachers, $index,$event)">×</a></h3>
 
 						</div>
 					</md-list-item>
@@ -201,83 +200,29 @@
 			</md-sidenav>
 
 			<md-content flex="" layout-padding="" >
-<!-- 				<md-content class="md-padding" >
-	<md-tabs md-dynamic-height = "" md-selected="selectedIndex"  md-border-bottom="" md-autoselect="" md-swipe-content="">
-		<md-tab ng-repeat="tab in tabs" ng-disabled="tab.disabled" label="{{tab.title}}" >
-			<div class=" demo-tab tab{{$index%4}}" >
-				<ul ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope" 
-				>
-				<li ng-repeat="row in item.lessons"
-				dnd-draggable="row"
-				dnd-moved="row.splice($index, 1)"
-				dnd-effect-allowed="copy"
-				dnd-selected="selected = row.teacher"
-				class="ng-binding ng-scope"
-				draggable="true">
-				{{index}},  {{external}} qqqq 
-				{{row.teacher}} 1 {{row.discipline}}
-			</li>
-		</ul> 
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th class=" text-center" scope="col">Расписание занятий с учетом замен</th>
-					<th class=" text-center" scope="col">Дисциплина, МДК</th>
-					<th class=" text-center" scope="col">Пара</th>
 
-					<th class=" text-center" scope="col">Аудитория</th>
-				</tr>
-
-			</thead>
-			<tbody ng-repeat="item in tab.content['schedule']" dnd-list="item.lessons" class="ng-scope">
-
-				<tr>
-					<th  id = "{{item.group}}" colspan = "5" class="table-info text-center">{{item.group}}</th>
-				</tr>
-				<tr ng-repeat="row in item.lessons"
-
-				dnd-draggable="row"
-				dnd-moved="row.splice($index, 1)"
-				dnd-drop="false"
-				dnd-effect-allowed="copy"
-				class="ng-binding ng-scope"
-				draggable="true">
-				<td >{{row.teacher}}</td>
-				<td >{{row.discipline}}</td>
-				<td >{{row.number}}</td>
-
-				<td >{{row.auditorium}}</td>
-			</tr>
-		</tbody>
-	</table> 
-						<md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
-							Remove Tab
-						</md-button>
-					</div>
-				</md-tab>
-			</md-tabs>
-
-		</md-content>
-		<div class="alert-info">{{tabs1}}</div> -->
 						<md-content class="md-padding" >
 							<md-tabs md-dynamic-height = "" md-selected="selectedIndex"   ng-dblclick="kek(tab)" md-border-bottom="" md-autoselect="" md-swipe-content="" >
-								<md-tab  ng-repeat="tab in tabs1" label="{{tab.title}}"   >
+
+								<md-tab  ng-repeat="tab in tabs1" label="{{tab['ДеньНедели']}}"   >
+										
 									<div class="demo-tab tab{{$index%4}}" dnd-allowed-types="['item']">
-										<div ng-repeat="(zone, list) in [tab.content['schedule']]" dnd-allowed-types="['item']"  
+										<div ng-repeat="(zone, list) in [tab['schedule']]" dnd-allowed-types="['item']"  
 										class="col-md-12">
-										<div class="dropzone box box-yellow">
+										{{list.group}}
+ 										<div class="dropzone box box-yellow">
 											<ul dnd-list="list" 
 											dnd-allowed-types="['container']">
 											<li ng-repeat="item in list"
 											dnd-draggable="item"
 											dnd-effect-allowed="move"
-											dnd-type="'container'"
+											
 											dnd-moved="list.splice($index, 1)"
 											ng-class="{selected: models.selected === item}"
 											>
 											<dnd-nodrag>
 											<div class="container-element box " id ="{{item.group}}">
-												<h3 >{{item.group}} </h3>
+												<h3 >{{item.group}}</h3>
 												<div ng-style="{'width': 100/item.columns.length + '%'}" class="column" ng-repeat="list1 in item.columns">
 													<ul  dnd-allowed-types="list1[0].types" dnd-list="list1" dnd-drop="dropCallback($index, item, list1,list)"
 													dnd-allowed-types="item.type">
@@ -373,10 +318,10 @@
 		<h1 class="md-toolbar-tools">Группы</h1>
 	</md-toolbar>
 	<md-content layout-padding="">
-		<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.title)">
+		<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.Description)">
 
 			<div class="md-list-item-text" layout="column">
-				<h3 >{{ item.title }} </h3>
+				<h3 >{{ item.Description }} </h3>
 
 			</div>
 		</md-list-item>

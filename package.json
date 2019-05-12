@@ -18,14 +18,17 @@
     "express": "~4.16.0",
     "express-jwt": "^5.3.1",
     "http-errors": "~1.6.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.1",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.16",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pug": "2.0.0-beta11",
-    "readline": "0.0.x"
+    "pug": "^2.0.3",
+    "readline": "0.0.x",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "sync-request": "^6.1.0"
   },
   "devDependencies": {
     "jasmine-core": "^3.3.0",

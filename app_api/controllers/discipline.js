@@ -1,7 +1,12 @@
 var mongoose = require('mongoose');
 var disciplineSchema = mongoose.model('discipline');
+var request = require('request');
 
 var sendJsonResponse = function(res,status,content){
+	res.status(status);
+	res.json(content);
+};
+var send = function(res,status,content){
 	res.status(status);
 	res.json(content);
 };
@@ -12,6 +17,26 @@ module.exports.disciplineList = function(req,res){
 	.exec(function(err,discipline){
 		sendJsonResponse(res,200,discipline);
 	});
+};
+
+module.exports.disciplineList1C = function(req,res){
+	var options = {
+	  url: 'http://10.8.0.6/cp/odata/standard.odata/Catalog_%D0%94%D0%B8%D1%81%D1%86%D0%B8%D0%BF%D0%BB%D0%B8%D0%BD%D1%8B?$format=json&$filter=IsFolder eq false&$select=Ref_Key,Description',
+	  headers: {
+	    'Authorization': 'Basic am91cm5hbDp3YWlOb2g3WQ=='
+	  }
+	};
+	 
+	function callback(error, response, body) {
+	  if (!error && response.statusCode == 200) {
+	  	send(res,200,JSON.parse(body));
+	  }else{
+	  	console.log(error);
+	  	sendJsonResponse(res,404,error);
+	  }
+	}
+	 
+	request(options, callback);
 };
 
 

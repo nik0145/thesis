@@ -32,11 +32,11 @@ process.on('SIGINT',function(){
 });
 
 mongoose.connection.on('connected',function(){
-	console.log('good');
+	console.log('good DB');
 });
 
 mongoose.connection.on('error',function(err){
-	console.log(err);
+	console.log('err DB');
 });
 
 mongoose.connection.on('disconnected',function(){
