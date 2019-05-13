@@ -138,8 +138,7 @@
 			getSchedule: function() {
 				var promise = $http({
 					method: 'GET',
-					//url: '/api/schedule',
-					url: '/api/subject',
+					url: '/api/schedule',
 					
 				}).then(function (response){
 					return response;

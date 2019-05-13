@@ -92,7 +92,6 @@
 <div class="item" ng-if="item.teacher">{{item.teacher}}</div>
 <div class="item" ng-if="item.discipline">{{item.discipline}}</div>
 <dnd-nodrag ng-if="item.auditorium !== undefined"><div class="itemCab" ><input type="text" ng-model="item.auditorium" class="form-control input-sm"></div></dnd-nodrag>
-<dnd-nodrag ng-if="item.comment !== undefined"><div class="itemCab" ><input type="text" ng-model="item.comment" class="form-control input-sm"></div></dnd-nodrag>
 
 </script>
 <div layout="column" style="height:90vh;" ng-cloak="" >
@@ -134,7 +133,7 @@
 					draggable="true">
 
 					<div class="md-list-item-text" layout="column">
-						<h3 >{{ item.Description }} <a class="close" ng-click="removeFromList(disciplines, $index)">×</a></h3>
+						<h3 >{{ item.Description }} </h3>
 
 					</div>
 				</md-list-item>
@@ -183,7 +182,7 @@
 						>
 
 						<div class="md-list-item-text" layout="column">
-							<h3>{{ item.Description }} <a class="close" ng-click="removeFromList(teachers, $index,$event)">×</a></h3>
+							<h3>{{ item.Description }}</h3>
 
 						</div>
 					</md-list-item>
