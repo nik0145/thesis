@@ -101,14 +101,25 @@ md-list-item:nth-child(even){
 /***************************** Element type specific styles *****************************/
 
  .dropzone .item {
+  overflow: scroll;
     padding: 10px 15px;
+    height: 65px;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
  .dropzone .itemCab {
     padding: 3px 15px;
+        height: 65px;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 .s48{
   top: -5px!important;
+}
+.c48{
+  height: 31px;
+width: 40px;
 }
  .dropzone .container-element {
     margin: 10px;

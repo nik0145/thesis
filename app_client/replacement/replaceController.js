@@ -3,7 +3,7 @@ angular.module('myApp')
 .controller('AppCtrl', function ($scope, $timeout,$mdDialog,
 	$mdSidenav, $log,$mdToast,$window,
 	$anchorScroll,$document,$http,listSubject,
-	listDisciplines,listTeachers,schedule) {
+	listDisciplines,listTeachers,schedule,listAuditorium) {
 
 console.log(schedule);
 	$scope.tabs1 = schedule.data;
@@ -41,9 +41,9 @@ console.log($scope.tabs1);
 
 
 
-
 $scope.subject= listSubject.data.value;
-
+$scope.auditorium= listAuditorium.data.value;
+console.log($scope.auditorium);
   for (var i = listDisciplines.data.value.length - 1; i >= 0; i--) {
     listDisciplines.data.value[i]["types"] = 'Предмет';
     listDisciplines.data.value[i]["type"] = 'item';
@@ -271,26 +271,7 @@ $scope.subject= listSubject.data.value;
   		$mdDialog.hide(answer);
   	};
   }
-  $scope.showPrompt = function(ev) {
-  	$mdDialog.show({
-  		controller:DialogController,
-  		templateUrl: 'dialog1.tmpl.html',
-  		parent: angular.element(document.body),
-  		targetEvent: ev,
-  		clickOutsideToClose:true,
-  		fullscreen: $scope.customFullscreen 
-  	})
-  	.then(function(name) {
-  		$scope.userNameTitle = name;
-  		$scope.userName = name;
-  		$scope.status = 'Вы вошли как "' + name + '".';
-  	}, function() {
-  		if(!$scope.userNameTitle){
-  			$scope.status = 'Вы не вошли в систему!';
-  		}
-  		
-  	});
-  };
+
 
 function debounce(func, wait, context) {
 	var timer;

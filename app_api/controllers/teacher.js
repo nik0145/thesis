@@ -10,12 +10,15 @@ var send = function(res,status,content){
 	res.status(status);
 	res.json(content);
 };
+var token = 'am91cm5hbDp3YWlOb2g3WQ==';
+
 
 module.exports.teacherList = function(req,res){
 	var options = {
-	  url: 'http://10.8.0.6/cp/odata/standard.odata/Catalog_%D0%A1%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%B8?$format=json&$filter=IsFolder eq false&$select=Ref_Key,Description',
+	  url: 'http://10.8.0.6/cp/odata/standard.odata/Catalog_%D0%A1%D0%BE%D1%82%D1%80%D1%83%D0%B4%D0%BD%D0%B8%D0%BA%D0%B8?'
+	  +'$format=json&$filter=IsFolder eq false&$select=Ref_Key,Description',
 	  headers: {
-	    'Authorization': 'Basic am91cm5hbDp3YWlOb2g3WQ=='
+	    'Authorization': 'Basic '+token
 	  }
 	};
 	 
@@ -30,6 +33,10 @@ module.exports.teacherList = function(req,res){
 	 
 	request(options, callback);
 };
+
+
+
+
 
 /*module.exports.teacherList = function(req,res){
 

@@ -23,6 +23,10 @@
 				listSubject: function(getSubject) {
 
 					return getSubject.getSubject();
+				},
+				listAuditorium: function(getAuditorium) {
+
+					return getAuditorium.getAuditorium();
 				}
 			}
 		}
@@ -151,6 +155,24 @@
 			}
 		}; 
 		return getSchedule;
+	})	.factory('getAuditorium', function($http,$q ) {
+		var getAuditorium = {
+			getAuditorium: function() {
+				var promise = $http({
+					method: 'GET',
+					url: '/api/auditorium',
+					
+				}).then(function (response){
+					return response;
+				},function (error){
+					  return error;
+				}).catch(function (error){
+					  return error;
+				});
+				return promise;
+			}
+		}; 
+		return getAuditorium;
 	}).factory('getSubject', function($http,$q ) {
 		var getSubject = {
 			getSubject: function() {
