@@ -36,12 +36,13 @@
 	<div class="item" ng-if="item.discipline">{{item.discipline}}</div>
 	<dnd-nodrag ng-if="item.auditorium !== undefined"><div class="itemCab" >
 				<md-autocomplete
-				id ="auditorium"
-				md-selected-item="item.auditorium"
-				md-search-text="searchSubj1"
+				
+				md-selected-item="searchSubj1"
+				md-search-text="item.auditorium"
 				ng-model="item.auditorium"
-				md-items="subj in auditorium | filter:searchSubj1"
-				md-item-text="searchSubj1"
+				md-items="subj in auditorium | filter:item.auditorium"
+				md-item-text="subj.Description"
+				md-min-length="0"
 				placeholder="Аудитории">
 				<md-item-template>
 					<span md-highlight-text="searchSubj1" md-highlight-flags="^i">{{subj.Description}}</span>
