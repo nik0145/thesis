@@ -7,40 +7,34 @@ angular.module('myApp')
 
 console.log(schedule);
 	$scope.tabs1 = schedule.data;
-var shdTemplate =   {
-          "selected":null,
-          "type":"container",
-          "group":"",
-          "columns":[[],[],[]]
-        };
+var shdTemplate =   {"selected":null,"type":"container","group":"","columns":[[],[],[]]};
 
 for(var i = 0; i<$scope.tabs1.length;i++){
-  for (var j = 0; j < $scope.tabs1[i]['Расписание'].length; j++) {
-     shed = $scope.tabs1[i]['Расписание'][j];
-     shdTemplate.group = shed['УчебнаяГруппа_Name'];
-     shdTemplate.columns[0].push({teacher:shed['Преподаватель_Name'],type:"item",types:"Преподавателя"});
-     shdTemplate.columns[1].push({discipline:shed['Дисциплина_Name'],type:"item",types:"Предмет"});
-     shdTemplate.columns[2].push({auditorium:shed['Аудитория_Name'],type:"item",types:"Кабинет"});
-   
+  $scope.tabs1[i].schedule = [];
+  shed = $scope.tabs1[i]['Расписание'][0];
+  shdTemplate.group = shed['УчебнаяГруппа_Name'];
+  shdTemplate.columns[0].push({teacher:shed['Преподаватель_Name'],type:"item",types:"Преподавателя"});
+  shdTemplate.columns[1].push({discipline:shed['Дисциплина_Name'],type:"item",types:"Предмет"});
+  shdTemplate.columns[2].push({auditorium:shed['Аудитория_Name'],type:"item",types:"Кабинет"});
 
+  for (var j = 1; j < $scope.tabs1[i]['Расписание'].length; j++) {
+      shed = $scope.tabs1[i]['Расписание'][j];
+    if(shed['УчебнаяГруппа_Name'] == $scope.tabs1[i]['Расписание'][j-1]['УчебнаяГруппа_Name']){
+      shdTemplate.columns[0].push({teacher:shed['Преподаватель_Name'],type:"item",types:"Преподавателя"});
+      shdTemplate.columns[1].push({discipline:shed['Дисциплина_Name'],type:"item",types:"Предмет"});
+      shdTemplate.columns[2].push({auditorium:shed['Аудитория_Name'],type:"item",types:"Кабинет"});
+    }else{
+       $scope.tabs1[i].schedule.push(shdTemplate);
+       shdTemplate =   {"selected":null,"type":"container","group":"","columns":[[],[],[]]};
+       shdTemplate.group = shed['УчебнаяГруппа_Name'];
+       shdTemplate.columns[0].push({teacher:shed['Преподаватель_Name'],type:"item",types:"Преподавателя"});
+       shdTemplate.columns[1].push({discipline:shed['Дисциплина_Name'],type:"item",types:"Предмет"});
+       shdTemplate.columns[2].push({auditorium:shed['Аудитория_Name'],type:"item",types:"Кабинет"});
+    }
   }
-    $scope.tabs1[i].schedule = [];
-    $scope.tabs1[i].schedule.push(shdTemplate);
-    
 }
 console.log($scope.tabs1);
 	$scope.subject =[];
-	if(localStorage.getItem('user')){
-		$scope.userNameTitle = localStorage.getItem('user');
-
-	}else{
-		$scope.userNameTitle = '';
-	}
-
-
-
-
-
 $scope.subject= listSubject.data.value;
 $scope.auditorium= listAuditorium.data.value;
 console.log($scope.auditorium);

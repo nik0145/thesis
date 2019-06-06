@@ -109,7 +109,8 @@ md-list-item:nth-child(even){
 }
 
  .dropzone .itemCab {
-    padding: 3px 15px;
+
+    padding: 12px 5px;
         height: 65px;
     overflow:hidden;
     text-overflow:ellipsis;
