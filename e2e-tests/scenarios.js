@@ -1,33 +1,34 @@
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
-
-describe('my app', function () {
+describe('schedule', function () {
 
     it('should automatically redirect to / when anonymous', function () {
         browser.get('/');
         expect(browser.getLocationAbsUrl()).toMatch('/');
     });
-
-    //describe('login ok', function () {
-    it('вход пользователем  должен быть успешен', function () {
-
+  
+    it('change teacher', function () {
         browser.get('/');
-
-        element(by.css('#signUpNavBar')).click();
-        element(by.model('userName')).clear().sendKeys('admin');
-        element(by.model('passwordName')).clear().sendKeys('admin');
-        element(by.css('#signUp')).click();
-        var status = element(by.css('.statusSingUp'));
-         expect(status.getText()).toEqual('Вы вошли как "admin".');
-
+        element(by.css('.fiosotr[0]')).click();
+        element(by.css('.schedulesotr[0]')).click();
+        var status = element(by.css('.schedulesotr[0]'));
+         expect(status.getText()).toEqual('changeSotr');
+    });
+    it('change discipline', function () {
+        browser.get('/');
+        element(by.css('.discipline[0]')).click();
+        element(by.css('.scheduleDiscipline[0]')).click();
+        var status = element(by.css('.scheduleDiscipline[0]'));
+         expect(status.getText()).toEqual('changeDiscipline');
     });
 
-    it('выход должен привести пользователя на ту же страницу)', function () {
-        element(by.css("#signOutNavBar")).click();
-        var statusOut = element(by.css('#signUpNavBar'));
+    it('change auditorium)', function () {
+    element(by.css('.autocomplete[0]')).click();
+    element(by.css('.autocomplete[0] > li[0]')).click();
+    var status = element(by.css('.autocomplete[0]'));
+     expect(status.getText()).toEqual('element');
         
-          expect(statusOut.getText()).toEqual('ВОЙТИ');
+          expect(statusOut.getText()).toEqual('changeAuditorium');
     });
 
 });
