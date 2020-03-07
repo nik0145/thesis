@@ -11,12 +11,12 @@ var send = function(res,status,content){
 	res.json(content);
 };
 
-var token = 'am91cm5hbDp3YWlOb2g3WQ==';
+var token = '';
 
 
 module.exports.disciplineList = function(req,res){
 	var options = {
-	  url: 'http://10.8.0.6/cp/odata/standard.odata/Catalog_%D0%94%D0%B8%D1%81%D1%86%D0%B8%D0%BF%D0%BB%D0%B8%D0%BD%D1%8B?'+
+	  url: 'http://1cServer/cp/odata/standard.odata/Catalog_%D0%94%D0%B8%D1%81%D1%86%D0%B8%D0%BF%D0%BB%D0%B8%D0%BD%D1%8B?'+
 	  '$format=json&$filter=IsFolder eq false&$select=Ref_Key,Description',
 	  headers: {
 	    'Authorization': 'Basic '+token

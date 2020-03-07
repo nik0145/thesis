@@ -1,239 +1,256 @@
-
 <md-toolbar>
-	<div class="md-toolbar-tools">
-		<h2 flex md-truncate>Составление расписания</h2>
-
-	</div>
+  <div class="md-toolbar-tools">
+    <h2 flex md-truncate>Составление расписания</h2>
+  </div>
 </md-toolbar>
 <script type="text/ng-template" id="list.html">
-	<ul dnd-list="list" dnd-drop="dropCallback1($index, item, lists)"
-	dnd-allowed-types="'asd'">
-	<li ng-repeat="item in list"
-	dnd-draggable="item"
-	dnd-allowed-types="item.types"
-	dnd-effect-allowed="move"
-	dnd-moved="list.splice($index, 1)"
-	dnd-selected="models.selected = item"
+  	<ul dnd-list="list" dnd-drop="dropCallback1($index, item, lists)"
+  	dnd-allowed-types="'asd'">
+  	<li ng-repeat="item in list"
+  	dnd-draggable="item"
+  	dnd-allowed-types="item.types"
+  	dnd-effect-allowed="move"
+  	dnd-moved="list.splice($index, 1)"
+  	dnd-selected="models.selected = item"
 
-	ng-class="{selected: models.selected === item}"
-	ng-include="item.type + '.html'">
-</li>
-</ul>
+  	ng-class="{selected: models.selected === item}"
+  	ng-include="item.type + '.html'">
+  </li>
+  </ul>
 </script>
 
-
 <script type="text/ng-template" id="container.html">
-	<dnd-nodrag><div class="container-element box ">
-		<h3>Группа </h3>
-		<div class="column" ng-repeat="list in item.columns"    ng-include="'list.html'"></div> </dnd-nodrag>
-		<div class="clearfix"></div>
-	</div>
+  <dnd-nodrag><div class="container-element box ">
+  	<h3>Группа </h3>
+  	<div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div> </dnd-nodrag>
+  	<div class="clearfix"></div>
+  </div>
 </script>
 
 <!-- Template for a normal list item -->
 <script type="text/ng-template" id="item.html">
-	<div class="item" ng-if="item.teacher">{{item.teacher}}</div>
-	<div class="item" ng-if="item.discipline">{{item.discipline}}</div>
-	<dnd-nodrag ng-if="item.auditorium !== undefined"><div class="itemCab" >
-				<md-autocomplete
-				
-				md-selected-item="searchSubj1"
-				md-search-text="item.auditorium"
-				ng-model="item.auditorium"
-				md-items="subj in auditorium | filter:item.auditorium"
-				md-item-text="subj.Description"
-				md-min-length="0"
-				placeholder="Аудитории">
-				<md-item-template>
-					<span md-highlight-text="searchSubj1" md-highlight-flags="^i">{{subj.Description}}</span>
-				</md-item-template>
-				<md-not-found>
-					Аудитория не найден
-				</md-not-found>
-			</md-autocomplete>
-	</div></dnd-nodrag>
+  <div class="item" ng-if="item.teacher">{{item.teacher}}</div>
+  <div class="item" ng-if="item.discipline">{{item.discipline}}</div>
+  <dnd-nodrag ng-if="item.auditorium !== undefined"><div class="itemCab" >
+  			<md-autocomplete
 
+  			md-selected-item="searchSubj1"
+  			md-search-text="item.auditorium"
+  			ng-model="item.auditorium"
+  			md-items="subj in auditorium | filter:item.auditorium"
+  			md-item-text="subj.Description"
+  			md-min-length="0"
+  			placeholder="Аудитории">
+  			<md-item-template>
+  				<span md-highlight-text="searchSubj1" md-highlight-flags="^i">{{subj.Description}}</span>
+  			</md-item-template>
+  			<md-not-found>
+  				Аудитория не найден
+  			</md-not-found>
+  		</md-autocomplete>
+  </div></dnd-nodrag>
 </script>
-<div layout="column" style="height:90vh;" ng-cloak="" >
+<div layout="column" style="height:90vh;" ng-cloak="">
+  <section layout="row" flex="">
+    <md-sidenav
+      md-disable-backdrop="false"
+      class="md-sidenav-left"
+      md-component-id="leftSec"
+      md-is-locked-open="$mdMedia('gt-sm')"
+      md-whiteframe="4"
+    >
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Предметы</h1>
+      </md-toolbar>
+      <md-content layout-padding="">
+        <md-autocomplete
+          id="disciplineAuto"
+          md-selected-item="selectedItems"
+          md-search-text="searchSubj"
+          md-items="subj in disciplines | filter:searchSubj"
+          md-item-text="subj.discipline"
+          md-min-length="lengthItemSubj(disciplines | filter:searchSubj)"
+          placeholder="Предмет"
+        >
+          <md-item-template>
+            <span md-highlight-text="searchSubj" md-highlight-flags="^i"
+              >{{searchSubj.Description}}</span
+            >
+          </md-item-template>
+          <md-not-found>
+            Предмет не найден
+          </md-not-found>
+        </md-autocomplete>
+        <p hide="" show-gt-sm=""></p>
+        <md-list flex="" ng-if="disciplines">
+          <md-list-item
+            class="md-3-line"
+            ng-repeat="item in disciplines | filter:searchSubj"
+            dnd-draggable="item"
+            dnd-effect-allowed="copy"
+            dnd-selected="selectedDisciplines = item"
+            ng-class="{'selected': selectedDisciplines === item}"
+            class="ng-binding ng-scope"
+            draggable="true"
+          >
+            <div class="md-list-item-text" layout="column">
+              <h3>{{ item.Description }}</h3>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-button
+            ng-click="closeleftSecond()"
+            class="md-primary"
+            hide-gt-sm=""
+          >
+            Закрыть
+          </md-button>
+        </md-list>
+      </md-content>
+    </md-sidenav>
 
-	<section layout="row" flex="">
+    <md-sidenav
+      md-disable-backdrop="false"
+      class="md-sidenav-left"
+      md-component-id="left"
+      md-is-locked-open="$mdMedia('gt-sm')"
+      md-whiteframe="4"
+    >
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Преподаватели</h1>
+      </md-toolbar>
+      <md-content layout-padding="">
+        <md-autocomplete
+          id="teacherAuto"
+          md-selected-item="selectedItem"
+          md-search-text="searchText"
+          md-items="itemTeacher in teachers | filter:searchText"
+          md-item-text="itemTeacher.teacher"
+          md-min-length="lengthItemSubj(teachers | filter:searchText)"
+          placeholder="Фамилия Преподавателя"
+        >
+          <md-item-template>
+            <span md-highlight-text="searchText" md-highlight-flags="^i"
+              >{{itemTeacher.Description}}</span
+            >
+          </md-item-template>
+          <md-not-found>
+            Преподаватель не найден
+          </md-not-found>
+        </md-autocomplete>
+        <p hide="" show-gt-sm=""></p>
+        <md-list flex="" dnd-list="[]">
+          <md-list-item
+            class="md-3-line"
+            ng-repeat="item in teachers | filter:searchText"
+            dnd-draggable="item"
+            dnd-effect-allowed="copy"
+            dnd-selected="selectedTeacher = item"
+            ng-class="{'selected': selectedTeacher === item}"
+            class="ng-binding ng-scope"
+            draggable="true"
+          >
+            <div class="md-list-item-text" layout="column">
+              <h3>{{ item.Description }}</h3>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-button ng-click="closeleft()" class="md-primary" hide-gt-sm="">
+            Закрыть
+          </md-button>
+        </md-list>
+        <p hide="" show-gt-sm=""></p>
+      </md-content>
+    </md-sidenav>
 
-		<md-sidenav md-disable-backdrop="false" class="md-sidenav-left" md-component-id="leftSec" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
+    <md-content flex="" layout-padding="">
+      <md-content class="md-padding">
+        <md-tabs
+          md-dynamic-height=""
+          md-selected="selectedIndex"
+          ng-dblclick="kek(tab)"
+          md-border-bottom=""
+          md-autoselect=""
+          md-swipe-content=""
+        >
+          <md-tab ng-repeat="tab in tabs1" label="{{tab['ДеньНедели']}}">
+            <div class="demo-tab tab{{$index%4}}" style="min-height: 100px;" dnd-allowed-types="['item']">
+              <div
+                ng-repeat="(zone, list) in [tab['schedule']]"
+                dnd-allowed-types="['item']"
+                class="col-md-12"
+              >
+                {{list.group}}
+                <div class="dropzone box box-yellow" >
+                  <ul dnd-list="list" dnd-allowed-types="['container']">
+                    <li
+                      ng-repeat="item in list"
+                      dnd-draggable="item"
+                      dnd-effect-allowed="move"
+                      dnd-moved="list.splice($index, 1)"
+                      ng-class="{selected: models.selected === item}"
+                    >
+                      <dnd-nodrag>
+                        <div class="container-element box " id="{{item.group}}">
+                          <h3>{{item.group}}</h3>
+                          <div
+                            ng-style="{'width': 100/item.columns.length + '%'}"
+                            class="column"
+                            ng-repeat="list1 in item.columns"
+                          >
+                            <ul
+                              dnd-allowed-types="list1[0].types"
+                              dnd-list="list1"
+                              dnd-drop="dropCallback($index, item, list1,list)"
+                              dnd-allowed-types="item.type"
+                            >
+                              <li
+                                ng-repeat="item in list1"
+                                ng-init="ind = $index"
+                                dnd-draggable="item"
+                                dnd-effect-allowed="move"
+                                dnd-dragstart="dragStart(ind)"
+                                dnd-type="item.types"
+                                dnd-moved="list1.splice($index, 1)"
+                                ng-class="{selected: models.selected === item}"
+                                ng-include="item.type + '.html'"
+                              ></li>
+                              <li class="dndPlaceholder">
+                                Перетащите {{list1[0].types}}
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </dnd-nodrag>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-			<md-toolbar class="md-theme-indigo">
-				<h1 class="md-toolbar-tools">Предметы</h1>
-			</md-toolbar>
-			<md-content layout-padding="" >
-
-				<md-autocomplete
-				id ="disciplineAuto"
-				md-selected-item="selectedItems"
-				md-search-text="searchSubj"
-				md-items="subj in disciplines | filter:searchSubj"
-				md-item-text="subj.discipline"
-				md-min-length="lengthItemSubj(disciplines | filter:searchSubj)"
-				placeholder="Предмет">
-
-				<md-item-template>
-					<span md-highlight-text="searchSubj" md-highlight-flags="^i">{{searchSubj.Description}}</span>
-				</md-item-template>
-				<md-not-found>
-					Предмет не найден
-				</md-not-found>
-			</md-autocomplete>
-			<p hide="" show-gt-sm="">
-			</p>
-			<md-list flex="">
-				<md-list-item class="md-3-line" ng-repeat="item in disciplines | filter:searchSubj"
-				dnd-draggable="item"
-				dnd-effect-allowed="copy"
-				dnd-selected="selectedDisciplines = item"
-				ng-class="{'selected': selectedDisciplines === item}"
-				class="ng-binding ng-scope"
-				draggable="true">
-
-				<div class="md-list-item-text" layout="column">
-					<h3 >{{ item.Description }} </h3>
-
-				</div>
-			</md-list-item>
-			<md-divider></md-divider>
-			<md-button ng-click="closeleftSecond()" class="md-primary" hide-gt-sm="">
-				Закрыть
-			</md-button>
-			<p hide="" show-gt-sm="">
-			</p>
-
-		</md-content>
-	</md-sidenav>
-
-	<md-sidenav md-disable-backdrop="false" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" md-whiteframe="4">
-
-		<md-toolbar class="md-theme-indigo">
-			<h1 class="md-toolbar-tools">Преподаватели</h1>
-		</md-toolbar>
-		<md-content layout-padding="" >
-			<md-autocomplete
-			id ="teacherAuto"
-			md-selected-item="selectedItem"
-			md-search-text="searchText"
-			md-items="itemTeacher in teachers | filter:searchText"
-			md-item-text="itemTeacher.teacher"
-			md-min-length="lengthItemSubj(teachers | filter:searchText)"
-			placeholder="Фамилия Преподавателя">
-			<md-item-template>
-				<span md-highlight-text="searchText" md-highlight-flags="^i">{{itemTeacher.Description}}</span>
-			</md-item-template>
-			<md-not-found>
-				Преподаватель не найден
-			</md-not-found>
-		</md-autocomplete>
-		<p hide="" show-gt-sm="">
-		</p>
-		<md-list flex="" dnd-list="[]">
-			<md-list-item class="md-3-line"
-			ng-repeat="item in teachers | filter:searchText"
-			dnd-draggable="item"
-			dnd-effect-allowed="copy"
-			dnd-selected="selectedTeacher = item"
-			ng-class="{'selected': selectedTeacher === item}"
-			class="ng-binding ng-scope"
-			draggable="true"
-			>
-
-			<div class="md-list-item-text" layout="column">
-				<h3>{{ item.Description }}</h3>
-
-			</div>
-		</md-list-item>
-		<md-divider></md-divider>
-		<md-button ng-click="closeleft()" class="md-primary" hide-gt-sm="">
-			Закрыть
-		</md-button>
-		<p hide="" show-gt-sm="">
-		</p>
-
-
-	</md-content>
-
-</md-sidenav>
-
-<md-content flex="" layout-padding="" >
-
-	<md-content class="md-padding" >
-		<md-tabs md-dynamic-height = "" md-selected="selectedIndex"   ng-dblclick="kek(tab)" md-border-bottom="" md-autoselect="" md-swipe-content="" >
-
-			<md-tab  ng-repeat="tab in tabs1" label="{{tab['ДеньНедели']}}"   >
-
-				<div class="demo-tab tab{{$index%4}}" dnd-allowed-types="['item']">
-					<div ng-repeat="(zone, list) in [tab['schedule']]" dnd-allowed-types="['item']"  
-					class="col-md-12">
-					{{list.group}}
-					<div class="dropzone box box-yellow">
-						<ul dnd-list="list" 
-						dnd-allowed-types="['container']">
-						<li ng-repeat="item in list"
-						dnd-draggable="item"
-						dnd-effect-allowed="move"
-
-						dnd-moved="list.splice($index, 1)"
-						ng-class="{selected: models.selected === item}"
-						>
-						<dnd-nodrag>
-							<div class="container-element box " id ="{{item.group}}">
-								<h3 >{{item.group}}</h3>
-								<div ng-style="{'width': 100/item.columns.length + '%'}" class="column" ng-repeat="list1 in item.columns">
-									<ul  dnd-allowed-types="list1[0].types" dnd-list="list1" dnd-drop="dropCallback($index, item, list1,list)"
-									dnd-allowed-types="item.type">
-									<li ng-repeat="item in list1"
-									ng-init="ind = $index"
-									dnd-draggable="item"
-									dnd-effect-allowed="move"
-									dnd-dragstart="dragStart(ind)"
-									dnd-type="item.types"
-									dnd-moved="list1.splice($index, 1)"
-
-									ng-class="{selected: models.selected === item}"
-									ng-include="item.type + '.html'">
-
-								</li>
-								<li class="dndPlaceholder">
-									Перетащите {{list1[0].types}}
-								</li>
-							</ul>
-						</div> 
-						<div class="clearfix"></div>
-
-					</div>
-				</dnd-nodrag>
-			</li>
-		</ul>
-	</div>
-</div>
-
-</div>
-
-<md-button  ng-click ="putTab(tab)" class="md-primary md-fab md-fab-top-right s48">
-	<md-icon md-svg-src="svg/ic_save_48px.svg"  aria-label="Сохранить изменения"></md-icon>
-	<md-tooltip
-	md-direction="left">
-	Сохранить изменения
-</md-tooltip>
-</md-button>
-										<!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
+            <md-button
+              ng-click="putTab(tab)"
+              class="md-primary md-fab md-fab-top-right s48"
+            >
+              <md-icon
+                md-svg-src="svg/ic_save_48px.svg"
+                aria-label="Сохранить изменения"
+              ></md-icon>
+              <md-tooltip md-direction="left">
+                Сохранить изменения
+              </md-tooltip>
+            </md-button>
+            <!-- <md-button class="md-primary md-raised" ng-click="removeTab( tab )" ng-disabled="tabs.length <= 1">
 											Remove Tab
 										</md-button> -->
-									</div>
+            <!-- </div> -->
+          </md-tab>
+        </md-tabs>
+      </md-content>
 
-								</md-tab>
-
-							</md-tabs>
-
-						</md-content>
-
-
-					</div>
-<!--     	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
+      <!-- </div> -->
+      <!--     	 <form ng-submit="addTab(tTitle,tContent)" layout="column" class="md-padding">
   <div layout="row" layout-xs="column">
     <div flex="">
       <h2 class="md-subhead">Add a new Tab:</h2>
@@ -251,72 +268,84 @@
     </md-button>
   </div>
 </form> -->
-<div layout="column" layout-align="top center">
+      <div layout="column" layout-align="top center">
+        <div>
+          <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-sm="">
+            Показать преподавателей
+          </md-button>
+          <md-button
+            ng-click="toggleLeftSec()"
+            class="md-primary"
+            hide-gt-sm=""
+          >
+            Показать предметы
+          </md-button>
+        </div>
+        <div></div>
+      </div>
 
-	<div>
-		<md-button ng-click="toggleLeft()" class="md-primary" hide-gt-sm="">
-			Показать преподавателей
-		</md-button>
-		<md-button ng-click="toggleLeftSec()" class="md-primary" hide-gt-sm="">
-			Показать предметы
-		</md-button>
-	</div>
-	<div>
-
-	</div>
-
-</div>
-
-<div flex=""></div>
-
-
-</md-content>
-<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-
-	<md-toolbar class="md-theme-light">
-		<h1 class="md-toolbar-tools">Группы</h1>
-	</md-toolbar>
-	<md-content layout-padding="">
-		<md-list-item class="md-3-line" ng-repeat="item in subject" ng-click="scrollTo(item.Description)">
-
-			<div class="md-list-item-text" layout="column">
-				<h3 >{{ item.Description }} </h3>
-
-			</div>
-		</md-list-item>
+      <div flex=""></div>
+    </md-content>
+    <md-sidenav
+      class="md-sidenav-right md-whiteframe-4dp"
+      md-component-id="right"
+    >
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Группы</h1>
+      </md-toolbar>
+      <md-content layout-padding="">
+        <md-list-item
+          class="md-3-line"
+          ng-repeat="item in subject"
+          ng-click="scrollTo(item.Description)"
+        >
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ item.Description }}</h3>
+          </div>
+        </md-list-item>
         <!-- <form>
           <md-input-container>
             <label for="testInput">Test input</label>
             <input type="text" id="testInput" ng-model="data" md-autofocus="">
           </md-input-container>
       </form> -->
-      <md-button ng-click="closeRight()" class="md-primary">
-      	Закрыть
-      </md-button>
+        <md-button ng-click="closeRight()" class="md-primary">
+          Закрыть
+        </md-button>
+      </md-content>
+    </md-sidenav>
+  </section>
+  <ul dnd-list="[]">
+    <md-button
+      md-disable-backdrop
+      class="md-primary md-fab md-fab-bottom-right"
+      style="right: 90px;"
+    >
+      <md-icon
+        md-svg-src="svg/ic_delete_24px.svg"
+        class="c48"
+        aria-label="Angular Icon"
+      ></md-icon>
 
-  </md-content>
-
-</md-sidenav>
-
-</section>  <ul dnd-list="[]">
-
-	<md-button  md-disable-backdrop class="md-primary md-fab md-fab-bottom-right" style="right: 90px;">
-		<md-icon md-svg-src="svg/ic_delete_24px.svg" class="c48" aria-label="Angular Icon"></md-icon>
-
-
-		<md-tooltip
-		md-direction="left">
-		Перенесите элемент, чтобы его удалить 
-	</md-tooltip>
-</md-button>
-</ul>
-<md-button  md-disable-backdrop ng-click="toggleRight()"class="md-primary md-fab md-fab-bottom-right">
-	<md-icon md-svg-src="svg/users-group.svg" class="s48" aria-label="Angular Icon"></md-icon>
-	<md-tooltip
-	md-direction="left">
-	Список групп
-</md-tooltip>
-</md-button>
+      <md-tooltip md-direction="left">
+        Перенесите элемент, чтобы его удалить
+      </md-tooltip>
+    </md-button>
+  </ul>
+  <md-button
+    md-disable-backdrop
+    ng-click="toggleRight()"
+    class="md-primary md-fab md-fab-bottom-right"
+  >
+    <md-icon
+      md-svg-src="svg/users-group.svg"
+      class="s48"
+      aria-label="Angular Icon"
+    ></md-icon>
+    <md-tooltip md-direction="left">
+      Список групп
+    </md-tooltip>
+  </md-button>
 </div>
 
 <!--

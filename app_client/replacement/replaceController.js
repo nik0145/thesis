@@ -2,11 +2,10 @@
 angular.module('myApp')
 .controller('AppCtrl', function ($scope, $timeout,$mdDialog,
 	$mdSidenav, $log,$mdToast,$window,
-	$anchorScroll,$document,$http,listSubject,
+	$anchorScroll,$http,listSubject,
 	listDisciplines,listTeachers,schedule,listAuditorium) {
 
-console.log(schedule);
-	$scope.tabs1 = schedule.data;
+	$scope.tabs1 = schedule.data || [];
 var shdTemplate =   {"selected":null,"type":"container","group":"","columns":[[],[],[]]};
 
 for(var i = 0; i<$scope.tabs1.length;i++){
@@ -33,24 +32,32 @@ for(var i = 0; i<$scope.tabs1.length;i++){
     }
   }
 }
-console.log($scope.tabs1);
 	$scope.subject =[];
-$scope.subject= listSubject.data.value;
-$scope.auditorium= listAuditorium.data.value;
-console.log($scope.auditorium);
+	if(listSubject && listSubject.data){
+		$scope.subject= listSubject.data.value;
+	}
+	if(listAuditorium && listAuditorium.data){
+		$scope.auditorium= listAuditorium.data.value;
+	}
+	if(listDisciplines && listDisciplines.data){
+
+	
   for (var i = listDisciplines.data.value.length - 1; i >= 0; i--) {
     listDisciplines.data.value[i]["types"] = 'Предмет';
     listDisciplines.data.value[i]["type"] = 'item';
     listDisciplines.data.value[i]["discipline"] =  listDisciplines.data.value[i]["Description"];
   }
-    $scope.disciplines = listDisciplines.data.value;
+	$scope.disciplines = listDisciplines.data.value;
+}	
+if(listTeachers && listTeachers.data){
     for (var i = listTeachers.data.value.length - 1; i >= 0; i--) {
-    listTeachers.data.value[i]["types"] = 'Преподавателя';
-     listTeachers.data.value[i]["type"] = 'item';
-    listTeachers.data.value[i]["teacher"] =  listTeachers.data.value[i]["Description"];
-  }
-  console.log(listTeachers.data.value);
-	$scope.teachers = listTeachers.data.value;
+		listTeachers.data.value[i]["types"] = 'Преподавателя';
+		 listTeachers.data.value[i]["type"] = 'item';
+		listTeachers.data.value[i]["teacher"] =  listTeachers.data.value[i]["Description"];
+	  }
+	  $scope.teachers = listTeachers.data.value;
+}
+
 	$scope.logout = function(){
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
@@ -154,8 +161,6 @@ console.log($scope.auditorium);
       $scope.draggedTo = index.toString()
       $scope.draggedItem = item;
       if(item.types == typeItem){
-          console.log("dropsС",index, item, list);
-          console.log(list);
           if(list[0]["columns"][1].length ==  list[0]["columns"][2].length && 
              list[0]["columns"][0].length ==  list[0]["columns"][2].length){
              list[0]["columns"][2].push({auditorium: "",type: "item",types: "Кабинет"});
@@ -170,15 +175,11 @@ console.log($scope.auditorium);
       
     };
     $scope.dropCallback1 = function(index, item, external, ind) {
-  	console.log("drop1",index, item, external, ind );
-  	//console.log("drop1", $scope.lists);
   	$scope.draggedTo = index.toString()
   	$scope.draggedItem = item;
   	return item;
   };
   $scope.dropCallback2 = function(index, item, external, ind) {
-  	console.log("drop2",index, item, external, ind );
-  	//console.log("drop1", $scope.lists);
   	$scope.draggedTo = index.toString()
   	$scope.draggedItem = item;
   	return item;
@@ -188,6 +189,7 @@ console.log($scope.auditorium);
   	$anchorScroll(id);  
   }
   $scope.putTab = function(item){
+	  console.log('asdaklsdjaklsjd')
   	title = item.title;
   	if(item && title){
   		$http({
