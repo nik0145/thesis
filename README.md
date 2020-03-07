@@ -1,17 +1,19 @@
 # Курсовая работа и по совместительству, Диплом
 Задача курсовой работы:
 * Познакомиться со стеком MEAN
-* Реализовать CRUD операци
+* Реализовать CRUD операции
+* database is Mongo
+* framework is AngularJs
 
 ## Установка
 
 Клонируйте проект
 ```
-git clone https://gitlab.nntc.nnov.ru/kolya_tyurin/kursovik.git
+git clone https://github.com/nik0145/thesis.git
 ```
 Перейдите в папку с проектом и выполните 
 ```
-git install
+npm install
 ```
 После этого запустите проект командой
 ```
@@ -19,5 +21,5 @@ node bin/www
 ```
 Перейдите на 
 ```
-перейти на localhost:3000
+перейти на localhost:1337
 ```
